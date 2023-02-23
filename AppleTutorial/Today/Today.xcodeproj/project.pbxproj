@@ -13,7 +13,7 @@
 		7C10A29229A78C6C0024B849 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C10A29029A78C6C0024B849 /* Main.storyboard */; };
 		7C10A29429A78C6D0024B849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C10A29329A78C6D0024B849 /* Assets.xcassets */; };
 		7C10A29729A78C6D0024B849 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C10A29529A78C6D0024B849 /* LaunchScreen.storyboard */; };
-		7C10A29F29A78CDF0024B849 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10A29E29A78CDF0024B849 /* Reminder.swift */; };
+		7CE9D3AE29A78D4600D14BB7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE9D3AD29A78D4600D14BB7 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		7C10A29329A78C6D0024B849 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C10A29629A78C6D0024B849 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C10A29829A78C6D0024B849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C10A29E29A78CDF0024B849 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reminder.swift; path = ../../../Today/Today/Model/Reminder.swift; sourceTree = "<group>"; };
+		7CE9D3AD29A78D4600D14BB7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 		7C10A28929A78C6C0024B849 /* Today */ = {
 			isa = PBXGroup;
 			children = (
-				7C10A29E29A78CDF0024B849 /* Reminder.swift */,
+				7CE9D3AD29A78D4600D14BB7 /* Reminder.swift */,
 				7C10A28A29A78C6C0024B849 /* AppDelegate.swift */,
 				7C10A28C29A78C6C0024B849 /* SceneDelegate.swift */,
 				7C10A28E29A78C6C0024B849 /* ReminderListViewController.swift */,
@@ -144,7 +144,7 @@
 				7C10A28F29A78C6C0024B849 /* ReminderListViewController.swift in Sources */,
 				7C10A28B29A78C6C0024B849 /* AppDelegate.swift in Sources */,
 				7C10A28D29A78C6C0024B849 /* SceneDelegate.swift in Sources */,
-				7C10A29F29A78CDF0024B849 /* Reminder.swift in Sources */,
+				7CE9D3AE29A78D4600D14BB7 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
