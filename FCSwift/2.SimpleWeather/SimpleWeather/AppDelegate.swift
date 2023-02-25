@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  HelloiOS
+//  SimpleWeather
 //
 //  Created by Deokhun KIM on 2022/07/14.
 //

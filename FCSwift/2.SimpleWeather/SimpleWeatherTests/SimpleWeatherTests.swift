@@ -1,14 +1,14 @@
 //
-//  HelloiOSTests.swift
-//  HelloiOSTests
+//  SimpleWeatherTests.swift
+//  SimpleWeatherTests
 //
 //  Created by Deokhun KIM on 2022/07/14.
 //
 
 import XCTest
-@testable import HelloiOS
+@testable import SimpleWeather
 
-class HelloiOSTests: XCTestCase {
+class SimpleWeatherTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
