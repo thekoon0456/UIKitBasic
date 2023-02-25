@@ -58,7 +58,7 @@
 		7C10A28929A78C6C0024B849 /* Today */ = {
 			isa = PBXGroup;
 			children = (
-				7CE9D3AD29A78D4600D14BB7 /* Reminder.swift */,
+				7CE9D3AF29A78F6F00D14BB7 /* Model */,
 				7C10A28A29A78C6C0024B849 /* AppDelegate.swift */,
 				7C10A28C29A78C6C0024B849 /* SceneDelegate.swift */,
 				7C10A28E29A78C6C0024B849 /* ReminderListViewController.swift */,
@@ -68,6 +68,14 @@
 				7C10A29829A78C6D0024B849 /* Info.plist */,
 			);
 			path = Today;
+			sourceTree = "<group>";
+		};
+		7CE9D3AF29A78F6F00D14BB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7CE9D3AD29A78D4600D14BB7 /* Reminder.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
