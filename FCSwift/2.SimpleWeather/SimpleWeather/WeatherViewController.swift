@@ -35,3 +35,6 @@ class WeatherViewController: UIViewController {
     }
     
 }
+
+//스택뷰 안에는 기본적으로 다 꽉 채움
+//패딩 넣고 싶으면 뷰 안에 넣기

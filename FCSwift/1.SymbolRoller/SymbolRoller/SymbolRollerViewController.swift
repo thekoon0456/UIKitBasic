@@ -16,22 +16,27 @@ class SymbolRollerViewController: UIViewController {
     @IBOutlet weak var lable: UITextField!
     @IBOutlet weak var button: UIButton!
     
+    //MARK: - LifeCycle 1->2->3 순서대로 호출됨
+    //1. 메모리 올라감
     override func viewDidLoad() { //페이지가 스크린에 보일때 필요한 뷰에 대한 컴포넌트들이 메모리에 로드됨, 어떤 값들을 입혀줄 수 있음. (앱이 뜰때 viewdidload를 거쳐서 뜸) (화면 준비)
         super.viewDidLoad()
-        reload() //여기 함수 넣어야 첫 화면부터 설정한 화면이 뜸
+        reload() //여기 함수 넣어야 첫 화면에 설정한 화면이 뜸
     }
     
+    //2. 화면 보여질꺼야
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    } //화면 보여질꺼야
+    }
     
+    //3. 화면 보여졌다
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    } //화면 보여졌다
+    }
     
     @IBAction func buttonTapped(_ sender: Any) {
         //버튼 클릭했을때 랜덤으로 뜨도록 구현
         reload()
+        print("눌렸다")
     }
     //Dry - 중복코드 메소드로 따서 호출
     func reload() {
