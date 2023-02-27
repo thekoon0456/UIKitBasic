@@ -67,21 +67,15 @@ extension FrameworkListViewController: UICollectionViewDelegateFlowLayout {
         let height = width * 1.5
         return CGSize(width: width, height: height)
         
-//                //2열 일때 계산
-//                let interItemSpacing: CGFloat = 10
-//                let padding: CGFloat = 16
+//        //2열 일때 계산
+//        //컬렉션뷰 너비
+//        let width = (collectionView.bounds.width - interItemSpacing * 1 - padding * 2) / 2
 //
-//                //컬렉션뷰 너비
-//                let width = (collectionView.bounds.width - interItemSpacing * 1 - padding * 2) / 2
-//
-//                //컬렉션뷰 높이
-//                let height = width * 1.5
-//                return CGSize(width: width, height: height)
+//        //컬렉션뷰 높이
+//        let height = width * 1.5
+//        return CGSize(width: width, height: height)
         
 //        //4열 일때 계산
-//        let interItemSpacing: CGFloat = 10
-//        let padding: CGFloat = 16
-//
 //        //컬렉션뷰 너비
 //        let width = (collectionView.bounds.width - interItemSpacing * 3 - padding * 2) / 4
 //
@@ -103,7 +97,7 @@ extension FrameworkListViewController: UICollectionViewDelegateFlowLayout {
 
 //아이콘 클릭했을때 반응 만들기
 extension FrameworkListViewController: UICollectionViewDelegate {
-    //아이템 선택했을때 이 메소드 호출됨
+    //아이템 선택했을때 이 메소드 호출됨 - didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let framework = list[indexPath.item]
         print(">>> selected: \(framework.name)")

@@ -17,7 +17,7 @@ class FrameworkCell: UICollectionViewCell {
         super.awakeFromNib()
         nameLable.numberOfLines = 1
         nameLable.adjustsFontSizeToFitWidth = true
-        //폰트사이즈 셀에 따라서 조정시켜라
+        //폰트사이즈 셀에 따라서 조정시켜라 - 폰트가 셀에 맞춰서 작아짐
     }
     
     //framework 데이터 받아서 cell을 업데이트해주는 메소드 추가 (config:구성)
