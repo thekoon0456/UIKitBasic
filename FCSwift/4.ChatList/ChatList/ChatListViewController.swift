@@ -17,18 +17,18 @@ class ChatListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //컬렉션뷰에 내용 표시하려면
-        //Data, Presentation, Layout
+        //Data, Presentation, Layout 세가지 필요함
         
         collectionView.dataSource = self
-        //데이터소스는 데이터와 프리센테이션을 책임짐 - 내가 알려줄게
+        //데이터소스는 데이터와 프리센테이션을 책임짐 - ChatListViewController 직접 알려줄게
         collectionView.delegate = self
-        //델리게이트 - 레이아웃 누구에게 위임? - 내가 관리할게
+        //델리게이트 - 레이아웃 누구에게 위임? - ChatListViewController 직접 관리할게
         //컬렉션의 세가지를 위임당하는 객체는 셀프(챗리스트 뷰컨트롤)
         
         //내림차순으로 배열 정렬 ex) 1, 4, 5, 2 -> 5, 4, 2, 1
         chatList = chatList.sorted(by: {chat1, chat2 in
             return chat1.date > chat2.date
-        }) //두개 비교했을때 항상 참이 되도록 비교하라
+        }) //두개 비교했을때 항상 참이 되도록 비교하라, let chatList를 var로 바꾸기
     }
 }
 
