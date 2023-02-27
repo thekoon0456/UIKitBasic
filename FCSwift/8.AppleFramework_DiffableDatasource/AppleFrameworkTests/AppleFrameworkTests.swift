@@ -1,14 +1,14 @@
 //
-//  NRCOnboardingTests.swift
-//  NRCOnboardingTests
+//  AppleFrameworkTests.swift
+//  AppleFrameworkTests
 //
-//  Created by Deokhun KIM on 2023/02/28.
+//  Created by joonwon lee on 2022/04/22.
 //
 
 import XCTest
-@testable import NRCOnboarding
+@testable import AppleFramework
 
-class NRCOnboardingTests: XCTestCase {
+class AppleFrameworkTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

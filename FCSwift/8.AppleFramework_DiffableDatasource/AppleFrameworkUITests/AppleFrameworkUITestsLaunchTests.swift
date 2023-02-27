@@ -1,13 +1,13 @@
 //
-//  NRCOnboardingUITestsLaunchTests.swift
-//  NRCOnboardingUITests
+//  AppleFrameworkUITestsLaunchTests.swift
+//  AppleFrameworkUITests
 //
-//  Created by Deokhun KIM on 2023/02/28.
+//  Created by joonwon lee on 2022/04/22.
 //
 
 import XCTest
 
-class NRCOnboardingUITestsLaunchTests: XCTestCase {
+class AppleFrameworkUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

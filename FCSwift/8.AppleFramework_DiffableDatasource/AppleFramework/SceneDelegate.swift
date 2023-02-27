@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  NRCOnboarding
+//  AppleFramework
 //
-//  Created by Deokhun KIM on 2023/02/28.
+//  Created by joonwon lee on 2022/04/22.
 //
 
 import UIKit

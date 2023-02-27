@@ -2,7 +2,7 @@
 //  OnboardingViewController.swift
 //  NRCOnboarding
 //
-//  Created by joonwon lee on 2022/04/23.
+//  Created by Deokhun KIM on 2023/02/28.
 //
 
 import UIKit
@@ -17,6 +17,7 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
