@@ -35,6 +35,7 @@ class FrameworkDetailViewController: UIViewController {
                 let safari = SFSafariViewController(url: url)
                 self.present(safari, animated: true)
             }.store(in: &subscription)
+        
         //output: Data세팅될때 UI업데이트 (전달받은 프레임워크의 정보를 뿌려줌)
         framework
             .receive(on: RunLoop.main)
