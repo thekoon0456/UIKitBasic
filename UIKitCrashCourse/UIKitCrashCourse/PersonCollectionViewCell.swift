@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol PersonCollectionViewCellDelegate: AnyObject {
+    func didTapSubscribe()
+}
+
 class PersonCollectionViewCell: UICollectionViewCell {
     
     private var vw: PersonView?
+    
+    weak var delegate: PersonCollectionViewCellDelegate?
     
     //뷰컨트롤러에 데이터 할당할때마다 트리거됨
     var item: PersonResponse? {
@@ -41,8 +47,8 @@ private extension PersonCollectionViewCell {
         //뷰가 옵셔널. 생성하기 전에 비어있는지 확인
         guard vw == nil else { return }
         
-        vw = PersonView {
-            
+        vw = PersonView { [weak self] in
+            self?.delegate?.didTapSubscribe()
         }
         
         self.contentView.addSubview(vw!)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class PeopleViewController: UIViewController {
 
@@ -54,6 +55,7 @@ extension PeopleViewController: UICollectionViewDataSource {
         let item = vm.people[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonCollectionViewCell", for: indexPath) as! PersonCollectionViewCell//재사용셀 설정
         
+        cell.delegate = self
         cell.item = item
         return cell
     }
@@ -71,7 +73,17 @@ extension PeopleViewController: PeopleViewModelDelegate {
         print(error)
     }
     
-    
+}
+
+extension PeopleViewController: PersonCollectionViewCellDelegate {
+    func didTapSubscribe() {
+        
+        let url = URL(string: "http://www.google.com")!
+        let vc = SFSafariViewController(url: url)
+        //모달로
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true)
+    }
 }
 
 private extension PeopleViewController {
