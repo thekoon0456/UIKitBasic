@@ -6,9 +6,13 @@
 //
 
 import UIKit
-
+/*
+뷰에서 뷰컨트롤러와 통신하는 방법
+1. delegate
+2. closure - 이벤트 트리거
+*/
 class PersonView: UIView {
-    //뷰컨트롤러에 있는 UI를 여기서 구성
+    //뷰컨트롤러에 있는 UI를 여기서 구성 - 뷰컨트롤러 비대해지는것 방지
     
     //1.setup 함수 내에 많은 UI로직이 있는 것 선호하지 않음. 클로저 내에 캡슐화하여 설정하기
     //2.lazy로 클로저 내에서 실제로 버튼을 만들지 않고 사용할때 생성하므로 성능 향상
@@ -59,16 +63,30 @@ class PersonView: UIView {
         return vw
     }()
     
-    //init peopleView가 초기화되고 초기화 프레임을 생성할때 실행될 코드
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    //클로저 만듬
+    private var action: () -> ()
+    //블록 외부에서 이 클로저 호출. escaping하기
+    init(action: @escaping () -> ()) {
+        self.action = action
+        super.init(frame: .zero) //높이 지정 안함
         setup()
     }
+    
+//    //init peopleView가 초기화되고 초기화 프레임을 생성할때 실행될 코드
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setup()
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //indexPath설정, 데이터 연동
+    func set(name: String, email: String) {
+        nameLBl.text = name
+        emailLBl.text = email
+    }
 }
 
 private extension PersonView {
@@ -104,6 +122,6 @@ private extension PersonView {
     }
     
     @objc func didTapSubscribe(sender: UIButton) {
-        print("구독함")
+        action()
     }
 }
