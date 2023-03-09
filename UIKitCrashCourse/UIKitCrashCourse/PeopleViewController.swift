@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SafariServices
+import SafariServices //safari뷰 사용
 
 class PeopleViewController: UIViewController {
 
@@ -88,6 +88,11 @@ extension PeopleViewController: PersonCollectionViewCellDelegate {
 
 private extension PeopleViewController {
     func setup() {
+        //navigationTitle추가
+        self.navigationController?.navigationBar.prefersLargeTitles = true //타이틀 크게
+        self.navigationItem.title = "People" //작게 나옴
+
+
         self.view.backgroundColor = .white
         
         //컬렉션뷰 추가
