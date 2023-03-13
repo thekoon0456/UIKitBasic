@@ -33,6 +33,7 @@ class UserProfileViewController: UIViewController {
         thumbnail.layer.cornerRadius = 80
     }
     
+    //Search bar
     private func embedSearchControl() {
         self.navigationItem.title = "Search"
         
@@ -44,17 +45,19 @@ class UserProfileViewController: UIViewController {
         self.navigationItem.searchController = searchController
     }
     
+    //유저 업데이트시 UI변경
     private func bind() {
         $user
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] result in
+            .receive(on: RunLoop.main) //메인스레드에서
+            .sink { [unowned self] result in //변경된 내용 받기
                 self.update(result)
-            }.store(in: &subscriptions)
+            }.store(in: &subscriptions) //var subscriptions에 저장
     }
     
+    //updateUI
     private func update(_ user: UserProfile?) {
         guard let user = user else {
-            self.nameLabel.text = "n/a"
+            self.nameLabel.text = "n/a" //유저정보가 nil일때
             self.loginLabel.text = "n/a"
             self.followerLabel.text = ""
             self.followingLabel.text = ""
@@ -73,12 +76,14 @@ class UserProfileViewController: UIViewController {
     }
 }
 
+//서치바 텍스트 변경될때마다 호출됨
 extension UserProfileViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let keyword = searchController.searchBar.text
         print("search: \(keyword)")
     }
 }
+
 
 extension UserProfileViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
