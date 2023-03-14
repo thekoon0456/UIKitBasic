@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  GithubUserProfile
+//  GithubUserSearch
 //
 //  Created by Deokhun KIM on 2023/03/14.
 //
