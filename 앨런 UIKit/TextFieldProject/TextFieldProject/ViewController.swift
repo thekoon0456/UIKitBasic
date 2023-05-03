@@ -27,6 +27,12 @@ class ViewController: UIViewController, UITextFieldDelegate { //1. 프로토콜 
         textField.borderStyle = .roundedRect
         textField.clearButtonMode = .always
         textField.returnKeyType = .next
+        textField.becomeFirstResponder() //UIResponder. 응답객체가 됨. 화면 나오자마자 키보드 나옴
+    }
+    
+    //화면의 탭을 감지하는 메서드
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     //실제 메서드 구현하면서 텍스트필드의 작동 시점을 전달받을 수 있음
@@ -102,7 +108,7 @@ class ViewController: UIViewController, UITextFieldDelegate { //1. 프로토콜 
     }
 
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        
+        textField.resignFirstResponder() //키보드 내려감
     }
     
 
