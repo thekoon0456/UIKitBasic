@@ -9,7 +9,7 @@ import UIKit
 
 final class ViewController: UIViewController { //final 일반적으로 붙임!! 클래스는 구조체보다 느리게 동작함. 동적(테이블) 디스패치때문에! final 키워드를 붙이면 더이상 상속을 못하게 막으면서 다이렉트 디스패치가 일어나게 함
     
-    //이메일 텍스트필드 올릴 뷰
+    //MARK: - 이메일 텍스트필드 올릴 뷰
     private lazy var emailTextFieldView: UIView = { //private로 외부에서 변수에 접근하지 못하도록. 클래스 내부에서만 접근가능하도록. 대부분의 변수는 private붙이는게 좋음
         let view = UIView()
         view.backgroundColor = .darkGray
@@ -90,7 +90,7 @@ final class ViewController: UIViewController { //final 일반적으로 붙임!! 
         return button
     }()
     
-    //로그인 버튼
+    //MARK: - 로그인 버튼
     private let loginButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .clear
@@ -132,7 +132,7 @@ final class ViewController: UIViewController { //final 일반적으로 붙임!! 
     lazy var emailInfoLabelCenterYConstraint = emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor)
     lazy var passwordInfoLabelCenterYConstraint = passwordInfoLable.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor)
     
-    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -229,6 +229,7 @@ final class ViewController: UIViewController { //final 일반적으로 붙임!! 
 
 }
 
+//MARK: - 확장
 extension ViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
