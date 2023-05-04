@@ -10,7 +10,7 @@ import UIKit
 final class ViewController: UIViewController { //final 일반적으로 붙임!! 클래스는 구조체보다 느리게 동작함. 동적(테이블) 디스패치때문에! final 키워드를 붙이면 더이상 상속을 못하게 막으면서 다이렉트 디스패치가 일어나게 함
     
     //MARK: - 이메일 텍스트필드 올릴 뷰
-    private lazy var emailTextFieldView: UIView = { //private로 외부에서 변수에 접근하지 못하도록. 클래스 내부에서만 접근가능하도록. 대부분의 변수는 private붙이는게 좋음
+    private lazy var emailTextFieldView: UIView = { //private로 외부에서 변수에 접근하지 못하도록. 클래스 내부에서만 접근가능하도록. 대부분의 변수는 private붙이는게 좋음 .lazy var 사용하면 내부에 addSubView 작성 가능.
         let view = UIView()
         view.backgroundColor = .darkGray
         view.layer.cornerRadius = 5
@@ -111,7 +111,6 @@ final class ViewController: UIViewController { //final 일반적으로 붙임!! 
         st.spacing = 10
         st.distribution = .fillEqually //동등하게
         st.alignment = .fill
-        
         return st
     }()
     
@@ -223,6 +222,7 @@ final class ViewController: UIViewController { //final 일반적으로 붙임!! 
         present(alert, animated: true)
     }
     
+    //화면 눌렀을때 키보드 내려가도록
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
