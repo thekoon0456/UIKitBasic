@@ -9,8 +9,8 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
-    @IBOutlet weak var bmi: UILabel!
-    @IBOutlet weak var ment: UILabel!
+    @IBOutlet weak var bmiNumberLabel: UILabel!
+    @IBOutlet weak var adviceLabel: UILabel!
     @IBOutlet weak var reCalcButton: UIButton!
     
     var result: Double = 0
@@ -23,28 +23,29 @@ class ResultViewController: UIViewController {
     }
     
     func configureUI() {
-        bmi.text = String(format: "%.2f", result)
-        bmi.layer.cornerRadius = 10
-        ment.text = resultMent
-        reCalcButton.layer.cornerRadius = 10
+        bmiNumberLabel.text = String(format: "%.2f", result)
+        bmiNumberLabel.layer.cornerRadius = 8
+        
+        adviceLabel.text = resultMent
+        reCalcButton.layer.cornerRadius = 5
     }
-    
+
     func calcBMI() {
         switch result {
         case 0..<18.6:
-            bmi.backgroundColor = .cyan
+            bmiNumberLabel.backgroundColor = .cyan
             resultMent = "저체중"
         case 18.6..<23.0:
-            bmi.backgroundColor = .green
+            bmiNumberLabel.backgroundColor = .green
             resultMent = "표준"
         case 23.0..<25.0:
-            bmi.backgroundColor = .purple
+            bmiNumberLabel.backgroundColor = .purple
             resultMent = "과체중"
         case 25.0..<30:
-            bmi.backgroundColor = .orange
+            bmiNumberLabel.backgroundColor = .orange
             resultMent = "중도 비만"
         default:
-            bmi.backgroundColor = .red
+            bmiNumberLabel.backgroundColor = .red
             resultMent = "고도 비만"
         }
     }
