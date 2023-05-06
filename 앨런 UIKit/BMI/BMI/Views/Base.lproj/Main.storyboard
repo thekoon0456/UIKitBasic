@@ -29,7 +29,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="bmiCalcButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3QP-oF-XE0"/>
+                                    <action selector="calculateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s5K-xv-hjn"/>
+                                    <segue destination="0mq-bN-fZ5" kind="presentation" identifier="toSecondVC" id="qSt-4y-m8t"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XgA-PC-spK">
@@ -61,9 +62,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="heightTextFieldTapped:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="HRA-Ud-LUI"/>
-                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -87,9 +85,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="weightTextFieldTapped:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="y4v-IG-pH8"/>
-                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -108,26 +103,26 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bmiCalcButton" destination="gME-Vl-o2t" id="fLq-Uz-90a"/>
-                        <outlet property="heightTextField" destination="AGL-9d-1f4" id="PZ3-L5-q8A"/>
-                        <outlet property="mainLabel" destination="kGY-xB-qMs" id="1hq-6h-h0p"/>
-                        <outlet property="weightTextField" destination="i7Z-VZ-ncj" id="6kj-e4-MH2"/>
+                        <outlet property="calculateButton" destination="gME-Vl-o2t" id="Q6g-Ez-LC4"/>
+                        <outlet property="heightTextField" destination="AGL-9d-1f4" id="OgJ-ir-5mj"/>
+                        <outlet property="mainLabel" destination="kGY-xB-qMs" id="jr6-MU-MAY"/>
+                        <outlet property="weightTextField" destination="i7Z-VZ-ncj" id="MRj-At-JKc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="143" y="-5"/>
         </scene>
-        <!--Result View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="QWT-fH-LhK">
             <objects>
-                <viewController storyboardIdentifier="ResultViewController" id="0mq-bN-fZ5" customClass="ResultViewController" customModule="BMI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondViewController" id="0mq-bN-fZ5" customClass="SecondViewController" customModule="BMI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="neE-mr-wqq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-w3-cgg">
-                                <rect key="frame" x="20" y="743" width="353" height="45"/>
+                                <rect key="frame" x="20" y="767" width="353" height="45"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="XYB-YE-uZ1"/>
@@ -138,11 +133,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="reCalc:" destination="0mq-bN-fZ5" eventType="touchUpInside" id="MR2-Fv-StW"/>
+                                    <action selector="backButtonTapped:" destination="0mq-bN-fZ5" eventType="touchUpInside" id="3Z2-Uu-0q0"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="PxB-94-UBD">
-                                <rect key="frame" x="96.666666666666686" y="189" width="200" height="128"/>
+                                <rect key="frame" x="96.666666666666686" y="130" width="200" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI 결과값" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYE-uh-YTW">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="24"/>
@@ -183,9 +178,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="adviceLabel" destination="RHP-Mf-zWi" id="imO-tv-gGz"/>
-                        <outlet property="bmiNumberLabel" destination="02b-pD-f4H" id="G8Y-1N-S81"/>
-                        <outlet property="reCalcButton" destination="OUg-w3-cgg" id="w88-pR-k5s"/>
+                        <outlet property="adviceLabel" destination="RHP-Mf-zWi" id="G2Q-A2-bsf"/>
+                        <outlet property="backButton" destination="OUg-w3-cgg" id="4Eo-Xm-wsL"/>
+                        <outlet property="bmiNumberLabel" destination="02b-pD-f4H" id="4nW-9i-vM2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewK-aF-V5r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
