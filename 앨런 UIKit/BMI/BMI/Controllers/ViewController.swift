@@ -9,14 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    //bmi = weight / height * height(m)
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var bmiCalcButton: UIButton!
     
+//    //bmi = weight / height * height(m)
     var height: Double = 0
     var weight: Double = 0
+    
+    var bmiManager = BMICalculatorManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,21 +41,23 @@ class ViewController: UIViewController {
     @IBAction func heightTextFieldTapped(_ sender: UITextField) {
         height = Double(sender.text ?? "0") ?? 0
     }
-    
+
     @IBAction func weightTextFieldTapped(_ sender: UITextField) {
         weight = Double(sender.text ?? "0") ?? 0
     }
     
     @IBAction func bmiCalcButtonTapped(_ sender: UIButton) {
         if heightTextField.text != "" && weightTextField.text != "" {
-            let result = weight / (height * height) * 10000
+            let result = bmiManager.calculateBMI(height: height, weight: weight)
             let resultVC = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
             
-            resultVC.result = result //데이터 전달
+            resultVC.bmiManager.result = result //데이터 전달
             present(resultVC, animated: true)
             
             mainLabel.text = "키와 몸무게를 입력해주세요"
             mainLabel.textColor = .black
+            heightTextField.text = ""
+            weightTextField.text = ""
         } else {
             mainLabel.text = "키와 몸무게를 입력하셔야한 합니다!!"
             mainLabel.textColor = .red
