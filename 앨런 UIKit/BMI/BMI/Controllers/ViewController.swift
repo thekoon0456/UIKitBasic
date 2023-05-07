@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
@@ -15,9 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightTextField: UITextField!
     
     //비즈니스로직 담당 인스턴스 - BMI계산과 관련된 모든 것
-    var bmiManager = BMICalculatorManager()
-    
-    //var bmi: Double?
+    private var bmiManager = BMICalculatorManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+final class SecondViewController: UIViewController {
 
     @IBOutlet weak var bmiNumberLabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
@@ -18,21 +18,21 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
     }
     
     func configureUI() {
-        // 전화면에서 전달받은 BMI를 통해 셋팅
-        bmiNumberLabel.text = "\(bmi!.value)"
-        bmiNumberLabel.backgroundColor = bmi?.matchColor
-        adviceLabel.text = bmi?.advice
-        
         // UI셋팅
         bmiNumberLabel.clipsToBounds = true
         bmiNumberLabel.layer.cornerRadius = 8
 
         backButton.layer.cornerRadius = 5
+        
+        // 전화면에서 전달받은 BMI를 통해 셋팅
+        guard let bmi = bmi else { return }
+        bmiNumberLabel.text = "\(bmi.value)"
+        bmiNumberLabel.backgroundColor = bmi.matchColor
+        adviceLabel.text = bmi.advice
     }
     
     // 다시 계산하기 버튼 눌렀을때
