@@ -19,12 +19,24 @@ final class ViewController: UIViewController {
         //두가지 다 delegate패턴
         tableView.dataSource = self
         tableView.delegate = self
+        
         //셀 높이 설정
         tableView.rowHeight = 120
         
+        //네비게이션 타이틀 설정 (title 이미 구현되어있으)
+        title = "영화목록"
+        
+        //movieDataManager 빈배열에 데이터 넣기
+        movieDataManager.makeMovieData()
+        
         //코드베이스 사용시 셀 등록 메서드 넣기
     }
-
+    
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        movieDataManager.updateMovieData()
+        tableView.reloadData() //데이터 바뀌면 테이블뷰 다시 업데이트
+    }
+    
 }
 
 //tableView 사용하려면 UITableViewDataSource 채택해야함.
