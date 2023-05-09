@@ -86,10 +86,10 @@ class TeamTableViewCell: UITableViewCell {
     private weak var delegate: TeamTableViewCellDelegate?
     private var team: Team?
     
-
+    
     //MARK: - LifeCycle
     override func layoutSubviews() {
-            super.layoutSubviews()
+        super.layoutSubviews()
         containerVw.layer.cornerRadius = 10
     }
     
@@ -100,7 +100,7 @@ class TeamTableViewCell: UITableViewCell {
         self.delegate = nil
         self.contentView.subviews.forEach{ $0.removeFromSuperview() }
     }
-
+    
     //input제어
     func configure(with item: Team, delegate: TeamTableViewCellDelegate) {
         

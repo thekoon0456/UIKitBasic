@@ -57,7 +57,7 @@ private extension ChantsViewController {
         //제약조건 활성화
         NSLayoutConstraint.activate([
             //테이블 뷰를 왼쪽 상단에 고정
-            //constant에 8 등 수치를 넣을수도 있음. 그러면 테이블뷰를 8만큰 밀어야 함
+            //constant에 8 등 수치를 넣을수도 있음.
             tableVw.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             tableVw.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             tableVw.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
