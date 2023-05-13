@@ -14,6 +14,20 @@ final class ViewController: UIViewController {
     
     var memberListManager = MemberListManager()
     
+    //네비게이션바에 넣기 위한 버튼
+    lazy var plusButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusButtonTapped))
+        return button
+    }()
+    
+    @objc func plusButtonTapped() {
+        //다음 화면으로 이동, 멤버는 전달하지 않음
+        let detailVC = DetailViewController()
+        
+        //화면 이동
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -22,6 +36,12 @@ final class ViewController: UIViewController {
         setUpNaviBar()
         setupTableViewConstraints()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //테이블뷰 업데이트
+        tableView.reloadData()
     }
     
     func setUpNaviBar() {
@@ -37,7 +57,7 @@ final class ViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         //네비게이션 오른쪽 상단 버튼. 버튼 만든 뒤에 올림
-//        self.navigationItem.rightBarButtonItem = self.plusButton
+        self.navigationItem.rightBarButtonItem = self.plusButton
     }
 
     func setUpTableView() {
