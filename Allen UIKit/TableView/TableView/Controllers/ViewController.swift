@@ -29,7 +29,8 @@ final class ViewController: UIViewController {
         //movieDataManager 빈배열에 데이터 넣기
         movieDataManager.makeMovieData()
         
-        //코드베이스 사용시 셀 등록 메서드 넣기
+        //코드베이스 사용시 셀 Identifier 등록 메서드 넣기!!!
+//        tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell") //MovieCell.self는 메타타입 (타입 인스턴스의 타입)
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
