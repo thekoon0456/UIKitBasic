@@ -14,7 +14,7 @@ struct Member {
     lazy var memberImage: UIImage? = {
         guard let name = name else { return UIImage(systemName: "person") }
         //해당이름으로 된 이미지가 없다면, 시스템 사람 이미지 세팅
-        return UIImage(named: "\(name)") ?? UIImage(systemName: "person")
+        return UIImage(named: "\(name).png") ?? UIImage(systemName: "person")
     }()
     
     //멤버의 (절대적) 순서를 위한 타입 저장 속성
@@ -39,3 +39,4 @@ struct Member {
         Member.memberNumbers += 1
     }
 }
+

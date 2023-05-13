@@ -75,10 +75,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as? MyTableViewCell else { return UITableViewCell() }
-        
-        cell.mainImageView.image = memberListManager[indexPath.row].memberImage
-        cell.memberNameLabel.text = memberListManager[indexPath.row].name
-        cell.addressLabel.text = memberListManager[indexPath.row].address
+        cell.member = memberListManager[indexPath.row]
         cell.selectionStyle = .none
         
         return cell
@@ -86,6 +83,13 @@ extension ViewController: UITableViewDataSource {
     
 }
 
+//delegate 패턴으로 뷰컨트롤러 이동
 extension ViewController: UITableViewDelegate {
-    
+    //cell이 선택되었을때 메서드를 통해 동작 전달
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //다음 화면으로 넘어가는 코드
+        let detailVC = DetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
+
