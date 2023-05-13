@@ -89,6 +89,8 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //다음 화면으로 넘어가는 코드
         let detailVC = DetailViewController()
+        let array = memberListManager.getMemberList()
+        detailVC.member = array[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
