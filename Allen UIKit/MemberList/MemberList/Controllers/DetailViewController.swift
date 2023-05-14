@@ -12,6 +12,9 @@ final class DetailViewController: UIViewController {
 
     private let detailView = DetailView()
     
+    //MemberDeletage는 클래스 타입만 채택가능
+    weak var delegate: MemberDeletage?
+    
     //전 화면에서 member 전달받음
     var member: Member?
     
@@ -52,16 +55,16 @@ final class DetailViewController: UIViewController {
             Member(name: name, age: age, phone: phoneNumber, address: address)
             newMember.memberImage = detailView.mainImageView.image
             
-            // 1) 델리게이트 방식이 아닌 구현⭐️
-            let index = navigationController!.viewControllers.count - 2
-            // 전 화면에 접근하기 위함
-            let vc = navigationController?.viewControllers[index] as! ViewController
-            // 전 화면의 모델에 접근해서 멤버를 추가
-//            vc.memberListManager.makeNewMember(newMember)
+//            // 1) 델리게이트 방식이 아닌 구현⭐️
+//            let index = navigationController!.viewControllers.count - 2
+//            // 전 화면에 접근하기 위함
+//            let vc = navigationController?.viewControllers[index] as! ViewController
+//            // 전 화면의 모델에 접근해서 멤버를 추가
+////            vc.memberListManager.makeNewMember(newMember)
             
             
-            // 2) 델리게이트 방식으로 구현⭐️
-            //delegate?.addNewMember(newMember)
+            // 2) 델리게이트 방식으로 구현⭐️ 여기서 delegate에 멤버 전달
+            delegate?.addNewMember(newMember)
             
             
         // [2] 멤버가 있다면 (멤버의 내용을 업데이트 하기 위한 설정)
@@ -87,10 +90,10 @@ final class DetailViewController: UIViewController {
             
             
             // 델리게이트 방식으로 구현⭐️
-            //delegate?.update(index: memberId, member!)
+            delegate?.update(index: memberId, member!)
         }
         
-        // (일처리를 다한 후에) 전화면으로 돌아가기
+        // (일처리를 다한 후에) 전화면으로 돌아가기 여기서 delegate에 멤버 전달
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -7,6 +7,14 @@
 
 import UIKit
 
+//커스텀 델리게이트 프로토콜
+//detailViewController 내에서 동작이 일어남. delegate를 통해 ViewController로 전달
+//클래스에서만 채택 가능한 프로토콜로 만들기. weak var delegate는 클래스만 사용가능
+protocol MemberDeletage: AnyObject {
+    func addNewMember(_ member: Member)
+    func update(index: Int, _ member: Member)
+}
+
 //데이터 묶음 일반적으로 구조체로 많이 만듬. 클래스는 구조체보다 무겁기도 하고 느림.
 struct Member {
     

@@ -38,11 +38,12 @@ final class ViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //테이블뷰 업데이트
-        tableView.reloadData()
-    }
+    //delegate 구현시 필요없을듯
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        //테이블뷰 업데이트
+//        tableView.reloadData()
+//    }
     
     func setUpNaviBar() {
         title = "회원 목록"
@@ -109,9 +110,23 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //다음 화면으로 넘어가는 코드
         let detailVC = DetailViewController()
+        detailVC.delegate = self
+        
         let array = memberListManager.getMemberList()
         detailVC.member = array[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
+extension ViewController: MemberDeletage {
+    func addNewMember(_ member: Member) {
+        memberListManager.makeNewmember(member) //멤버 업데이트
+        tableView.reloadData() //리프레시
+    }
+    
+    func update(index: Int, _ member: Member) {
+        memberListManager.updateMemberInfo(index: index, member)
+        tableView.reloadData()
+    }
+    
+}
