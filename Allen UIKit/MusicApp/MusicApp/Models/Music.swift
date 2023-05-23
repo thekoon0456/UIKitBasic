@@ -20,6 +20,7 @@ struct MusicData: Codable {
 // (서버에서 가져온 데이터만 표시해주면 되기 때문에 일반적으로 구조체로 만듦)
 
 struct Music: Codable {
+    //서버에서 받는거는 정보가 없을 수도 있으니 옵셔널 타입으로 선언
     let songName: String?
     let artistName: String?
     let albumName: String?

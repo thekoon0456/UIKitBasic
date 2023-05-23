@@ -12,7 +12,7 @@ final class DetailViewController: UIViewController {
 
     private let detailView = DetailView()
     
-    //MemberDeletage는 클래스 타입만 채택가능
+    //MemberDeletage는 클래스 타입만 채택가능 (AnyObject)
     weak var delegate: MemberDeletage?
     
     //전 화면에서 member 전달받음

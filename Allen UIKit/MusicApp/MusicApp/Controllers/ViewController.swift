@@ -111,9 +111,9 @@ extension ViewController: UITableViewDelegate {
 //        return UITableView.automaticDimension
     }
     
-    //estimatedHeightForRowAt: 추정되는 높이. heightForRowAt보다 먼저 적용됨
+//    //estimatedHeightForRowAt: 추정되는 높이. heightForRowAt보다 먼저 적용됨
 //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    // 자동으로 높이 설정
+////     자동으로 높이 설정
 //        return UITableView.automaticDimension
 //    }
 
