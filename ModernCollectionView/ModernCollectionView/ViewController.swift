@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
         
         setDataSource()
+        setSnapShot()
     }
     
     private func setDataSource() {
@@ -29,6 +30,26 @@ class ViewController: UIViewController {
 //            cell.config(title: <#T##String#>, imageUrl: <#T##String#>)
             return cell
         })
+    }
+    
+    private func setSnapShot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        
+        //snapshot에 Section과 Item 넣음
+        snapshot.appendSections([Section(id: "Banner")]) //스냅샷에 같은 섹션은 하나만 넣을 수 있음, 같은 섹션 쓰려면 id 다르게 구현하기
+        let bannerItems = [
+            Item.banner(HomeItem(title: "교촌치킨",
+                                 imageUrl: "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/")),
+            Item.banner(HomeItem(title: "굽네치킨",
+                                 imageUrl: "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/")),
+            Item.banner(HomeItem(title: "푸라닭치킨",
+                                 imageUrl: "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/"))
+        
+        ]
+        
+        snapshot.appendItems(bannerItems, toSection: Section(id: "Banner")) //아이템의 섹션 특정지어서 넣을 수 있음
+        
+        dataSource?.apply(snapshot)
     }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
