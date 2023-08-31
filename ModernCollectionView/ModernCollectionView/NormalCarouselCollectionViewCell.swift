@@ -38,6 +38,9 @@ class NormalCarouselCollectionViewCell: UICollectionViewCell {
             make.left.right.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
+        
+        mainImage.contentMode = .scaleAspectFill
+        mainImage.clipsToBounds = true
     }
     
     func config(imageUrl: String, title: String, subTitle: String) {

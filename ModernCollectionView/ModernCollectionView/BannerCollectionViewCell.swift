@@ -16,7 +16,6 @@ class BannerCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
         setUI()
     }
     
@@ -33,7 +32,8 @@ class BannerCollectionViewCell: UICollectionViewCell {
         backgroundImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        backgroundImage.contentMode = .scaleToFill
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.clipsToBounds = true
     }
     
     public func config(title: String, imageUrl: String) {
