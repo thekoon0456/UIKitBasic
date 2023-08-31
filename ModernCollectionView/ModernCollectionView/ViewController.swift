@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         
         collectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
         collectionView.register(NormalCarouselCollectionViewCell.self, forCellWithReuseIdentifier: NormalCarouselCollectionViewCell.id)
+        collectionView.register(ListCarouselCollectionViewCell.self, forCellWithReuseIdentifier: ListCarouselCollectionViewCell.id)
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
         
         setDataSource()
@@ -46,11 +47,12 @@ class ViewController: UIViewController {
                 
                 cell.config(imageUrl: item.imageUrl, title: item.title, subTitle: item.subTitle ?? "")
                 return cell
-            default:
-                return UICollectionViewCell()
+            case .listCarousel(let item):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCarouselCollectionViewCell.id, for: indexPath) as? ListCarouselCollectionViewCell else { return UICollectionViewCell() }
+                
+                cell.config(imageUrl: item.imageUrl, title: item.title, subTitle: item.subTitle ?? "")
+                return cell
             }
-            
-
         })
     }
     
@@ -67,7 +69,6 @@ class ViewController: UIViewController {
             Item.banner(HomeItem(title: "푸라닭치킨",
                                  imageUrl: imageUrl))
         ]
-        
         snapshot.appendItems(bannerItems, toSection: Section(id: "Banner")) //아이템의 섹션 특정지어서 넣을 수 있음
         
         let normalSection = Section(id: "NormalCarousel")
@@ -80,8 +81,19 @@ class ViewController: UIViewController {
             Item.normalCarousel(HomeItem(title: "페리카나", subTitle: "반반 치킨", imageUrl: imageUrl)),
             Item.normalCarousel(HomeItem(title: "BHC", subTitle: "뿌링클 치킨", imageUrl: imageUrl))
         ]
-        
         snapshot.appendItems(normalItems, toSection: normalSection)
+        
+        let listSection = Section(id: "ListCarousel")
+        snapshot.appendSections([listSection])
+        let listItems = [
+            Item.listCarousel(HomeItem(title: "교촌치킨", subTitle: "간장 치킨", imageUrl: imageUrl)),
+            Item.listCarousel(HomeItem(title: "굽네치킨", subTitle: "오븐 치킨", imageUrl: imageUrl)),
+            Item.listCarousel(HomeItem(title: "푸라닭치킨", subTitle: "차이니즈 치킨", imageUrl: imageUrl)),
+            Item.listCarousel(HomeItem(title: "후라이드 참 잘하는집", subTitle: "후라이드 치킨", imageUrl: imageUrl)),
+            Item.listCarousel(HomeItem(title: "페리카나", subTitle: "반반 치킨", imageUrl: imageUrl)),
+            Item.listCarousel(HomeItem(title: "BHC", subTitle: "뿌링클 치킨", imageUrl: imageUrl))
+        ]
+        snapshot.appendItems(listItems, toSection: listSection)
         
         dataSource?.apply(snapshot)
     }
@@ -96,8 +108,8 @@ class ViewController: UIViewController {
                 return self?.createBannerSection()
             case 1:
                 return self?.createNormalCarouselSection()
-//            case 2:
-//                return
+            case 2:
+                return self?.createListCarouselSection()
             default:
                 return self?.createBannerSection()
             }
@@ -124,12 +136,24 @@ class ViewController: UIViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(180))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(120))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        return section
+    }
+    
+    private func createListCarouselSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(250))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 3)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         return section
     }
 

@@ -1,15 +1,15 @@
 //
-//  NormalCarouselCollectionViewCell.swift
+//  ListCarouselCollectionViewCell.swift
 //  ModernCollectionView
 //
 //  Created by Deokhun KIM on 2023/08/31.
 //
 
 import UIKit
-import SnapKit
+import Kingfisher
 
-class NormalCarouselCollectionViewCell: UICollectionViewCell {
-    static let id = "NormalCarouselCell"
+class ListCarouselCollectionViewCell: UICollectionViewCell {
+    static let id = "ListCarouselCell"
     private let mainImage = UIImageView()
     private let titleLabel = UILabel()
     private let subTitleLabel = UILabel()
@@ -25,18 +25,18 @@ class NormalCarouselCollectionViewCell: UICollectionViewCell {
         addSubview(subTitleLabel)
         
         mainImage.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(80)
+            make.top.left.bottom.equalToSuperview()
+            make.width.equalTo(60)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(mainImage.snp.bottom).offset(8)
+            make.top.right.equalToSuperview()
+            make.left.equalTo(mainImage.snp.right).offset(8)
         }
         
         subTitleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.left.equalTo(mainImage.snp.right).offset(8)
         }
     }
     
@@ -49,5 +49,5 @@ class NormalCarouselCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }
