@@ -33,7 +33,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
         backgroundImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.contentMode = .scaleToFill
     }
     
     public func config(title: String, imageUrl: String) {
