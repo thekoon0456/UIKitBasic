@@ -17,6 +17,7 @@
 		7CAF8FD02A9F916600D3D605 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF8FCF2A9F916600D3D605 /* BannerCollectionViewCell.swift */; };
 		7CAF8FD32A9F924B00D3D605 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7CAF8FD22A9F924B00D3D605 /* SnapKit */; };
 		7CAF8FD62A9FA65F00D3D605 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7CAF8FD52A9FA65F00D3D605 /* Kingfisher */; };
+		7CAF8FD82AA03F5300D3D605 /* NormalCarouselCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF8FD72AA03F5300D3D605 /* NormalCarouselCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7CAF8FC72A9F8FC800D3D605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CAF8FCD2A9F910800D3D605 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		7CAF8FCF2A9F916600D3D605 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		7CAF8FD72AA03F5300D3D605 /* NormalCarouselCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCarouselCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				7CAF8FCD2A9F910800D3D605 /* Item.swift */,
 				7CAF8FBD2A9F8FC700D3D605 /* ViewController.swift */,
 				7CAF8FCF2A9F916600D3D605 /* BannerCollectionViewCell.swift */,
+				7CAF8FD72AA03F5300D3D605 /* NormalCarouselCollectionViewCell.swift */,
 				7CAF8FBF2A9F8FC700D3D605 /* Main.storyboard */,
 				7CAF8FC22A9F8FC800D3D605 /* Assets.xcassets */,
 				7CAF8FC42A9F8FC800D3D605 /* LaunchScreen.storyboard */,
@@ -159,6 +162,7 @@
 				7CAF8FCE2A9F910800D3D605 /* Item.swift in Sources */,
 				7CAF8FBE2A9F8FC700D3D605 /* ViewController.swift in Sources */,
 				7CAF8FBA2A9F8FC700D3D605 /* AppDelegate.swift in Sources */,
+				7CAF8FD82AA03F5300D3D605 /* NormalCarouselCollectionViewCell.swift in Sources */,
 				7CAF8FD02A9F916600D3D605 /* BannerCollectionViewCell.swift in Sources */,
 				7CAF8FBC2A9F8FC700D3D605 /* SceneDelegate.swift in Sources */,
 			);

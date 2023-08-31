@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    let imageUrl = "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/"
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         setUI()
         
         collectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.id)
+        collectionView.register(NormalCarouselCollectionViewCell.self, forCellWithReuseIdentifier: NormalCarouselCollectionViewCell.id)
         collectionView.setCollectionViewLayout(createLayout(), animated: true)
         
         setDataSource()
@@ -41,6 +42,11 @@ class ViewController: UIViewController {
                 
                 cell.config(title: item.title, imageUrl: item.imageUrl)
                 return cell
+            case .normalCarousel(let item):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCarouselCollectionViewCell.id, for: indexPath) as? NormalCarouselCollectionViewCell else { return UICollectionViewCell() }
+                
+                cell.config(imageUrl: item.imageUrl, title: item.title, subTitle: item.subTitle ?? "")
+                return cell
             default:
                 return UICollectionViewCell()
             }
@@ -56,23 +62,43 @@ class ViewController: UIViewController {
         snapshot.appendSections([Section(id: "Banner")]) //스냅샷에 같은 섹션은 하나만 넣을 수 있음, 같은 섹션 쓰려면 id 다르게 구현하기
         let bannerItems = [
             Item.banner(HomeItem(title: "교촌치킨",
-                                 imageUrl: "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/")),
+                                 imageUrl: imageUrl)),
             Item.banner(HomeItem(title: "굽네치킨",
-                                 imageUrl: "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/")),
+                                 imageUrl: imageUrl)),
             Item.banner(HomeItem(title: "푸라닭치킨",
-                                 imageUrl: "https://thumb.mt.co.kr/06/2022/07/2022071713225256537_1.jpg/dims/optimize/"))
-        
+                                 imageUrl: imageUrl))
         ]
         
         snapshot.appendItems(bannerItems, toSection: Section(id: "Banner")) //아이템의 섹션 특정지어서 넣을 수 있음
+        
+        let normalSection = Section(id: "NormalCarousel")
+        snapshot.appendSections([normalSection])
+        let normalItems = [
+            Item.normalCarousel(HomeItem(title: "교촌치킨", subTitle: "간장 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "굽네치킨", subTitle: "오븐 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "푸라닭치킨", subTitle: "차이니즈 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "후라이드 참 잘하는집", subTitle: "후라이드 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "페리카나", subTitle: "반반 치킨", imageUrl: imageUrl)),
+            Item.normalCarousel(HomeItem(title: "BHC", subTitle: "뿌링클 치킨", imageUrl: imageUrl))
+        ]
+        
+        snapshot.appendItems(normalItems, toSection: normalSection)
         
         dataSource?.apply(snapshot)
     }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout(sectionProvider: {[weak self] sectionIndex, _ in
-            
-            return self?.createBannerSection()
+            switch sectionIndex {
+            case 0:
+                return self?.createBannerSection()
+            case 1:
+                return self?.createNormalCarouselSection()
+//            case 2:
+//                return
+            default:
+                return self?.createBannerSection()
+            }
         })
     }
     
@@ -88,6 +114,18 @@ class ViewController: UIViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
+        return section
+    }
+    
+    private func createNormalCarouselSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(180))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         return section
     }
 

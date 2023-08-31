@@ -22,8 +22,8 @@ class BannerCollectionViewCell: UICollectionViewCell {
     
     private func setUI() {
         //snapkit
-        self.addSubview(backgroundImage)
-        self.addSubview(titleLabel)
+        addSubview(backgroundImage)
+        addSubview(titleLabel)
         
         //constraint적용
         titleLabel.snp.makeConstraints { make in
@@ -33,14 +33,15 @@ class BannerCollectionViewCell: UICollectionViewCell {
         backgroundImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        backgroundImage.contentMode = .scaleAspectFill
     }
     
     public func config(title: String, imageUrl: String) {
         //title, imageSet
         titleLabel.text = title
+        
         let url = URL(string: imageUrl)
         backgroundImage.kf.setImage(with: url)
-        
     }
     
     required init?(coder: NSCoder) {
