@@ -26,6 +26,7 @@
 		7CCF5BF32AA1D678009740D1 /* TVNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BF22AA1D678009740D1 /* TVNetwork.swift */; };
 		7CCF5BF52AA1D748009740D1 /* MovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BF42AA1D748009740D1 /* MovieNetwork.swift */; };
 		7CCF5BF72AA1D7F9009740D1 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BF62AA1D7F9009740D1 /* NetworkProvider.swift */; };
+		7CCF5BF92AA1D986009740D1 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BF82AA1D986009740D1 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		7CCF5BF22AA1D678009740D1 /* TVNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVNetwork.swift; sourceTree = "<group>"; };
 		7CCF5BF42AA1D748009740D1 /* MovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetwork.swift; sourceTree = "<group>"; };
 		7CCF5BF62AA1D7F9009740D1 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		7CCF5BF82AA1D986009740D1 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				7CCF5BC02AA1A9BD009740D1 /* AppDelegate.swift */,
 				7CCF5BC22AA1A9BD009740D1 /* SceneDelegate.swift */,
 				7CCF5BC42AA1A9BD009740D1 /* ViewController.swift */,
+				7CCF5BF82AA1D986009740D1 /* ButtonView.swift */,
 				7CCF5BE02AA1B4BE009740D1 /* Network */,
 				7CCF5BE72AA1C0EA009740D1 /* Entity */,
 				7CCF5BC62AA1A9BD009740D1 /* Main.storyboard */,
@@ -203,6 +206,7 @@
 			files = (
 				7CCF5BE92AA1C240009740D1 /* MovieResult.swift in Sources */,
 				7CCF5BC52AA1A9BD009740D1 /* ViewController.swift in Sources */,
+				7CCF5BF92AA1D986009740D1 /* ButtonView.swift in Sources */,
 				7CCF5BEB2AA1CAEF009740D1 /* Network.swift in Sources */,
 				7CCF5BF32AA1D678009740D1 /* TVNetwork.swift in Sources */,
 				7CCF5BC12AA1A9BD009740D1 /* AppDelegate.swift in Sources */,

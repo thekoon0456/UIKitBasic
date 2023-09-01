@@ -6,12 +6,31 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
+    
+    let buttonView = ButtonView()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setUI()
+    }
+    
+    private func setUI() {
+        view.addSubview(buttonView)
+        buttonView.snp.makeConstraints { make in
+            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(80)
+        }
+        
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(buttonView.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+        collectionView.backgroundColor = .red
     }
 
 
