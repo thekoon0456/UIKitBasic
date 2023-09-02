@@ -9,6 +9,6 @@ import Foundation
 
 struct MovieResult {
     let upcoming: MovieListModel
-    let populer: MovieListModel
+    let popular: MovieListModel
     let nowPlaying: MovieListModel
 }
