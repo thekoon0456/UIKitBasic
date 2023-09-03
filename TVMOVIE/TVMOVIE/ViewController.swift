@@ -35,6 +35,11 @@ class ViewController: UIViewController {
                                 forCellWithReuseIdentifier: NormalCollectionViewCell.id)
         collectionView.register(BigImageCollectionViewCell.self,
                                 forCellWithReuseIdentifier: BigImageCollectionViewCell.id)
+        collectionView.register(ListCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ListCollectionViewCell.id)
+        collectionView.register(HeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HeaderView.id)
         return collectionView
     }()
     let viewModel = ViewModel()
@@ -81,8 +86,20 @@ class ViewController: UIViewController {
             self?.dataSource?.apply(snapshot)
         }.disposed(by: disposeBag)
         
-        output.movieResult.bind { movieResult in
+        output.movieResult.bind { [weak self] movieResult in
             print("movieList: \(movieResult)")
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+            let bigImageList = movieResult.nowPlaying.results.map { Item.bigImage($0) }
+            let bannerSection = Section.banner
+            snapshot.appendSections([bannerSection])
+            snapshot.appendItems(bigImageList, toSection: bannerSection)
+            
+            let horizontalSection = Section.horizontal("PopularMovies")
+            let normalList = movieResult.popular.results.map { Item.normal(Content(movie: $0)) }
+            snapshot.appendSections([horizontalSection])
+            snapshot.appendItems(normalList, toSection: horizontalSection)
+            
+            self?.dataSource?.apply(snapshot)
         }.disposed(by: disposeBag)
     }
 
@@ -102,17 +119,54 @@ class ViewController: UIViewController {
         config.interSectionSpacing = 14
         
         return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
-            return self?.createSection()
+            let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
+            
+            switch section {
+            case .banner:
+                return self?.createBannerSection()
+            case .horizontal:
+                return self?.createHorizontalSection()
+            default:
+                return self?.createSection()
+            }
+
         }, configuration: config)
     }
     
-    private func createSection() -> NSCollectionLayoutSection {
+    private func createBannerSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(640))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging //페이징처럼 넘김
+        return section
+    }
+    
+    private func createHorizontalSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 0)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
+                                               heightDimension: .absolute(320))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    private func createSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 8, trailing: 4)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(320))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
@@ -124,10 +178,16 @@ class ViewController: UIViewController {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCollectionViewCell.id, for: indexPath) as? NormalCollectionViewCell
                 cell?.configure(title: contentData.title, review: contentData.vote, desc: contentData.overview, imageURL: contentData.posterURL)
                 return cell
-            case .bigImage(_):
-                <#code#>
-            case .list(_):
-                <#code#>
+                
+            case .bigImage(let movieData):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BigImageCollectionViewCell.id, for: indexPath) as? BigImageCollectionViewCell
+                cell?.config(title: movieData.name, review: movieData.vote, overview: movieData.overview, url: movieData.posterURL)
+                return cell
+                
+            case .list(let movieData):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.id, for: indexPath) as? ListCollectionViewCell
+                cell?.config(title: movieData.name, releaseDate: movieData.releaseDate, url: movieData.posterURL)
+                return cell
             }
         })
     }
