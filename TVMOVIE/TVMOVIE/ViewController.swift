@@ -23,8 +23,8 @@ enum Item: Hashable { //해당 레이아웃에 어떤 cell을 쓸지
 class ViewController: UIViewController {
     let disposeBag = DisposeBag() //뷰컨 메모리 해제될때 구독 메모리도 해제. 바인딩 끝남
     let buttonView = ButtonView()
-    let collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
         collectionView.register(NormalCollectionViewCell.self,
                                 forCellWithReuseIdentifier: NormalCollectionViewCell.id)
         return collectionView
@@ -84,6 +84,24 @@ class ViewController: UIViewController {
     }
 
     
-//    private func creageLayout
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.interSectionSpacing = 14
+        
+        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
+            return self?.createSection()
+        }, configuration: config)
+    }
+    
+    private func createSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 8, trailing: 4)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(320))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
 }
 
