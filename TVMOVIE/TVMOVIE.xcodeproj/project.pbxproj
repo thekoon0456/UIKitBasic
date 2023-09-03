@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C6351362AA4719400AD4E90 /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6351352AA4719400AD4E90 /* NormalCollectionViewCell.swift */; };
+		7C6351382AA47E9B00AD4E90 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6351372AA47E9B00AD4E90 /* Content.swift */; };
 		7CB0A1942AA2F94B00F31205 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0A1932AA2F94B00F31205 /* ViewModel.swift */; };
 		7CCF5BC12AA1A9BD009740D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BC02AA1A9BD009740D1 /* AppDelegate.swift */; };
 		7CCF5BC32AA1A9BD009740D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BC22AA1A9BD009740D1 /* SceneDelegate.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		7C6351352AA4719400AD4E90 /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C6351372AA47E9B00AD4E90 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		7CB0A1932AA2F94B00F31205 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7CCF5BBD2AA1A9BD009740D1 /* TVMOVIE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVMOVIE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCF5BC02AA1A9BD009740D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				7CCF5BE32AA1B954009740D1 /* TV.swift */,
+				7C6351372AA47E9B00AD4E90 /* Content.swift */,
 				7CCF5BE52AA1C099009740D1 /* Movie.swift */,
 				7CCF5BE82AA1C240009740D1 /* MovieResult.swift */,
 				7CCF5BF62AA1D7F9009740D1 /* NetworkProvider.swift */,
@@ -226,6 +229,7 @@
 				7CCF5BF32AA1D678009740D1 /* TVNetwork.swift in Sources */,
 				7CCF5BC12AA1A9BD009740D1 /* AppDelegate.swift in Sources */,
 				7CB0A1942AA2F94B00F31205 /* ViewModel.swift in Sources */,
+				7C6351382AA47E9B00AD4E90 /* Content.swift in Sources */,
 				7CCF5BF52AA1D748009740D1 /* MovieNetwork.swift in Sources */,
 				7CCF5BE62AA1C099009740D1 /* Movie.swift in Sources */,
 				7CCF5BF72AA1D7F9009740D1 /* NetworkProvider.swift in Sources */,

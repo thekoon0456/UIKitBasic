@@ -10,14 +10,19 @@ import SnapKit
 import RxSwift
 
 //1섹션, 1아이템, 1레이아웃
-//레이아웃 기준
+//레이아웃 관련
 enum Section: Hashable { //하나의 레이아웃 구분하는 기준
     case double //하나의 행에 cell 두개 들어감
+    case banner
+    case horizontal(String) //헤더
+    case vertical(String)
 }
 
-//Cell 기준
+//Cell 관련
 enum Item: Hashable { //해당 레이아웃에 어떤 cell을 쓸지
-    case normal(Tv)
+    case normal(Content) //Tv, Movie 같이 써야함. Content에 두 개의 init() 만들어 하나의 타입으로 만들기
+    case bigImage(Movie)
+    case list(Movie)
 }
 
 class ViewController: UIViewController {
@@ -67,7 +72,7 @@ class ViewController: UIViewController {
         output.tvList.bind { [weak self] tvList in
             print("tvList: \(tvList)")
             var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-            let items = tvList.map { Item.normal($0) }
+            let items = tvList.map { Item.normal(Content(tv: $0)) }
             let section = Section.double
             snapshot.appendSections([section])
             snapshot.appendItems(items, toSection: section)
@@ -113,10 +118,14 @@ class ViewController: UIViewController {
     private func setDateSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
             switch item {
-            case.normal(let tvData):
+            case.normal(let contentData):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCollectionViewCell.id, for: indexPath) as? NormalCollectionViewCell
-                cell?.configure(title: tvData.name, review: tvData.vote, desc: tvData.overview, imageURL: tvData.posterURL)
+                cell?.configure(title: contentData.title, review: contentData.vote, desc: contentData.overview, imageURL: contentData.posterURL)
                 return cell
+            case .bigImage(_):
+                <#code#>
+            case .list(_):
+                <#code#>
             }
         })
     }
