@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setDateSource()
         bindViewModel()
         bindView()
         tvTrigger.onNext(())
@@ -56,8 +57,6 @@ class ViewController: UIViewController {
             make.top.equalTo(buttonView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        
-        collectionView.backgroundColor = .red
     }
     
     private func bindViewModel() { //asObservable: Subject를 Observable로 변환
@@ -65,8 +64,14 @@ class ViewController: UIViewController {
                                     movieTrigger: movieTrigger.asObservable())
         let output = viewModel.transform(input: input)
         
-        output.tvList.bind { tvList in
+        output.tvList.bind { [weak self] tvList in
             print("tvList: \(tvList)")
+            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+            let items = tvList.map { Item.normal($0) }
+            let section = Section.double
+            snapshot.appendSections([section])
+            snapshot.appendItems(items, toSection: section)
+            self?.dataSource?.apply(snapshot)
         }.disposed(by: disposeBag)
         
         output.movieResult.bind { movieResult in
