@@ -14,7 +14,6 @@ class ButtonView: UIView {
         let button = UIButton()
         button.setTitle("TV", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        
         button.configuration = UIButton.Configuration.bordered()
         return button
     }()
@@ -23,7 +22,6 @@ class ButtonView: UIView {
         let button = UIButton()
         button.setTitle("MOVIE", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        
         button.configuration = UIButton.Configuration.bordered()
         return button
     }()

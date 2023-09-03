@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C6351362AA4719400AD4E90 /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6351352AA4719400AD4E90 /* NormalCollectionViewCell.swift */; };
 		7CB0A1942AA2F94B00F31205 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0A1932AA2F94B00F31205 /* ViewModel.swift */; };
 		7CCF5BC12AA1A9BD009740D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BC02AA1A9BD009740D1 /* AppDelegate.swift */; };
 		7CCF5BC32AA1A9BD009740D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCF5BC22AA1A9BD009740D1 /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C6351352AA4719400AD4E90 /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCollectionViewCell.swift; sourceTree = "<group>"; };
 		7CB0A1932AA2F94B00F31205 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7CCF5BBD2AA1A9BD009740D1 /* TVMOVIE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVMOVIE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCF5BC02AA1A9BD009740D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C6351342AA4718300AD4E90 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7C6351352AA4719400AD4E90 /* NormalCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7CCF5BB42AA1A9BD009740D1 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +99,7 @@
 				7CCF5BC02AA1A9BD009740D1 /* AppDelegate.swift */,
 				7CCF5BC22AA1A9BD009740D1 /* SceneDelegate.swift */,
 				7CCF5BC42AA1A9BD009740D1 /* ViewController.swift */,
+				7C6351342AA4718300AD4E90 /* Cells */,
 				7CB0A1932AA2F94B00F31205 /* ViewModel.swift */,
 				7CCF5BF82AA1D986009740D1 /* ButtonView.swift */,
 				7CCF5BE02AA1B4BE009740D1 /* Network */,
@@ -210,6 +221,7 @@
 				7CCF5BE92AA1C240009740D1 /* MovieResult.swift in Sources */,
 				7CCF5BC52AA1A9BD009740D1 /* ViewController.swift in Sources */,
 				7CCF5BF92AA1D986009740D1 /* ButtonView.swift in Sources */,
+				7C6351362AA4719400AD4E90 /* NormalCollectionViewCell.swift in Sources */,
 				7CCF5BEB2AA1CAEF009740D1 /* Network.swift in Sources */,
 				7CCF5BF32AA1D678009740D1 /* TVNetwork.swift in Sources */,
 				7CCF5BC12AA1A9BD009740D1 /* AppDelegate.swift in Sources */,
