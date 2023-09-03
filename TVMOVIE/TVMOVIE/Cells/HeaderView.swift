@@ -24,7 +24,7 @@ final class HeaderView: UICollectionReusableView {
         }
     }
     
-    public func congif(title: String) {
+    public func config(title: String) {
         titleLabel.text = title
     }
     

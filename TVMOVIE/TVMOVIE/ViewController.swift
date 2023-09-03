@@ -42,6 +42,7 @@ class ViewController: UIViewController {
                                 withReuseIdentifier: HeaderView.id)
         return collectionView
     }()
+    
     let viewModel = ViewModel()
     
     //Subject: 이벤트를 발생시키면서, Observable 형태도 되는거
@@ -94,10 +95,15 @@ class ViewController: UIViewController {
             snapshot.appendSections([bannerSection])
             snapshot.appendItems(bigImageList, toSection: bannerSection)
             
-            let horizontalSection = Section.horizontal("PopularMovies")
+            let horizontalSection = Section.horizontal("Popular Movies")
             let normalList = movieResult.popular.results.map { Item.normal(Content(movie: $0)) }
             snapshot.appendSections([horizontalSection])
             snapshot.appendItems(normalList, toSection: horizontalSection)
+            
+            let verticalSection = Section.vertical("Upcoming Movies")
+            let verticalList = movieResult.upcoming.results.map { Item.list($0) }
+            snapshot.appendSections([verticalSection])
+            snapshot.appendItems(verticalList, toSection: verticalSection)
             
             self?.dataSource?.apply(snapshot)
         }.disposed(by: disposeBag)
@@ -126,6 +132,8 @@ class ViewController: UIViewController {
                 return self?.createBannerSection()
             case .horizontal:
                 return self?.createHorizontalSection()
+            case .vertical:
+                return self?.createVerticalSection()
             default:
                 return self?.createSection()
             }
@@ -148,7 +156,8 @@ class ViewController: UIViewController {
     }
     
     private func createHorizontalSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 0)
         
@@ -157,6 +166,34 @@ class ViewController: UIViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                heightDimension: .absolute(44))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .topLeading)
+        section.boundarySupplementaryItems = [header]
+        return section
+    }
+    
+    private func createVerticalSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(0.3))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(320))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                heightDimension: .absolute(44))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .topLeading)
+        section.boundarySupplementaryItems = [header]
         return section
     }
     
@@ -190,6 +227,20 @@ class ViewController: UIViewController {
                 return cell
             }
         })
+        
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath -> UICollectionReusableView in
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath)
+            let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
+            
+            switch section {
+            case .horizontal(let title), .vertical(let title):
+                (header as? HeaderView)?.config(title: title)
+            default:
+                print("default")
+            }
+            
+            return header
+        }
     }
 }
 
