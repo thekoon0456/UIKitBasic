@@ -39,16 +39,16 @@ class ViewModel {
         let tvList = input.tvTrigger.flatMapLatest { [weak self] _ -> Observable<[Tv]> in
             //Observable<TvListModel> -> Observable<[Tv]>
             guard let self = self else { return Observable.empty() }
-            return self.tvNerwork.getTopRatedList().map { $0.results }
+            return tvNerwork.getTopRatedList().map { $0.results }
         }
         
         let movieResult = input.movieTrigger.flatMapLatest { [weak self] _ -> Observable<MovieResult> in
             //3개의 옵저버블 합치기 combineLatest
             //3개 모두 리턴이 있어야 해당 클로저 발동함
             guard let self = self else { return Observable.empty() }
-            return Observable.combineLatest(self.movieNetwork.getUpcomingList(),
-                                            self.movieNetwork.getPopularList(),
-                                            self.movieNetwork.getNowPlayingList()) { upcoming, popular, nowPlaying -> MovieResult in
+            return Observable.combineLatest(movieNetwork.getUpcomingList(),
+                                            movieNetwork.getPopularList(),
+                                            movieNetwork.getNowPlayingList()) { upcoming, popular, nowPlaying -> MovieResult in
                 return MovieResult(upcoming: upcoming, popular: popular, nowPlaying: nowPlaying)
             }
         }

@@ -108,48 +108,67 @@ class ViewController: UIViewController {
             self?.dataSource?.apply(snapshot)
         }.disposed(by: disposeBag)
     }
-
+    
     private func bindView() {
         buttonView.tvButton.rx.tap.bind { [weak self] in
-            self?.tvTrigger.onNext(Void()) //버튼 트리거를 하기 위해 아무 값도 주지 않고 Void로 트리거 호출
+            guard let self else { return }
+            tvTrigger.onNext(Void()) //버튼 트리거를 하기 위해 아무 값도 주지 않고 Void로 트리거 호출
         }.disposed(by: disposeBag)
         
         buttonView.movieButton.rx.tap.bind { [weak self] in
-            self?.movieTrigger.onNext(Void())
+            guard let self else { return }
+            movieTrigger.onNext(Void())
         }.disposed(by: disposeBag)
     }
-
+    
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 14
         
-        return UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, _ in
-            let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
-            
-            switch section {
-            case .banner:
-                return self?.createBannerSection()
-            case .horizontal:
-                return self?.createHorizontalSection()
-            case .vertical:
-                return self?.createVerticalSection()
-            default:
-                return self?.createSection()
-            }
-
-        }, configuration: config)
+        let layout = UICollectionViewCompositionalLayout(
+            sectionProvider: { [weak self] sectionIndex, _ in
+                guard let self else {
+                    let layoutSize = NSCollectionLayoutSize(widthDimension: .absolute(0), heightDimension: .absolute(0))
+                    let group = NSCollectionLayoutGroup(layoutSize: layoutSize)
+                    return NSCollectionLayoutSection(group: group)
+                }
+                
+                let section = dataSource?.sectionIdentifier(for: sectionIndex)
+                
+                switch section {
+                case .banner:
+                    return createBannerSection()
+                case .horizontal:
+                    return createHorizontalSection()
+                case .vertical:
+                    return createVerticalSection()
+                default:
+                    return createSection()
+                }
+                                                     
+            }, configuration: config)
+        
+        return layout
     }
     
     private func createBannerSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .absolute(640))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(640)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging //페이징처럼 넘김
         return section
@@ -209,9 +228,9 @@ class ViewController: UIViewController {
     }
     
     private func setDateSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in //cellProvider
             switch item {
-            case.normal(let contentData):
+            case .normal(let contentData):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCollectionViewCell.id, for: indexPath) as? NormalCollectionViewCell
                 cell?.configure(title: contentData.title, review: contentData.vote, desc: contentData.overview, imageURL: contentData.posterURL)
                 return cell
@@ -226,7 +245,7 @@ class ViewController: UIViewController {
                 cell?.config(title: movieData.name, releaseDate: movieData.releaseDate, url: movieData.posterURL)
                 return cell
             }
-        })
+        }
         
         dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath -> UICollectionReusableView in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath)

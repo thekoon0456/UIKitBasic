@@ -14,7 +14,7 @@ final class ListCollectionViewCell: UICollectionViewCell {
     static let id = "ListCollectionViewCell"
     private let image: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.masksToBounds = true //에이어가 잘려도 이미지 네모낳게 들어갈 수 있음
+        imageView.layer.masksToBounds = true //레이어가 잘려도 이미지 네모낳게 들어갈 수 있음
         imageView.layer.cornerRadius = 8
         return imageView
     }()

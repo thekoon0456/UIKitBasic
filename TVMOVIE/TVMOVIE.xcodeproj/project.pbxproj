@@ -82,8 +82,8 @@
 			children = (
 				7C6351352AA4719400AD4E90 /* NormalCollectionViewCell.swift */,
 				7C6351392AA4813500AD4E90 /* BigImageCollectionViewCell.swift */,
-				7C63513D2AA486AF00AD4E90 /* HeaderView.swift */,
 				7C63513B2AA484A800AD4E90 /* ListCollectionViewCell.swift */,
+				7C63513D2AA486AF00AD4E90 /* HeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
