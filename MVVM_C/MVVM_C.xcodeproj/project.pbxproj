@@ -117,8 +117,8 @@
 		7CAE576E2AE7B9970022546F /* LoginScene */ = {
 			isa = PBXGroup;
 			children = (
-				7CAE576F2AE7B9AE0022546F /* LoginViewController.swift */,
 				7CAE57732AE7BAD90022546F /* LoginCoordinator.swift */,
+				7CAE576F2AE7B9AE0022546F /* LoginViewController.swift */,
 			);
 			name = LoginScene;
 			path = MainScene;

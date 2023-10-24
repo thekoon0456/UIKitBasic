@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate {
+    func login()
+}
+
 final class LoginViewController: UIViewController {
 
+    var delegate: LoginViewControllerDelegate?
+    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -25,6 +31,8 @@ final class LoginViewController: UIViewController {
     @objc
     func loginButtonTapped() {
         print("로그인 버튼 눌림")
+        //LoginCoordinator로 로그인 사실 알려야함
+        delegate?.login()
     }
     
     // MARK: - Helpers
