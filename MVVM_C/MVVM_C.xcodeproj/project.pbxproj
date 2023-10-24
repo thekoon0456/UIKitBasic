@@ -23,6 +23,7 @@
 		7CAE57702AE7B9AE0022546F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE576F2AE7B9AE0022546F /* LoginViewController.swift */; };
 		7CAE57722AE7B9B50022546F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57712AE7B9B50022546F /* MainViewController.swift */; };
 		7CAE57742AE7BAD90022546F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57732AE7BAD90022546F /* LoginCoordinator.swift */; };
+		7CAE57762AE80F1C0022546F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57752AE80F1C0022546F /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		7CAE576F2AE7B9AE0022546F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7CAE57712AE7B9B50022546F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7CAE57732AE7BAD90022546F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		7CAE57752AE80F1C0022546F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		7CAE57682AE7B6B70022546F /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				7CAE57752AE80F1C0022546F /* MainCoordinator.swift */,
 				7CAE57712AE7B9B50022546F /* MainViewController.swift */,
 			);
 			path = MainScene;
@@ -209,6 +212,7 @@
 			files = (
 				7CAE57442AE7B5770022546F /* AppDelegate.swift in Sources */,
 				7CAE57462AE7B5770022546F /* SceneDelegate.swift in Sources */,
+				7CAE57762AE80F1C0022546F /* MainCoordinator.swift in Sources */,
 				7CAE57742AE7BAD90022546F /* LoginCoordinator.swift in Sources */,
 				7CAE576D2AE7B8250022546F /* AppCoordinater.swift in Sources */,
 				7CAE57722AE7B9B50022546F /* MainViewController.swift in Sources */,

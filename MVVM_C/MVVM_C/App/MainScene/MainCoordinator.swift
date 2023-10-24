@@ -1,5 +1,5 @@
 //
-//  LoginCoordinator.swift
+//  Main.swift
 //  MVVM_C
 //
 //  Created by Deokhun KIM on 10/24/23.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol LoginCoordinatorDelegate {
-    func didLoggedIn(_ coordinator: LoginCoordinator)
+protocol MainCoordinatorDelegate {
+    func didLoggedOut(_ coordinator: MainCoordinator)
 }
 
-final class LoginCoordinator: Coordinator, LoginViewControllerDelegate {
+final class MainCoordinator: Coordinator, MainViewControllerDelegate {
 
     var childCoordinators: [Coordinator] = []
-    var delegate: LoginCoordinatorDelegate?
+    var delegate: MainCoordinatorDelegate?
     
     private var navigationController: UINavigationController
     
@@ -23,15 +23,14 @@ final class LoginCoordinator: Coordinator, LoginViewControllerDelegate {
     }
     
     func start() {
-        let viewController = LoginViewController()
-        viewController.view.backgroundColor = .cyan
+        let viewController = MainViewController()
         viewController.delegate = self //delegate 채택
         
         navigationController.viewControllers = [viewController] //?
     }
     
     //로그인했으면 AppCoordinagor로 알려야함
-    func login() {
-        delegate?.didLoggedIn(self) //coordinator self로 보냄
+    func logout() {
+        delegate?.didLoggedOut(self) //coordinator self로 보냄
     }
 }

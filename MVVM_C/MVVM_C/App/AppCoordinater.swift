@@ -8,7 +8,9 @@
 import UIKit
 
 //isLoggedIn이 false면 login, true면 main뷰로
-final class AppCoordinator: Coordinator {
+//LoginCoordinatorDelegate 채택
+final class AppCoordinator: Coordinator, LoginCoordinatorDelegate, MainCoordinatorDelegate {
+    
     var childCoordinators: [Coordinator] = []
     private var navigationController: UINavigationController
     var isLoggedIn: Bool = false
@@ -27,11 +29,27 @@ final class AppCoordinator: Coordinator {
     }
     
     func showMainViewController() {
-        
+        let coordinator = MainCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        childCoordinators.append(coordinator)
     }
     
     func showLoginViewController() {
-        
+        let coordinator = LoginCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        childCoordinators.append(coordinator)
+    }
+    
+    func didLoggedIn(_ coordinator: LoginCoordinator) {
+        childCoordinators = childCoordinators.filter { $0 !== coordinator }
+        showMainViewController()
+    }
+    
+    func didLoggedOut(_ coordinator: MainCoordinator) {
+        childCoordinators = childCoordinators.filter { $0 !== coordinator }
+        showLoginViewController()
     }
     
 }

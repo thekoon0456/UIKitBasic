@@ -38,6 +38,7 @@ final class LoginViewController: UIViewController {
     // MARK: - Helpers
     
     private func configureUI() {
+        view.backgroundColor = .white
         let item = UIBarButtonItem(title: "로그인",
                                    style: .plain,
                                    target: self,

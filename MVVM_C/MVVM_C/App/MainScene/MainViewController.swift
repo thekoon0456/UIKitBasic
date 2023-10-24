@@ -7,23 +7,42 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+protocol MainViewControllerDelegate {
+    func logout()
+}
 
+final class MainViewController: UIViewController {
+    
+    var delegate: MainViewControllerDelegate?
+    
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    deinit {
+        print("LoginViewController해제")
     }
-    */
-
+    
+    // MARK: - Selectors
+    
+    @objc
+    func loginButtonTapped() {
+        print("로그아웃 버튼 눌림")
+        //LoginCoordinator로 로그인 사실 알려야함
+        delegate?.logout()
+    }
+    
+    // MARK: - Helpers
+    
+    private func configureUI() {
+        view.backgroundColor = .white
+        let item = UIBarButtonItem(title: "로그아웃",
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(loginButtonTapped))
+        navigationItem.rightBarButtonItem = item
+    }
 }
