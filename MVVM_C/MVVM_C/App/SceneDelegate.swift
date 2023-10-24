@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  MVVM+CleanArchitecture
+//  MVVM_C
 //
-//  Created by Deokhun KIM on 10/23/23.
+//  Created by Deokhun KIM on 10/24/23.
 //
 
 import UIKit
@@ -11,22 +11,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let scene = scene as? UIWindowScene else { return }
+        
+        guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let repository = InMemoryTodoRepository()
-        let useCase = TodoInteractor(repository: repository)
-        let viewModel = TodoListViewModel(todoUseCase: useCase)
-        let viewController = TodoListViewController(viewModel: viewModel)
-        let navigationController = UINavigationController(rootViewController: viewController)
-        
+        let navigationController = UINavigationController()
         window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
         
+        let coordinator = AppCoordinator(navigationController: navigationController)
+        coordinator.start()
+        
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
