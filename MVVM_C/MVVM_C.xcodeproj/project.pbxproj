@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C32FA5A2AEAA00300A70D2C /* NextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32FA592AEAA00300A70D2C /* NextCoordinator.swift */; };
+		7C32FA5C2AEAA01700A70D2C /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32FA5B2AEAA01700A70D2C /* NextViewController.swift */; };
+		7C32FA622AEAA5E700A70D2C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32FA612AEAA5E700A70D2C /* MainViewModel.swift */; };
+		7C32FA642AEAA5F200A70D2C /* NextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32FA632AEAA5F200A70D2C /* NextViewModel.swift */; };
 		7CAE57442AE7B5770022546F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57432AE7B5770022546F /* AppDelegate.swift */; };
 		7CAE57462AE7B5770022546F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57452AE7B5770022546F /* SceneDelegate.swift */; };
 		7CAE574D2AE7B5790022546F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CAE574C2AE7B5790022546F /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C32FA592AEAA00300A70D2C /* NextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextCoordinator.swift; sourceTree = "<group>"; };
+		7C32FA5B2AEAA01700A70D2C /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		7C32FA612AEAA5E700A70D2C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7C32FA632AEAA5F200A70D2C /* NextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewModel.swift; sourceTree = "<group>"; };
 		7CAE57402AE7B5770022546F /* MVVM_C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVM_C.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAE57432AE7B5770022546F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CAE57452AE7B5770022546F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +67,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C32FA582AEA9FF400A70D2C /* NextViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7C32FA592AEAA00300A70D2C /* NextCoordinator.swift */,
+				7C32FA5F2AEAA07A00A70D2C /* View */,
+				7C32FA602AEAA08200A70D2C /* ViewModel */,
+			);
+			path = NextViewController;
+			sourceTree = "<group>";
+		};
+		7C32FA5D2AEAA02400A70D2C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CAE57712AE7B9B50022546F /* MainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7C32FA5E2AEAA02D00A70D2C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7C32FA612AEAA5E700A70D2C /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7C32FA5F2AEAA07A00A70D2C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7C32FA5B2AEAA01700A70D2C /* NextViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7C32FA602AEAA08200A70D2C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7C32FA632AEAA5F200A70D2C /* NextViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7CAE57372AE7B5770022546F = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				7CAE57752AE80F1C0022546F /* MainCoordinator.swift */,
-				7CAE57712AE7B9B50022546F /* MainViewController.swift */,
+				7C32FA5D2AEAA02400A70D2C /* View */,
+				7C32FA5E2AEAA02D00A70D2C /* ViewModel */,
+				7C32FA582AEA9FF400A70D2C /* NextViewController */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -215,9 +267,13 @@
 				7CAE57762AE80F1C0022546F /* MainCoordinator.swift in Sources */,
 				7CAE57742AE7BAD90022546F /* LoginCoordinator.swift in Sources */,
 				7CAE576D2AE7B8250022546F /* AppCoordinater.swift in Sources */,
+				7C32FA5C2AEAA01700A70D2C /* NextViewController.swift in Sources */,
 				7CAE57722AE7B9B50022546F /* MainViewController.swift in Sources */,
+				7C32FA5A2AEAA00300A70D2C /* NextCoordinator.swift in Sources */,
 				7CAE57702AE7B9AE0022546F /* LoginViewController.swift in Sources */,
+				7C32FA642AEAA5F200A70D2C /* NextViewModel.swift in Sources */,
 				7CAE576A2AE7B6D50022546F /* Coordinator.swift in Sources */,
+				7C32FA622AEAA5E700A70D2C /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

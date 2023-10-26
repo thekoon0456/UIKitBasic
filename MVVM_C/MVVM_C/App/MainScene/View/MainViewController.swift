@@ -7,13 +7,24 @@
 
 import UIKit
 
-protocol MainViewControllerDelegate {
+import SnapKit
+
+protocol MainViewControllerDelegate: AnyObject {
     func logout()
 }
 
 final class MainViewController: UIViewController {
     
-    var delegate: MainViewControllerDelegate?
+    weak var delegate: MainViewControllerDelegate?
+    
+    private lazy var naviButton = {
+        let button = UIButton()
+        button.setTitle("다음 뷰로 가기", for: .normal)
+        button.addTarget(self,
+                         action: #selector(nextButtonClicked),
+                         for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Lifecycles
     
@@ -23,7 +34,7 @@ final class MainViewController: UIViewController {
     }
     
     deinit {
-        print("LoginViewController해제")
+        print("MainViewController해제")
     }
     
     // MARK: - Selectors
@@ -44,5 +55,15 @@ final class MainViewController: UIViewController {
                                    target: self,
                                    action: #selector(loginButtonTapped))
         navigationItem.rightBarButtonItem = item
+        
+        view.addSubview(naviButton)
+        naviButton.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+    }
+    
+    @objc
+    func nextButtonClicked() {
+//        delegate?.nextVC()
     }
 }
