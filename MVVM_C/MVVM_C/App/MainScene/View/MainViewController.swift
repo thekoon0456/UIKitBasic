@@ -23,6 +23,8 @@ final class MainViewController: UIViewController {
         button.addTarget(self,
                          action: #selector(nextButtonClicked),
                          for: .touchUpInside)
+        button.setTitleColor(.label, for: .normal)
+
         return button
     }()
     
@@ -59,6 +61,7 @@ final class MainViewController: UIViewController {
         view.addSubview(naviButton)
         naviButton.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
+            make.height.width.equalTo(100)
         }
     }
     

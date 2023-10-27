@@ -11,7 +11,7 @@ protocol LoginCoordinatorDelegate {
     func didLoggedIn(_ coordinator: LoginCoordinator)
 }
 
-final class LoginCoordinator: Coordinator, LoginViewControllerDelegate {
+final class LoginCoordinator: CoordinatorProtocol, LoginViewControllerDelegate {
 
     var childCoordinators: [Coordinator] = []
     var delegate: LoginCoordinatorDelegate?

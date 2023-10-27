@@ -11,7 +11,7 @@ protocol MainCoordinatorDelegate {
     func didLoggedOut(_ coordinator: MainCoordinator)
 }
 
-final class MainCoordinator: Coordinator, MainViewControllerDelegate {
+final class MainCoordinator: CoordinatorProtocol, MainViewControllerDelegate {
 
     var childCoordinators: [Coordinator] = []
     var delegate: MainCoordinatorDelegate?
