@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate {
+protocol LoginViewControllerDelegate: AnyObject {
     func login()
 }
 
 final class LoginViewController: UIViewController {
 
-    var delegate: LoginViewControllerDelegate?
+    weak var delegate: LoginViewControllerDelegate?
     
     // MARK: - Lifecycles
     

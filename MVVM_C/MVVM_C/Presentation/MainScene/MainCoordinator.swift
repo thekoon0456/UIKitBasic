@@ -12,11 +12,11 @@ protocol MainCoordinatorDelegate {
 }
 
 final class MainCoordinator: CoordinatorProtocol, MainViewControllerDelegate {
-
-    var childCoordinators: [Coordinator] = []
-    var delegate: MainCoordinatorDelegate?
     
-    private var navigationController: UINavigationController
+    var childCoordinators: [CoordinatorProtocol] = []
+    var navigationController: UINavigationController
+    var type: CoordinatorType = .main
+    var delegate: MainCoordinatorDelegate?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
