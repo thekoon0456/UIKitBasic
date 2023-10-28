@@ -42,7 +42,7 @@ final class AppCoordinator: CoordinatorProtocol, LoginCoordinatorDelegate, MainC
     
     func showLoginViewController() {
         let loginCoordinator = LoginCoordinator(navigationController: navigationController)
-        loginCoordinator.delegate = self
+        loginCoordinator.loginCoordinatorDelegate = self
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
     }

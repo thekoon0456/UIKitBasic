@@ -13,7 +13,16 @@ protocol LoginViewControllerDelegate: AnyObject {
 
 final class LoginViewController: UIViewController {
 
-    weak var delegate: LoginViewControllerDelegate?
+    var loginViewDelegate: LoginViewControllerDelegate?
+    
+    var detailViewDelegate: DetailInfoInputControllerDelegate?
+    
+    private lazy var loginExButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("추가 정보 입력으로", for: .normal)
+        button.addTarget(self, action: #selector(exButtonTapped), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Lifecycles
     
@@ -32,7 +41,13 @@ final class LoginViewController: UIViewController {
     func loginButtonTapped() {
         print("로그인 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        delegate?.login()
+        loginViewDelegate?.login()
+    }
+    
+    @objc
+    func exButtonTapped() {
+        print("exButtonTapped")
+        detailViewDelegate?.exButtonTap()
     }
     
     // MARK: - Helpers
@@ -44,5 +59,10 @@ final class LoginViewController: UIViewController {
                                    target: self,
                                    action: #selector(loginButtonTapped))
         navigationItem.rightBarButtonItem = item
+        
+        view.addSubview(loginExButton)
+        loginExButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
 }

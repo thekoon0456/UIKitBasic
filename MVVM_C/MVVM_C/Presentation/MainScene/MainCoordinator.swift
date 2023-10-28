@@ -33,4 +33,9 @@ final class MainCoordinator: CoordinatorProtocol, MainViewControllerDelegate {
     func logout() {
         delegate?.didLoggedOut(self) //coordinator self로 보냄
     }
+    
+    //탭바 3개 만들기
+    //Home
+    //map
+    //Info
 }
