@@ -14,15 +14,16 @@ protocol DetailInfoInputCoordinatorDelegate: AnyObject {
 class DetailInfoInputCoordinator: CoordinatorProtocol {
     
     var childCoordinators: [CoordinatorProtocol] = []
-    
     var navigationController: UINavigationController
-    
     var type: CoordinatorType = .next
-    
     var delegate: LoginCoordinator?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    deinit {
+        print("DetailInfoInputCoordinator 해제")
     }
     
     func start() { //DetailInfoInputViewController 만들어서 보여줌

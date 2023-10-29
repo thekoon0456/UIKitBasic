@@ -15,7 +15,7 @@ protocol DetailInfoInputControllerDelegate: AnyObject {
 
 final class DetailInfoInputViewController: UIViewController {
     
-    var delegate: DetailInfoInputCoordinator?
+    weak var delegate: DetailInfoInputCoordinator?
     
     private let exLable: UILabel = {
         let label = UILabel()
@@ -35,9 +35,14 @@ final class DetailInfoInputViewController: UIViewController {
         configureUI()
     }
     
+    deinit {
+        print("DetailInfoInputViewController 해제")
+    }
+    
     @objc
     func exButtonTapped() {
-        delegate?.navigationToDetails()
+        //네비게이션 넣기
+        print("exButtonTapped, 메인 뷰로")
     }
     
     private func configureUI() {
@@ -45,6 +50,12 @@ final class DetailInfoInputViewController: UIViewController {
         view.addSubview(exLable)
         exLable.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
+        }
+        
+        view.addSubview(exButton)
+        exButton.snp.makeConstraints { make in
+            make.top.equalTo(exLable.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
         }
     }
 }

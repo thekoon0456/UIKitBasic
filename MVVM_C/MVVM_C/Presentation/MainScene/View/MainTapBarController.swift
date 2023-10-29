@@ -9,13 +9,13 @@ import UIKit
 
 import SnapKit
 
-protocol MainViewControllerDelegate: AnyObject {
+protocol MainTabBarControllerDelegate: AnyObject {
     func logout()
 }
 
-final class MainViewController: UIViewController {
+final class MainTapBarController: UITabBarController {
     
-    weak var delegate: MainViewControllerDelegate?
+    weak var tabBardelegate: MainTabBarControllerDelegate?
     
     private lazy var naviButton = {
         let button = UIButton()
@@ -45,7 +45,7 @@ final class MainViewController: UIViewController {
     func loginButtonTapped() {
         print("로그아웃 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        delegate?.logout()
+        tabBardelegate?.logout()
     }
     
     // MARK: - Helpers

@@ -14,7 +14,7 @@ protocol LoginViewControllerDelegate: AnyObject {
 
 final class LoginViewController: UIViewController {
 
-    var delegate: LoginViewControllerDelegate?
+    weak var delegate: LoginViewControllerDelegate?
     
     private lazy var loginExButton: UIButton = {
         let button = UIButton()

@@ -16,9 +16,7 @@ final class LoginCoordinator: CoordinatorProtocol {
     
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
-    
     var type: CoordinatorType = .login
-    
     var delegate: LoginCoordinatorDelegate?
     
     init(navigationController: UINavigationController) {

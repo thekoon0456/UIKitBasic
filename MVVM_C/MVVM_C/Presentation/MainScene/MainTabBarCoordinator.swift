@@ -7,26 +7,30 @@
 
 import UIKit
 
-protocol MainCoordinatorDelegate {
-    func didLoggedOut(_ coordinator: MainCoordinator)
+protocol MainTabBarCoordinatorDelegate: AnyObject {
+    func didLoggedOut(_ coordinator: MainTabBarCoordinator)
 }
 
-final class MainCoordinator: CoordinatorProtocol, MainViewControllerDelegate {
+final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDelegate {
     
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .main
-    var delegate: MainCoordinatorDelegate?
+    var delegate: MainTabBarCoordinatorDelegate?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
+    deinit {
+        print("MainCoordinator 해제")
+    }
+    
     func start() {
-        let viewController = MainViewController()
-        viewController.delegate = self //delegate 채택
+        let mainTabBarController = MainTapBarController()
+        mainTabBarController.tabBardelegate = self //delegate 채택
         
-        navigationController.viewControllers = [viewController] //?
+        navigationController.viewControllers = [mainTabBarController] //현재뷰컨 mainTabBarController로
     }
     
     //로그인했으면 AppCoordinagor로 알려야함
