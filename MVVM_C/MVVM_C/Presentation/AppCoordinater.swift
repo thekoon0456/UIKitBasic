@@ -11,7 +11,6 @@ import UIKit
 //모든 Coordinator는 CoordinatorProtocol 채택 (명세)
 final class AppCoordinator: CoordinatorProtocol {
 
-    //공통
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .app

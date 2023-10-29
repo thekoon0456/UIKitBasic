@@ -29,7 +29,7 @@ class DetailInfoInputCoordinator: CoordinatorProtocol {
         let detailInfoInputViewController = DetailInfoInputViewController()
         detailInfoInputViewController.coordinator = self
         navigationController.pushViewController(detailInfoInputViewController, animated: true)
-//        navigationController.viewControllers = [detailInfoInputViewController]
+//        navigationController.viewControllers = [detailInfoInputViewController] //ㅇ 안쓸때
     }
     
     //화면 하나 더 들어가면

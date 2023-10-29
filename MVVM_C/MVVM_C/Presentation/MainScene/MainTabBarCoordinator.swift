@@ -39,9 +39,6 @@ final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDele
     }
     
     //탭바 3개 만들기
-    //Home
-    //map
-    //Info
     func showMainTabController() {
         //탭바 안이므로 네비컨트롤러 각각 새로 생성
         let homeTabCoordinator = HomeTabCoordinator(navigationController: UINavigationController())
@@ -60,31 +57,7 @@ final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDele
         mapTabCoordinator.start()
         infoTabCoordinator.start()
         
-//        mainTabBarController = MainTapBarController(viewModel: MainViewModel(), pages: [homeTabCoordinator.navigationController,
-//                                                                                        mapTabCoordinator.navigationController,
-//                                                                                        infoTabCoordinator.navigationController])
         configureViewController()
-//        mainTabBarController.tabBardelegate = self
-//        navigationController.viewControllers = [mainTabBarController]
-    }
-    
-    private func makeNavigationController(
-        rootViewController rootVC: UIViewController,
-        title: String,
-        tabbarImage: String,
-        tag: Int
-    ) -> UINavigationController {
-        let navigation = UINavigationController(rootViewController: rootVC)
-        
-        // TODO: - SET TabBar Image (add image constant to function input area)
-        
-        navigation.tabBarItem = UITabBarItem(
-            title: title,
-            image: UIImage(systemName: tabbarImage),
-            tag: tag
-        )
-        
-        return navigation
     }
     
     func configureViewController() {
@@ -114,12 +87,33 @@ final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDele
             tag: 2
         )
         
+        mainTabBarController = MainTapBarController(
+            viewModel: MainViewModel(),
+            pages: [homeNavigation,
+                    mapNavigation,
+                    infoNavigation]
+        )
         
-        mainTabBarController = MainTapBarController(viewModel: MainViewModel(), pages: [homeNavigation,
-                                                                                        mapNavigation,
-                                                                                        infoNavigation])
-        
-        mainTabBarController.tabBardelegate = self
+        mainTabBarController.tabBarDelegate = self
         navigationController.viewControllers = [mainTabBarController]
+    }
+    
+    private func makeNavigationController(
+        rootViewController rootVC: UIViewController,
+        title: String,
+        tabbarImage: String,
+        tag: Int
+    ) -> UINavigationController {
+        let navigation = UINavigationController(rootViewController: rootVC)
+        
+        // TODO: - SET TabBar Image (add image constant to function input area)
+        
+        navigation.tabBarItem = UITabBarItem(
+            title: title,
+            image: UIImage(systemName: tabbarImage),
+            tag: tag
+        )
+        
+        return navigation
     }
 }

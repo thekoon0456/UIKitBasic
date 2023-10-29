@@ -46,7 +46,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
         parentsCoordinator?.didLoggedIn(self)
     }
     
-    //아래로 들어가기
+    //아래로 전달
     func goToDetail() {
         showDetailInfoInput()
     }

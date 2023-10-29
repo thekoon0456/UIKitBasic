@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         window?.rootViewController = navigationController
         
+        //AppCoordinator 생성, 첫 뷰 그리기
         let coordinator = AppCoordinator(navigationController: navigationController)
         coordinator.start()
         

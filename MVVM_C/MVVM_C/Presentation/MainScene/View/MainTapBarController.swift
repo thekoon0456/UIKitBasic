@@ -15,7 +15,7 @@ protocol MainTabBarControllerDelegate: AnyObject {
 
 final class MainTapBarController: UITabBarController {
     
-    weak var tabBardelegate: MainTabBarControllerDelegate?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     var pages: [UINavigationController]
     var viewModel: MainViewModel
     
@@ -44,10 +44,23 @@ final class MainTapBarController: UITabBarController {
     // MARK: - Helpers
     
     private func configureUI() {
-        
+        //뷰컨 설정
         viewControllers = pages
         
         view.backgroundColor = .white
         tabBar.tintColor = .black
+        
+        let item = UIBarButtonItem(title: "로그인",
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(logOutButtonTapped))
+        navigationItem.rightBarButtonItem = item
+    }
+    
+    @objc
+    func logOutButtonTapped() {
+        print("로그인 버튼 눌림")
+        //LoginCoordinator로 로그인 사실 알려야함
+        tabBarDelegate?.logout()
     }
 }
