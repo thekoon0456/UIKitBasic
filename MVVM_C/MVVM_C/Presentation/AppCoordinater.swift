@@ -25,23 +25,23 @@ final class AppCoordinator: CoordinatorProtocol {
     //첫 시작시 화면
     func start() { //뷰컨트롤러 생성, 뷰컨트롤러의 coordinator로 self 할당, 네비 컨트롤러에 push, 
         if isLoggedIn {
-            showMainViewController() //메인 뷰
+            showMainTabController() //메인 뷰
         } else {
             showLoginViewController() //온보딩 뷰
         }
     }
     
     //start() 내부 코드, coordinator 생성, start로 viewcontroller와 viewModel 생성, 주입
-    func showMainViewController() {
+    func showMainTabController() {
         let mainTabBarCoordinator = MainTabBarCoordinator(navigationController: navigationController)
-        mainTabBarCoordinator.delegate = self
+        mainTabBarCoordinator.parentCoordinator = self
         mainTabBarCoordinator.start() //뷰컨 생성 후 이동
         childCoordinators.append(mainTabBarCoordinator)
     }
-    
+    //ParentCoordinator에서 childCoordinator 생성
     func showLoginViewController() {
         let loginCoordinator = LoginCoordinator(navigationController: navigationController)
-        loginCoordinator.delegate = self
+        loginCoordinator.parentsCoordinator = self
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
     }
@@ -52,7 +52,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
     func didLoggedIn(_ coordinator: LoginCoordinator) {
         print("didLoggedIn")
         removeFromChildCoordinators(coordinator: coordinator)
-        showMainViewController() //로그인 했으니 메인 뷰로
+        showMainTabController() //로그인 했으니 메인 뷰로
     }
 }
 
@@ -61,6 +61,6 @@ extension AppCoordinator: MainTabBarCoordinatorDelegate {
     func didLoggedOut(_ coordinator: MainTabBarCoordinator) {
         print("didLoggedOut")
         removeFromChildCoordinators(coordinator: coordinator)
-        showLoginViewController() //로그인뷰로
+        showLoginViewController() //로그아웃했으니 로그인뷰로
     }
 }

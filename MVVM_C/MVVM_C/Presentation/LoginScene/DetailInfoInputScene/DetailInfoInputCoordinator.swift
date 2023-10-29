@@ -12,11 +12,10 @@ protocol DetailInfoInputCoordinatorDelegate: AnyObject {
 }
 
 class DetailInfoInputCoordinator: CoordinatorProtocol {
-    
+    var parentCoordinator: LoginCoordinator?
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .next
-    var delegate: LoginCoordinator?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -28,7 +27,7 @@ class DetailInfoInputCoordinator: CoordinatorProtocol {
     
     func start() { //DetailInfoInputViewController 만들어서 보여줌
         let detailInfoInputViewController = DetailInfoInputViewController()
-        detailInfoInputViewController.delegate = self
+        detailInfoInputViewController.coordinator = self
         navigationController.pushViewController(detailInfoInputViewController, animated: true)
 //        navigationController.viewControllers = [detailInfoInputViewController]
     }

@@ -13,11 +13,10 @@ protocol LoginCoordinatorDelegate: AnyObject {
 }
 
 final class LoginCoordinator: CoordinatorProtocol {
-    
+    var parentsCoordinator: AppCoordinator?
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .login
-    var delegate: LoginCoordinatorDelegate?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -34,7 +33,7 @@ final class LoginCoordinator: CoordinatorProtocol {
     //로그인 성공시, DetailInfoInput화면으로 이동
     func showDetailInfoInput() {
         let detailInfoInputCoordinator = DetailInfoInputCoordinator(navigationController: navigationController)
-        detailInfoInputCoordinator.delegate = self
+        detailInfoInputCoordinator.parentCoordinator = self
         detailInfoInputCoordinator.start()
         childCoordinators.append(detailInfoInputCoordinator)
     }
@@ -43,7 +42,8 @@ final class LoginCoordinator: CoordinatorProtocol {
 extension LoginCoordinator: LoginViewControllerDelegate {
     //위로 전달
     func login() {
-        delegate?.didLoggedIn(self)
+        print("로그인 전달")
+        parentsCoordinator?.didLoggedIn(self)
     }
     
     //아래로 들어가기

@@ -16,17 +16,19 @@ protocol MainTabBarControllerDelegate: AnyObject {
 final class MainTapBarController: UITabBarController {
     
     weak var tabBardelegate: MainTabBarControllerDelegate?
+    var pages: [UINavigationController]
+    var viewModel: MainViewModel
     
-    private lazy var naviButton = {
-        let button = UIButton()
-        button.setTitle("다음 뷰로 가기", for: .normal)
-        button.addTarget(self,
-                         action: #selector(nextButtonClicked),
-                         for: .touchUpInside)
-        button.setTitleColor(.label, for: .normal)
-
-        return button
-    }()
+//    // MARK: - Initializers
+    init(viewModel: MainViewModel, pages: [UINavigationController]) {
+        self.viewModel = viewModel
+        self.pages = pages
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycles
     
@@ -36,37 +38,16 @@ final class MainTapBarController: UITabBarController {
     }
     
     deinit {
-        print("MainViewController해제")
-    }
-    
-    // MARK: - Selectors
-    
-    @objc
-    func loginButtonTapped() {
-        print("로그아웃 버튼 눌림")
-        //LoginCoordinator로 로그인 사실 알려야함
-        tabBardelegate?.logout()
+        print("MainTapBarController해제")
     }
     
     // MARK: - Helpers
     
     private func configureUI() {
-        view.backgroundColor = .white
-        let item = UIBarButtonItem(title: "로그아웃",
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(loginButtonTapped))
-        navigationItem.rightBarButtonItem = item
         
-        view.addSubview(naviButton)
-        naviButton.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.height.width.equalTo(100)
-        }
-    }
-    
-    @objc
-    func nextButtonClicked() {
-//        delegate?.nextVC()
+        viewControllers = pages
+        
+        view.backgroundColor = .white
+        tabBar.tintColor = .black
     }
 }

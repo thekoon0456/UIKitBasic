@@ -15,7 +15,7 @@ protocol DetailInfoInputControllerDelegate: AnyObject {
 
 final class DetailInfoInputViewController: UIViewController {
     
-    weak var delegate: DetailInfoInputCoordinator?
+    weak var coordinator: DetailInfoInputCoordinator?
     
     private let exLable: UILabel = {
         let label = UILabel()
