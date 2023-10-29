@@ -9,7 +9,7 @@ import UIKit
 
 //isLoggedIn이 false면 login, true면 main뷰로
 //모든 Coordinator는 CoordinatorProtocol 채택 (명세)
-final class AppCoordinator: CoordinatorProtocol, LoginCoordinatorDelegate, MainCoordinatorDelegate {
+final class AppCoordinator: CoordinatorProtocol {
 
     //공통
     var childCoordinators: [CoordinatorProtocol] = []
@@ -24,11 +24,11 @@ final class AppCoordinator: CoordinatorProtocol, LoginCoordinatorDelegate, MainC
     }
     
     //첫 시작시 화면
-    func start() {
+    func start() { //뷰컨트롤러 생성, 뷰컨트롤러의 coordinator로 self 할당, 네비 컨트롤러에 push, 
         if isLoggedIn {
-            showMainViewController()
+            showMainViewController() //메인 뷰
         } else {
-            showLoginViewController()
+            showLoginViewController() //온보딩 뷰
         }
     }
     
@@ -42,19 +42,23 @@ final class AppCoordinator: CoordinatorProtocol, LoginCoordinatorDelegate, MainC
     
     func showLoginViewController() {
         let loginCoordinator = LoginCoordinator(navigationController: navigationController)
-        loginCoordinator.loginCoordinatorDelegate = self
+        loginCoordinator.delegate = self
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
     }
-    
-    //LoginCoordinatorDelegate
+}
+
+//LoginCoordinatorDelegate
+extension AppCoordinator: LoginCoordinatorDelegate {
     func didLoggedIn(_ coordinator: LoginCoordinator) {
         print("didLoggedIn")
         removeFromChildCoordinators(coordinator: coordinator)
         showMainViewController()
     }
-    
-    //MainCoordinatorDelegate
+}
+
+//MainCoordinatorDelegate
+extension AppCoordinator: MainCoordinatorDelegate {
     func didLoggedOut(_ coordinator: MainCoordinator) {
         print("didLoggedOut")
         removeFromChildCoordinators(coordinator: coordinator)

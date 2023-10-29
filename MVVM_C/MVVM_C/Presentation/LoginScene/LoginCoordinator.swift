@@ -7,18 +7,19 @@
 
 import UIKit
 
+//위로 전달해줄 메서드, 여기서는 메인뷰로 이동
 protocol LoginCoordinatorDelegate: AnyObject {
     func didLoggedIn(_ coordinator: LoginCoordinator)
-    func removeFromChildCoordinators(coordinator: CoordinatorProtocol)
 }
 
-final class LoginCoordinator: CoordinatorProtocol, LoginViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
+final class LoginCoordinator: CoordinatorProtocol {
     
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
+    
     var type: CoordinatorType = .login
-    var loginCoordinatorDelegate: LoginCoordinatorDelegate? //weak하니까 안댄다..
-    var detailInfoInputCoordinatorDelegate: DetailInfoInputCoordinatorDelegate?
+    
+    var delegate: LoginCoordinatorDelegate?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -28,29 +29,27 @@ final class LoginCoordinator: CoordinatorProtocol, LoginViewControllerDelegate, 
         //makeLoginViewControllerPage
         let loginviewController = LoginViewController()
         loginviewController.view.backgroundColor = .cyan
-        loginviewController.loginViewDelegate = self //loginviewController delegate 채택
-//        navigationController.pushViewController(loginviewController, animated: true)
+        loginviewController.delegate = self //loginviewController delegate 채택
         navigationController.viewControllers = [loginviewController]
     }
     
-    //로그인했으면 AppCoordinagor로 childCoordinator를  전달.
-    func login() {
-        print("LoginCoordinator, login")
-        loginCoordinatorDelegate?.didLoggedIn(self)
+    //로그인 성공시, DetailInfoInput화면으로 이동
+    func showDetailInfoInput() {
+        let detailInfoInputCoordinator = DetailInfoInputCoordinator(navigationController: navigationController)
+        detailInfoInputCoordinator.delegate = self
+        detailInfoInputCoordinator.start()
+        childCoordinators.append(detailInfoInputCoordinator)
     }
-    //위로 올려야댐
-    func exButtonDidTapped(_ coordinator: DetailInfoInputCoordinator) {
-        print("exButtonDidTapped, login")
-//        showDetailInfoInputController()
-        detailInfoInputCoordinatorDelegate?.exButtonDidTapped(self)
-        removeFromChildCoordinators(coordinator: coordinator)
+}
+
+extension LoginCoordinator: LoginViewControllerDelegate {
+    //위로 전달
+    func login() {
+        delegate?.didLoggedIn(self)
     }
     
-    //coordinator, 뷰컨 만듬
-    func showDetailInfoInputController() {
-        let coordinator = DetailInfoInputCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start() //여기서 뷰컨 만듬
-        childCoordinators.append(coordinator)
+    //아래로 들어가기
+    func goToDetail() {
+        showDetailInfoInput()
     }
 }

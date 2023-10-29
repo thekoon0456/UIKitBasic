@@ -8,14 +8,13 @@
 import UIKit
 
 protocol LoginViewControllerDelegate: AnyObject {
-    func login()
+    func login() //로그인 한 뒤 뷰로
+    func goToDetail() //DetailInfoView로
 }
 
 final class LoginViewController: UIViewController {
 
-    var loginViewDelegate: LoginViewControllerDelegate?
-    
-    var detailViewDelegate: DetailInfoInputControllerDelegate?
+    var delegate: LoginViewControllerDelegate?
     
     private lazy var loginExButton: UIButton = {
         let button = UIButton()
@@ -41,13 +40,13 @@ final class LoginViewController: UIViewController {
     func loginButtonTapped() {
         print("로그인 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        loginViewDelegate?.login()
+        delegate?.login()
     }
     
     @objc
     func exButtonTapped() {
         print("exButtonTapped")
-        detailViewDelegate?.exButtonTap()
+        delegate?.goToDetail()
     }
     
     // MARK: - Helpers

@@ -11,7 +11,7 @@ protocol DetailInfoInputCoordinatorDelegate: AnyObject {
     func exButtonDidTapped(_ coordinator: DetailInfoInputCoordinator)
 }
 
-class DetailInfoInputCoordinator: CoordinatorProtocol, DetailInfoInputControllerDelegate {
+class DetailInfoInputCoordinator: CoordinatorProtocol {
     
     var childCoordinators: [CoordinatorProtocol] = []
     
@@ -25,14 +25,23 @@ class DetailInfoInputCoordinator: CoordinatorProtocol, DetailInfoInputController
         self.navigationController = navigationController
     }
     
-    func start() {
+    func start() { //DetailInfoInputViewController 만들어서 보여줌
         let detailInfoInputViewController = DetailInfoInputViewController()
         detailInfoInputViewController.delegate = self
-        navigationController.viewControllers = [detailInfoInputViewController]
+        navigationController.pushViewController(detailInfoInputViewController, animated: true)
+//        navigationController.viewControllers = [detailInfoInputViewController]
     }
     
-    func exButtonTap() {
-        print("DEBUG: DetailInfoInputCoordinator의 exButtonTap 실행")
-        delegate?.exButtonDidTapped(self)
+    //화면 하나 더 들어가면
+    func showDetailScreen() {
+        print("뎁스 하나 더 들어감(다음 코디네이터 생성)")
     }
 }
+
+extension DetailInfoInputCoordinator: DetailInfoInputControllerDelegate {
+    func navigationToDetails() {
+        showDetailScreen()
+    }
+}
+
+

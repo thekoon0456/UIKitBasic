@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 
 protocol DetailInfoInputControllerDelegate: AnyObject {
-    func exButtonTap()
+    func navigationToDetails()
 }
 
 final class DetailInfoInputViewController: UIViewController {
     
-    var delegate: DetailInfoInputControllerDelegate?
+    var delegate: DetailInfoInputCoordinator?
     
     private let exLable: UILabel = {
         let label = UILabel()
@@ -37,10 +37,11 @@ final class DetailInfoInputViewController: UIViewController {
     
     @objc
     func exButtonTapped() {
-        delegate?.exButtonTap()
+        delegate?.navigationToDetails()
     }
     
     private func configureUI() {
+        view.backgroundColor = .red
         view.addSubview(exLable)
         exLable.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
