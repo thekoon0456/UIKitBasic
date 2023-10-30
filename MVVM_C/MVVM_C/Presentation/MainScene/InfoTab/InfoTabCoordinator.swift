@@ -9,8 +9,8 @@ import UIKit
 
 final class InfoTabCoordinator: CoordinatorProtocol {
     
-    var appCoordinator: AppCoordinator?
-    var mainTabBarCoordinator: MainTabBarCoordinator?
+    weak var appCoordinator: AppCoordinator?
+    weak var mainTabBarCoordinator: MainTabBarCoordinator?
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .app

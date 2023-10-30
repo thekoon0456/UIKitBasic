@@ -8,7 +8,7 @@
 import UIKit
 
 final class LoginCoordinator: CoordinatorProtocol {
-    
+    //제일 처음 AppCoordinator 받는 곳은 weak var X
     var appCoordinator: AppCoordinator?
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController

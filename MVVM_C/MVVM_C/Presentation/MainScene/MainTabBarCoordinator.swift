@@ -9,7 +9,7 @@ import UIKit
 
 final class MainTabBarCoordinator: CoordinatorProtocol {
     
-    var appCoordinator: AppCoordinator? //순환참조 방지
+    weak var appCoordinator: AppCoordinator? //순환참조 방지
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .MainTab
@@ -26,6 +26,7 @@ final class MainTabBarCoordinator: CoordinatorProtocol {
     
     func start() {
         showMainTabController()
+        configureViewController()
     }
     
     //탭바 3개 만들기
@@ -64,11 +65,11 @@ final class MainTabBarCoordinator: CoordinatorProtocol {
                     infoNavigationController]
         )
         
-        //coordinator 설정
         let homeTabCoordinator = HomeTabCoordinator(navigationController: homeNavigationController)
         let mapTabCoordinator = MapTabCoordinator(navigationController: mapNavigationController)
         let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
         
+        //childCoordinators에 추가
         childCoordinators.append(homeTabCoordinator)
         childCoordinators.append(mapTabCoordinator)
         childCoordinators.append(infoTabCoordinator)
@@ -81,8 +82,6 @@ final class MainTabBarCoordinator: CoordinatorProtocol {
         homeTabCoordinator.start()
         mapTabCoordinator.start()
         infoTabCoordinator.start()
-        
-        configureViewController()
     }
     
     func configureViewController() {

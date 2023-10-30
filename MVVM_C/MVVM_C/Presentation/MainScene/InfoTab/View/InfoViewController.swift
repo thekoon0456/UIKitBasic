@@ -40,15 +40,14 @@ final class InfoViewController: UIViewController {
     
     @objc
     func editButtonTapped() {
-        print("editButtonTappedVc")
+        print("editButtonTapped")
         appCoordinator?.showLoginViewController()
     }
     
     @objc
     func settingButtonTapped() {
         mainTabBarCoordinator?.start()
-        print("settingButtonTappedVc")
-        
+        print("settingButtonTapped")
     }
     
     private func configureUI() {
