@@ -25,7 +25,6 @@ final class LoginCoordinator: CoordinatorProtocol {
     func start() {
         //makeLoginViewControllerPage
         let loginviewController = LoginViewController()
-        let viewModel = LoginViewModel()
         loginviewController.view.backgroundColor = .cyan
         loginviewController.delegate = self //loginviewController delegate 채택
         navigationController.viewControllers = [loginviewController]
