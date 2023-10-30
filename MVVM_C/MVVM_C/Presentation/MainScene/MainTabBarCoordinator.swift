@@ -7,16 +7,12 @@
 
 import UIKit
 
-protocol MainTabBarCoordinatorDelegate: AnyObject {
-    func didLoggedOut(_ coordinator: CoordinatorProtocol)
-}
-
-final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDelegate {
+final class MainTabBarCoordinator: CoordinatorProtocol {
     
-    var parentCoordinator: AppCoordinator? //순환참조 방지
+    var appCoordinator: AppCoordinator? //순환참조 방지
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
-    var type: CoordinatorType = .main
+    var type: CoordinatorType = .MainTab
     
     private var mainTabBarController: MainTapBarController!
     
@@ -29,13 +25,7 @@ final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDele
     }
     
     func start() {
-        //탭바 만들기
         showMainTabController()
-    }
-    
-    //로그인했으면 AppCoordinagor로 알려야함
-    func logout() {
-        parentCoordinator?.didLoggedOut(self) //coordinator self로 보냄
     }
     
     //탭바 3개 만들기
@@ -83,9 +73,10 @@ final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDele
         childCoordinators.append(mapTabCoordinator)
         childCoordinators.append(infoTabCoordinator)
         
-        homeTabCoordinator.parentCoordinator = self
-        mapTabCoordinator.parentCoordinator = self
-        infoTabCoordinator.parentCoordinator = self
+        homeTabCoordinator.mainTabBarCoordinator = self
+        mapTabCoordinator.MainTabBarCoordinator = self
+        infoTabCoordinator.mainTabBarCoordinator = self
+        infoTabCoordinator.appCoordinator = appCoordinator
         
         homeTabCoordinator.start()
         mapTabCoordinator.start()
@@ -95,7 +86,8 @@ final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDele
     }
     
     func configureViewController() {
-        mainTabBarController.tabBarDelegate = self
+        mainTabBarController.mainTabBarCoordinator = self
+        mainTabBarController.appCoordinator = appCoordinator
         navigationController.viewControllers = [mainTabBarController]
     }
     

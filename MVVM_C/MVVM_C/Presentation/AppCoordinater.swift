@@ -33,33 +33,15 @@ final class AppCoordinator: CoordinatorProtocol {
     //start() 내부 코드, coordinator 생성, start로 viewcontroller와 viewModel 생성, 주입
     func showMainTabController() {
         let mainTabBarCoordinator = MainTabBarCoordinator(navigationController: navigationController)
-        mainTabBarCoordinator.parentCoordinator = self
+        mainTabBarCoordinator.appCoordinator = self
         mainTabBarCoordinator.start() //뷰컨 생성 후 이동
         childCoordinators.append(mainTabBarCoordinator)
     }
     //ParentCoordinator에서 childCoordinator 생성
     func showLoginViewController() {
         let loginCoordinator = LoginCoordinator(navigationController: navigationController)
-        loginCoordinator.parentsCoordinator = self
+        loginCoordinator.appCoordinator = self
         loginCoordinator.start()
         childCoordinators.append(loginCoordinator)
-    }
-}
-
-//LoginCoordinatorDelegate
-extension AppCoordinator: LoginCoordinatorDelegate {
-    func didLoggedIn(_ coordinator: CoordinatorProtocol) {
-        print("didLoggedIn")
-        removeFromChildCoordinators(coordinator: coordinator)
-        showMainTabController() //로그인 했으니 메인 뷰로
-    }
-}
-
-//MainCoordinatorDelegate
-extension AppCoordinator: MainTabBarCoordinatorDelegate {
-    func didLoggedOut(_ coordinator: CoordinatorProtocol) {
-        print("didLoggedOut")
-        removeFromChildCoordinators(coordinator: coordinator)
-        showLoginViewController() //로그아웃했으니 로그인뷰로
     }
 }

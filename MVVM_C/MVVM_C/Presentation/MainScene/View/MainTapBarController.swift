@@ -9,13 +9,10 @@ import UIKit
 
 import SnapKit
 
-protocol MainTabBarControllerDelegate: AnyObject {
-    func logout()
-}
-
 final class MainTapBarController: UITabBarController {
     
-    weak var tabBarDelegate: MainTabBarControllerDelegate?
+    weak var mainTabBarCoordinator: MainTabBarCoordinator?
+    weak var appCoordinator: AppCoordinator?
     var pages: [UINavigationController]
     var viewModel: MainViewModel
     
@@ -50,7 +47,7 @@ final class MainTapBarController: UITabBarController {
         view.backgroundColor = .white
         tabBar.tintColor = .black
         
-        let item = UIBarButtonItem(title: "로그인",
+        let item = UIBarButtonItem(title: "로그아웃",
                                    style: .plain,
                                    target: self,
                                    action: #selector(logOutButtonTapped))
@@ -59,8 +56,8 @@ final class MainTapBarController: UITabBarController {
     
     @objc
     func logOutButtonTapped() {
-        print("로그인 버튼 눌림")
+        print("로그아웃 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        tabBarDelegate?.logout()
+        appCoordinator?.showLoginViewController()
     }
 }

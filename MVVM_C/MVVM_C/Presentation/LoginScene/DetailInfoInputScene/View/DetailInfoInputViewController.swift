@@ -9,14 +9,9 @@ import UIKit
 
 import SnapKit
 
-protocol DetailInfoInputControllerDelegate: AnyObject {
-    func navigationToDetails()
-}
-
 final class DetailInfoInputViewController: UIViewController {
     
-    weak var coordinator: DetailInfoInputCoordinator?
-    weak var delegate: DetailInfoInputControllerDelegate?
+    weak var loginCoordinator: LoginCoordinator?
     
     private let exLable: UILabel = {
         let label = UILabel()
@@ -43,7 +38,7 @@ final class DetailInfoInputViewController: UIViewController {
     @objc
     func exButtonTapped() {
         //네비게이션 넣기
-        delegate?.navigationToDetails()
+        loginCoordinator?.start()
         print("exButtonTapped, 메인 뷰로")
     }
     

@@ -10,8 +10,10 @@ import UIKit
 enum CoordinatorType {
     case app
     case login
-    case main
-    case next
+    case MainTab
+    case Home
+    case Map
+    case Info
 }
 
 //Coordinator: 비즈니스 로직과 flow 로직 분리.

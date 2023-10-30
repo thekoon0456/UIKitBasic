@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: AnyObject {
-    func login() //로그인 한 뒤 뷰로
-    func goToDetail() //DetailInfoView로
-}
-
 final class LoginViewController: UIViewController {
 
-    weak var delegate: LoginViewControllerDelegate?
+    weak var loginCoordinator: LoginCoordinator?
+    weak var appCoordinator: AppCoordinator?
     
     private lazy var loginExButton: UIButton = {
         let button = UIButton()
@@ -40,13 +36,13 @@ final class LoginViewController: UIViewController {
     func loginButtonTapped() {
         print("로그인 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        delegate?.login()
+        appCoordinator?.showMainTabController()
     }
     
     @objc
     func exButtonTapped() {
         print("exButtonTapped")
-        delegate?.goToDetail()
+        loginCoordinator?.showDetailInfoInput()
     }
     
     // MARK: - Helpers

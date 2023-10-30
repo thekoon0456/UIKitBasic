@@ -8,10 +8,10 @@
 import UIKit
 
 final class HomeTabCoordinator: CoordinatorProtocol {
-    weak var parentCoordinator: MainTabBarCoordinator?
+    weak var mainTabBarCoordinator: MainTabBarCoordinator?
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
-    var type: CoordinatorType = .main
+    var type: CoordinatorType = .Home
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
