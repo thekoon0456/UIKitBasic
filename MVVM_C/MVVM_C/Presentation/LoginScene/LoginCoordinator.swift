@@ -9,7 +9,7 @@ import UIKit
 
 //위로 전달해줄 메서드, 여기서는 메인뷰로 이동
 protocol LoginCoordinatorDelegate: AnyObject {
-    func didLoggedIn(_ coordinator: LoginCoordinator)
+    func didLoggedIn(_ coordinator: CoordinatorProtocol)
 }
 
 final class LoginCoordinator: CoordinatorProtocol {
@@ -25,6 +25,7 @@ final class LoginCoordinator: CoordinatorProtocol {
     func start() {
         //makeLoginViewControllerPage
         let loginviewController = LoginViewController()
+        let viewModel = LoginViewModel()
         loginviewController.view.backgroundColor = .cyan
         loginviewController.delegate = self //loginviewController delegate 채택
         navigationController.viewControllers = [loginviewController]

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainTabBarCoordinatorDelegate: AnyObject {
-    func didLoggedOut(_ coordinator: MainTabBarCoordinator)
+    func didLoggedOut(_ coordinator: CoordinatorProtocol)
 }
 
 final class MainTabBarCoordinator: CoordinatorProtocol, MainTabBarControllerDelegate {

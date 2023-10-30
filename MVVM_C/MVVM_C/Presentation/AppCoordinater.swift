@@ -48,7 +48,7 @@ final class AppCoordinator: CoordinatorProtocol {
 
 //LoginCoordinatorDelegate
 extension AppCoordinator: LoginCoordinatorDelegate {
-    func didLoggedIn(_ coordinator: LoginCoordinator) {
+    func didLoggedIn(_ coordinator: CoordinatorProtocol) {
         print("didLoggedIn")
         removeFromChildCoordinators(coordinator: coordinator)
         showMainTabController() //로그인 했으니 메인 뷰로
@@ -57,7 +57,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 
 //MainCoordinatorDelegate
 extension AppCoordinator: MainTabBarCoordinatorDelegate {
-    func didLoggedOut(_ coordinator: MainTabBarCoordinator) {
+    func didLoggedOut(_ coordinator: CoordinatorProtocol) {
         print("didLoggedOut")
         removeFromChildCoordinators(coordinator: coordinator)
         showLoginViewController() //로그아웃했으니 로그인뷰로
