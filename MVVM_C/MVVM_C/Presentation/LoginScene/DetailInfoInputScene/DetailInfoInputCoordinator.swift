@@ -28,13 +28,15 @@ class DetailInfoInputCoordinator: CoordinatorProtocol {
     func start() { //DetailInfoInputViewController 만들어서 보여줌
         let detailInfoInputViewController = DetailInfoInputViewController()
         detailInfoInputViewController.coordinator = self
+        detailInfoInputViewController.delegate = self
         navigationController.pushViewController(detailInfoInputViewController, animated: true)
 //        navigationController.viewControllers = [detailInfoInputViewController] //ㅇ 안쓸때
     }
     
     //화면 하나 더 들어가면
     func showDetailScreen() {
-        print("뎁스 하나 더 들어감(다음 코디네이터 생성)")
+        print("메인탭뷰")
+        parentCoordinator?.start()
     }
 }
 
@@ -43,5 +45,3 @@ extension DetailInfoInputCoordinator: DetailInfoInputControllerDelegate {
         showDetailScreen()
     }
 }
-
-

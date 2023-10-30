@@ -8,7 +8,7 @@
 import UIKit
 
 final class InfoTabCoordinator: CoordinatorProtocol {
-    weak var parentCoordinator: MainTabBarCoordinator?
+    var parentCoordinator: MainTabBarCoordinator?
     var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .app
@@ -18,8 +18,20 @@ final class InfoTabCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        //
+        let infoViewController = InfoViewController()
+        infoViewController.delegate = self
+        navigationController.viewControllers = [infoViewController]
+    }
+}
+
+extension InfoTabCoordinator: InfoViewControllerDelegate {
+    func editButtonTapped() {
+        parentCoordinator?.parentCoordinator?.start()
+        print("editButtonTapped")
     }
     
-    
+    func settingButtonTapped() {
+        parentCoordinator?.start()
+        print("settingButtonTapped")
+    }
 }
