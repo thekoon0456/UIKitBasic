@@ -38,7 +38,7 @@ final class DetailInfoInputViewController: UIViewController {
     @objc
     func exButtonTapped() {
         //네비게이션 넣기
-        loginCoordinator?.start()
+        loginCoordinator?.popCurrentPage()
         print("exButtonTapped, 메인 뷰로")
     }
     
