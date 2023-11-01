@@ -11,13 +11,20 @@ protocol MaptabCoordinatorDelegate {
     
 }
 
-final class MapTabCoordinator: BaseCoordinator, MapViewControllerDelegate {
+final class MapTabCoordinator: Coordinator, MapViewControllerDelegate {
     
     var delegate: MaptabCoordinatorDelegate?
-    
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
     var type: CoordinatorType = .app
     
-    override func start() {
+    // MARK: - Init
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
         let controller = MapViewController()
         controller.viewModel = MapViewModel()
         controller.delegate = self

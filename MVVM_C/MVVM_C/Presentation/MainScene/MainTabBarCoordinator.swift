@@ -11,9 +11,18 @@ protocol MainTabBarCoordinatorDelegate {
     func pushToLoginViewController()
 }
 
-final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate, HomeTabCoordinatorDelegate, MaptabCoordinatorDelegate, InfoTabCoordinatorDelegate {
+final class MainTabBarCoordinator: Coordinator, MainTapBarControllerDelegate, HomeTabCoordinatorDelegate, MaptabCoordinatorDelegate, InfoTabCoordinatorDelegate {
     
     var delegate: MainTabBarCoordinatorDelegate?
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
+    
+    // MARK: - Init
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
     var type: CoordinatorType = .MainTab
     
     lazy var homeNavigationController: UINavigationController = makeNavigationController(
@@ -39,7 +48,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         print("MainTabBarCoordinator 해제")
     }
     
-    override func start() {
+    func start() {
         showMainTabController()
     }
     

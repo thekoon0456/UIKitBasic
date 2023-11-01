@@ -5,17 +5,26 @@
 //  Created by Deokhun KIM on 11/1/23.
 //
 
-import Foundation
+import UIKit
 
 protocol DetailInfoCoordinatorDelegate {
     func dismissViewController()
 }
 
-final class DetailInfoCoordinator: BaseCoordinator, DetailInfoViewControllerDelegate {
+final class DetailInfoCoordinator: Coordinator, DetailInfoViewControllerDelegate {
 
     var delegate: DetailInfoCoordinatorDelegate?
     
-    override func start() {
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
+    
+    // MARK: - Init
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
         print("DetailInfoCoordinator - start")
         let viewController = DetailInfoViewController()
         viewController.delegate = self

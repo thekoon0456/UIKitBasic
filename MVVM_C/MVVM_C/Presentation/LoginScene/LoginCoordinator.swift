@@ -11,12 +11,18 @@ protocol LoginCoordinatorDelegate {
     func pushToMainTabController()
 }
 
-final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate,  DetailInfoCoordinatorDelegate {
+final class LoginCoordinator: Coordinator, LoginViewControllerDelegate,  DetailInfoCoordinatorDelegate {
 
     var delegate: LoginCoordinatorDelegate?
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
     var type: CoordinatorType = .login
     
-    override func start() {
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
         let viewController = LoginViewController()
         viewController.delegate = self
         navigationController.viewControllers = [viewController]

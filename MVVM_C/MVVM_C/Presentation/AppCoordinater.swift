@@ -13,9 +13,18 @@ import UIKit
 //presentAViewController
 //dismissViewController
 
-final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
+final class AppCoordinator: Coordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
     
-    override func start() {
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
+    
+    // MARK: - Init
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
         startMainTabController() //메인 뷰로 시작
     }
     

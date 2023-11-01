@@ -25,22 +25,3 @@ protocol Coordinator: AnyObject {
     
     func start()
 }
-
-//Coordinator 프로토콜 채택한 공통 BaseCoordinator클래스 만듬. 다른 Coordinator들은 BaseCoordinator상속받음
-class BaseCoordinator: Coordinator {
-
-    // MARK: - Property
-    
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
-    
-    // MARK: - Init
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    // MARK: - Start
-
-    func start() {}
-}

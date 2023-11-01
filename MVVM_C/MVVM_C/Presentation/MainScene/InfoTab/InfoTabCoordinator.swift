@@ -11,13 +11,20 @@ protocol InfoTabCoordinatorDelegate {
     
 }
 
-final class InfoTabCoordinator: BaseCoordinator, InfoViewControllerDelegate {
+final class InfoTabCoordinator: Coordinator, InfoViewControllerDelegate {
     
-    var delegate: InfoTabCoordinatorDelegate?
-
+    var delegate: MaptabCoordinatorDelegate?
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
     var type: CoordinatorType = .app
-
-    override func start() {
+    
+    // MARK: - Init
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
         let viewController = InfoViewController()
         viewController.delegate = self
 //        navigationController.pushViewController(infoViewController, animated: true)
