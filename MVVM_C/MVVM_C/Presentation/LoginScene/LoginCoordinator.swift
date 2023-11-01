@@ -7,32 +7,40 @@
 
 import UIKit
 
-final class LoginCoordinator: CoordinatorProtocol {
+protocol LoginCoordinatorDelegate {
+    func showMainTabController()
+    func popViewController()
+}
+
+final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoInputViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
+
     //제일 처음 AppCoordinator 받는 곳은 weak var X
-    var appCoordinator: AppCoordinator?
-    var childCoordinators: [CoordinatorProtocol] = []
-    var navigationController: UINavigationController
+    var delegate: LoginCoordinatorDelegate?
+
     var type: CoordinatorType = .login
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
     //makeLoginViewControllerPage
-    func start() {
+    override func start() {
         let loginviewController = LoginViewController()
         loginviewController.view.backgroundColor = .cyan
-        loginviewController.loginCoordinator = self //loginviewController delegate 채택
-        loginviewController.appCoordinator = appCoordinator
+        loginviewController.delegate = self //loginviewController delegate 채택
         navigationController.viewControllers = [loginviewController]
     }
     
-    //로그인 성공시, DetailInfoInput화면으로 이동
     func showDetailInfoInput() {
         let detailInfoInputViewController = DetailInfoInputViewController()
-        detailInfoInputViewController.loginCoordinator = self
+        detailInfoInputViewController.delegate = self
         navigationController.pushViewController(detailInfoInputViewController, animated: true)
     }
+    
+    func showMainTabController() {
+        delegate?.showMainTabController()
+    }
+    
+    func popViewController() {
+        delegate?.popViewController()
+    }
+    
 }
 
 

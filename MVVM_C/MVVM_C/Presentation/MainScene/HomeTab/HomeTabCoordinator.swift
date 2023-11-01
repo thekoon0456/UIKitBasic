@@ -7,10 +7,11 @@
 
 import UIKit
 
-final class HomeTabCoordinator: CoordinatorProtocol {
+final class HomeTabCoordinator: Coordinator {
     
     weak var mainTabBarCoordinator: MainTabBarCoordinator?
-    var childCoordinators: [CoordinatorProtocol] = []
+    
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .Home
     
@@ -20,6 +21,7 @@ final class HomeTabCoordinator: CoordinatorProtocol {
     
     func start() {
         let controller = HomeViewController()
+        controller.viewModel = HomeTabViewModel()
         controller.HomeTabCoordinator = self
         navigationController.viewControllers = [controller]
     }

@@ -14,9 +14,9 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     let disposeBag = DisposeBag()
-    var viewModel = HomeTabViewModel()
+    var viewModel: HomeTabViewModel?
     let tvTrigger = PublishSubject<Void>()
-    var HomeTabCoordinator: HomeTabCoordinator?
+    weak var HomeTabCoordinator: HomeTabCoordinator?
     
     private lazy var tableView = {
         let tableView = UITableView()
@@ -40,18 +40,23 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-//        tvTrigger.onNext(())
+        tvTrigger.onNext(())
         bindUI()
+        print("HomeViewController 등장")
+    }
+    
+    deinit {
+        print("HomeViewController 해제")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tvTrigger.onNext(())
+//        tvTrigger.onNext(())
     }
     
     func bindUI() {
         let input = HomeTabViewModel.Input(tvTrigger: tvTrigger.asObserver())
         
-        let output = viewModel.transform(input: input)
+        let output = viewModel?.transform(input: input)
         
         //        output
         //            .tvList
@@ -62,7 +67,7 @@ class HomeViewController: UIViewController {
         //            return cell
         //        }
         //        .disposed(by: disposeBag)
-        output.tvList.bind(to: tableView.rx.items(cellIdentifier: HomeTabTableViewCell.id,
+        output?.tvList.bind(to: tableView.rx.items(cellIdentifier: HomeTabTableViewCell.id,
                                                   cellType: HomeTabTableViewCell.self)
         ) { index, item, cell in
             cell.config(title: item.name, releaseDate: item.firstAirDate, url: item.posterURL)

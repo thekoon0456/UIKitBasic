@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class MapTabCoordinator: CoordinatorProtocol {
+final class MapTabCoordinator: Coordinator {
     weak var MainTabBarCoordinator: MainTabBarCoordinator?
-    var childCoordinators: [CoordinatorProtocol] = []
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .app
     

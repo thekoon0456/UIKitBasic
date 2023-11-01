@@ -7,26 +7,17 @@
 
 import UIKit
 
-final class MainTabBarCoordinator: CoordinatorProtocol {
+final class MainTabBarCoordinator: BaseCoordinator {
     
-    weak var appCoordinator: AppCoordinator? //순환참조 방지
-    var childCoordinators: [CoordinatorProtocol] = []
-    var navigationController: UINavigationController
+    weak var delegate: AppCoordinator? //순환참조 방지
     var type: CoordinatorType = .MainTab
     
-    private var mainTabBarController: MainTapBarController!
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
     deinit {
-        print("MainCoordinator 해제")
+        print("MainTabBarCoordinator 해제")
     }
     
-    func start() {
+    override func start() {
         showMainTabController()
-        configureViewController()
     }
     
     //탭바 3개 만들기
@@ -58,37 +49,38 @@ final class MainTabBarCoordinator: CoordinatorProtocol {
             tag: 2
         )
         
-        mainTabBarController = MainTapBarController(
+        let homeTabCoordinator = HomeTabCoordinator(navigationController: homeNavigationController)
+        let mapTabCoordinator = MapTabCoordinator(navigationController: mapNavigationController)
+        let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
+        
+        //childCoordinators에 추가
+//        delegate?.childCoordinators.append(homeTabCoordinator)
+//        delegate?.childCoordinators.append(mapTabCoordinator)
+//        delegate?.childCoordinators.append(infoTabCoordinator)
+        
+        var mainTabBarController = MainTapBarController(
             viewModel: MainViewModel(),
             pages: [homeNavigationController,
                     mapNavigationController,
                     infoNavigationController]
         )
         
-        let homeTabCoordinator = HomeTabCoordinator(navigationController: homeNavigationController)
-        let mapTabCoordinator = MapTabCoordinator(navigationController: mapNavigationController)
-        let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
-        
-        //childCoordinators에 추가
-        childCoordinators.append(homeTabCoordinator)
-        childCoordinators.append(mapTabCoordinator)
-        childCoordinators.append(infoTabCoordinator)
-        
         homeTabCoordinator.mainTabBarCoordinator = self
         mapTabCoordinator.MainTabBarCoordinator = self
         infoTabCoordinator.mainTabBarCoordinator = self
-        infoTabCoordinator.appCoordinator = appCoordinator
+        infoTabCoordinator.appCoordinator = delegate
         
         homeTabCoordinator.start()
         mapTabCoordinator.start()
         infoTabCoordinator.start()
-    }
-    
-    func configureViewController() {
-        mainTabBarController.mainTabBarCoordinator = self
-        mainTabBarController.appCoordinator = appCoordinator
+        
         navigationController.viewControllers = [mainTabBarController]
     }
+    
+//    func configureViewController() {
+//        mainTabBarController.mainTabBarCoordinator = self
+////        mainTabBarController.appCoordinator = appCoordinator
+//    }
     
     private func makeNavigationController(
         rootViewController rootVC: UIViewController,
