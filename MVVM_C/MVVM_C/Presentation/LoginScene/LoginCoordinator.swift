@@ -8,11 +8,10 @@
 import UIKit
 
 protocol LoginCoordinatorDelegate {
-    func showMainTabController()
-    func popViewController()
+    func pushToMainTabController()
 }
 
-final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoInputViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
+final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoCoordinatorDelegate {
 
     //제일 처음 AppCoordinator 받는 곳은 weak var X
     var delegate: LoginCoordinatorDelegate?
@@ -24,23 +23,33 @@ final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, Deta
         let loginviewController = LoginViewController()
         loginviewController.view.backgroundColor = .cyan
         loginviewController.delegate = self //loginviewController delegate 채택
-        navigationController.viewControllers = [loginviewController]
+        loginviewController.modalPresentationStyle = .fullScreen
+        navigationController.present(loginviewController, animated: true)
+//        navigationController.viewControllers = [loginviewController]
     }
     
-    func showDetailInfoInput() {
-        let detailInfoInputViewController = DetailInfoInputViewController()
-        detailInfoInputViewController.delegate = self
-        navigationController.pushViewController(detailInfoInputViewController, animated: true)
+    func startDetailInfoViewController() {
+        let coordinator = DetailInfoCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        childCoordinators.append(coordinator)
     }
     
-    func showMainTabController() {
-        delegate?.showMainTabController()
+    //LoginCoordinatorDelegate
+    func pushToMainTabController() {
+        delegate?.pushToMainTabController()
+    }
+    
+    //LoginViewControllerDelegate
+    func pushToDetailInfoViewController() {
+        startDetailInfoViewController()
     }
     
     func popViewController() {
-        delegate?.popViewController()
+        navigationController.popViewController(animated: true)
+        childCoordinators.removeLast()
     }
-    
+
 }
 
 

@@ -8,8 +8,8 @@
 import UIKit
 
 protocol LoginViewControllerDelegate: AnyObject {
-    func showMainTabController()
-    func showDetailInfoInput()
+    func pushToMainTabController()
+    func pushToDetailInfoViewController()
 }
 
 final class LoginViewController: UIViewController {
@@ -40,13 +40,13 @@ final class LoginViewController: UIViewController {
     func loginButtonTapped() {
         print("로그인 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        delegate?.showMainTabController()
+        delegate?.pushToMainTabController()
     }
     
     @objc
     func exButtonTapped() {
         print("exButtonTapped")
-        delegate?.showDetailInfoInput()
+        delegate?.pushToDetailInfoViewController()
     }
     
     // MARK: - Helpers

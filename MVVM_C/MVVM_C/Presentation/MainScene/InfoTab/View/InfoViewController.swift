@@ -41,7 +41,7 @@ final class InfoViewController: UIViewController {
     @objc
     func editButtonTapped() {
         print("editButtonTapped")
-        appCoordinator?.showLoginViewController()
+        appCoordinator?.startLoginViewController()
     }
     
     @objc

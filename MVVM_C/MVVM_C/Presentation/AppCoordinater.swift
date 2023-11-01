@@ -7,22 +7,19 @@
 
 import UIKit
 
-//isLoggedIn이 false면 login, true면 main뷰로
-//모든 Coordinator는 CoordinatorProtocol 채택 (명세)
-final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, DetailInfoInputCoordinatorDelegate, MainTabBarCoordinatorDelegate {
+//뷰컨 만드는건 start
+//pushToAViewController
+//popViewController
+//presentAViewController
+//dismissViewController
 
-    
-    var isLoggedIn = false
+final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
     
     override func start() {
-        if isLoggedIn {
-            showMainTabController() //메인 뷰
-        } else {
-            showLoginViewController() //온보딩 뷰
-        }
+        startMainTabController() //메인 뷰로 시작
     }
-    //start() 내부 코드, coordinator 생성, start로 viewcontroller와 viewModel 생성, 주입
-    func showMainTabController() {
+    
+    func startMainTabController() {
         let coordinator = MainTabBarCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start() //뷰컨 생성 후 이동
@@ -30,29 +27,35 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, DetailInf
     }
     
     //ParentCoordinator에서 childCoordinator 생성
-    func showLoginViewController() {
+    func startLoginViewController() {
         let coordinator = LoginCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         childCoordinators.append(coordinator)
     }
     
-    func showLoginView() {
-        showLoginViewController()
+    //MainTabBarCoordinatorDelegate
+    func pushToLoginViewController() {
+        startLoginViewController()
     }
     
-    // MARK: - Pop
+    //LoginCoordinatorDelegate
+    func pushToMainTabController() {
+        startMainTabController()
+    }
     
-    func popViewController() {
-        navigationController.popViewController(animated: true)
+//    // MARK: - Pop
+//
+//    func popViewController() {
+//        navigationController.popViewController(animated: true)
+////        childCoordinators.removeLast()
+//    }
+//    
+//    
+//    // MARK: - Dismiss
+//    
+//    func dismissViewController() {
+//        navigationController.dismiss(animated: true)
 //        childCoordinators.removeLast()
-    }
-    
-    
-    // MARK: - Dismiss
-    
-    func dismissViewController() {
-        navigationController.dismiss(animated: true)
-        childCoordinators.removeLast()
-    }
+//    }
 }

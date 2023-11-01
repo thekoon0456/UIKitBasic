@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol DetailInfoInputCoordinatorDelegate: AnyObject {
+protocol DetailInfoCoordinatorDelegate: AnyObject {
     func popViewController()
 }
 
-final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewControllerDelegate {
+final class DetailInfoCoordinator: BaseCoordinator, DetailInfoViewControllerDelegate {
     
-    weak var delegate: DetailInfoInputCoordinatorDelegate?
+    weak var delegate: DetailInfoCoordinatorDelegate?
     
     override func start() {
-        let detailInfoInputViewController = DetailInfoInputViewController()
-        detailInfoInputViewController.delegate = self
-        navigationController.pushViewController(detailInfoInputViewController, animated: true)
+        let detailInfoViewController = DetailInfoViewController()
+        detailInfoViewController.delegate = self
+        navigationController.pushViewController(detailInfoViewController, animated: true)
     }
     
     // MARK: - Pop

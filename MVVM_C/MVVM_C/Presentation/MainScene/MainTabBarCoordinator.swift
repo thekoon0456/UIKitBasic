@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainTabBarCoordinatorDelegate: AnyObject {
-    func showLoginView()
+    func pushToLoginViewController()
 }
 
 final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate {
@@ -25,7 +25,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
     }
     
     func showLoginView() {
-        delegate?.showLoginView()
+        delegate?.pushToLoginViewController()
     }
     
     //탭바 3개 만들기

@@ -9,13 +9,13 @@ import UIKit
 
 import SnapKit
 
-protocol DetailInfoInputViewControllerDelegate: AnyObject {
+protocol DetailInfoViewControllerDelegate: AnyObject {
     func popViewController()
 }
 
-final class DetailInfoInputViewController: UIViewController {
+final class DetailInfoViewController: UIViewController {
     
-    weak var delegate: DetailInfoInputViewControllerDelegate?
+    weak var delegate: DetailInfoViewControllerDelegate?
     
     private let exLable: UILabel = {
         let label = UILabel()
