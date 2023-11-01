@@ -37,12 +37,15 @@ class HomeViewController: UIViewController {
         tvTrigger.onNext(())
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        tvTrigger.onNext(())
+//        tvTrigger.onNext(())
         bindUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tvTrigger.onNext(())
     }
     
     func bindUI() {
