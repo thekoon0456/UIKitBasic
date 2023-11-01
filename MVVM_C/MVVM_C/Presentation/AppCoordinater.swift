@@ -24,6 +24,7 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBa
         coordinator.delegate = self
         coordinator.start() //뷰컨 생성 후 이동
         childCoordinators.append(coordinator)
+
     }
     
     //ParentCoordinator에서 childCoordinator 생성
@@ -50,7 +51,9 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBa
 //        navigationController.popViewController(animated: true)
 ////        childCoordinators.removeLast()
 //    }
-//    
+    
+//    childCoordinators = self.childCoordinators.filter { $0 !== self }
+//
 //    
 //    // MARK: - Dismiss
 //    

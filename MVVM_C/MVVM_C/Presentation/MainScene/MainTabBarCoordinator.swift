@@ -13,7 +13,7 @@ protocol MainTabBarCoordinatorDelegate: AnyObject {
 
 final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate, HomeTabCoordinatorDelegate, MaptabCoordinatorDelegate, InfoTabCoordinatorDelegate {
     
-    weak var delegate: MainTabBarCoordinatorDelegate?
+    var delegate: MainTabBarCoordinatorDelegate?
     var type: CoordinatorType = .MainTab
     
     deinit {
@@ -25,6 +25,8 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
     }
     
     func pushToLoginViewController() {
+        print("MainTabBarCoordinator - pushToLoginViewController")
+        childCoordinators = self.childCoordinators.filter { $0 !== self }
         delegate?.pushToLoginViewController()
     }
     
@@ -57,22 +59,14 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
             tag: 2
         )
         
+//        let coordinator = DetailInfoCoordinator(navigationController: navigationController)
+//        coordinator.delegate = self
+//        coordinator.start()
+//        childCoordinators.append(coordinator)
+        
         let homeTabCoordinator = HomeTabCoordinator(navigationController: homeNavigationController)
         let mapTabCoordinator = MapTabCoordinator(navigationController: mapNavigationController)
         let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
-        
-        //childCoordinators에 추가
-//        delegate?.childCoordinators.append(homeTabCoordinator)
-//        delegate?.childCoordinators.append(mapTabCoordinator)
-//        delegate?.childCoordinators.append(infoTabCoordinator)
-        
-        var mainTabBarController = MainTapBarController(
-            viewModel: MainTabViewModel(),
-            pages: [homeNavigationController,
-                    mapNavigationController,
-                    infoNavigationController]
-        )
-        mainTabBarController.tapbarDelegate = self
         
         homeTabCoordinator.delegate = self
         mapTabCoordinator.delegate = self
@@ -82,13 +76,19 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         mapTabCoordinator.start()
         infoTabCoordinator.start()
         
+        childCoordinators.append(homeTabCoordinator)
+        childCoordinators.append(mapTabCoordinator)
+        childCoordinators.append(infoTabCoordinator)
+        
+        var mainTabBarController = MainTapBarController(
+            viewModel: MainTabViewModel(),
+            pages: [homeNavigationController,
+                    mapNavigationController,
+                    infoNavigationController]
+        )
+        mainTabBarController.tapbarDelegate = self
         navigationController.viewControllers = [mainTabBarController]
     }
-    
-//    func configureViewController() {
-//        mainTabBarController.mainTabBarCoordinator = self
-////        mainTabBarController.appCoordinator = appCoordinator
-//    }
     
     private func makeNavigationController(
         rootViewController rootVC: UIViewController,

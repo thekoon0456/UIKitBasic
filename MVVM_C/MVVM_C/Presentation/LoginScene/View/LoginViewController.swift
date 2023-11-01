@@ -19,7 +19,8 @@ final class LoginViewController: UIViewController {
     private lazy var loginExButton: UIButton = {
         let button = UIButton()
         button.setTitle("추가 정보 입력으로", for: .normal)
-        button.addTarget(self, action: #selector(exButtonTapped), for: .touchUpInside)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -44,8 +45,8 @@ final class LoginViewController: UIViewController {
     }
     
     @objc
-    func exButtonTapped() {
-        print("exButtonTapped")
+    func nextButtonTapped() {
+        print("nextButtonTapped")
         delegate?.pushToDetailInfoViewController()
     }
     

@@ -11,7 +11,7 @@ protocol InfoTabCoordinatorDelegate: AnyObject {
     
 }
 
-final class InfoTabCoordinator: BaseCoordinator {
+final class InfoTabCoordinator: BaseCoordinator, InfoViewControllerDelegate {
     
     weak var delegate: InfoTabCoordinatorDelegate?
 
@@ -19,7 +19,8 @@ final class InfoTabCoordinator: BaseCoordinator {
 
     override func start() {
         let infoViewController = InfoViewController()
-        infoViewController.infoTapCoordinator = self
+        infoViewController.delegate = self
+//        navigationController.pushViewController(infoViewController, animated: true)
         navigationController.viewControllers = [infoViewController]
     }
 }

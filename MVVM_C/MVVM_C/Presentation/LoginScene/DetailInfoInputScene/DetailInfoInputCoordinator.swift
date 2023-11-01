@@ -8,22 +8,22 @@
 import Foundation
 
 protocol DetailInfoCoordinatorDelegate: AnyObject {
-    func popViewController()
+    func dismissViewController()
 }
 
 final class DetailInfoCoordinator: BaseCoordinator, DetailInfoViewControllerDelegate {
-    
+
     weak var delegate: DetailInfoCoordinatorDelegate?
     
     override func start() {
+        print("DetailInfoCoordinator - start")
         let detailInfoViewController = DetailInfoViewController()
         detailInfoViewController.delegate = self
         navigationController.pushViewController(detailInfoViewController, animated: true)
     }
     
-    // MARK: - Pop
-    
-    func popViewController() {
-        delegate?.popViewController()
+    func dismissViewController() {
+        childCoordinators = self.childCoordinators.filter { $0 !== self }
+        delegate?.dismissViewController()
     }
 }

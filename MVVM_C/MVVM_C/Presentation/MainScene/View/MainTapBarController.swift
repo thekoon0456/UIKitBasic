@@ -35,6 +35,7 @@ final class MainTapBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        print("MainTapBarController 등장")
     }
     
     deinit {
