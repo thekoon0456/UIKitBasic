@@ -30,11 +30,10 @@ final class HomeTabViewModel {
     
     func transform(input: Input) -> Output {
         
-        //trigger -> 네트워크 -> Observable<T> -> VC전달 -> VC에서 구독
-        
         //tvTrigger -> Observable<Void> -> Observable<[Tv]>
         let tvList = input.tvTrigger.flatMapLatest { [weak self] _ -> Observable<[Tv]> in
             //Observable<TvListModel> -> Observable<[Tv]>
+            print("transform실행")
             guard let self = self else { return Observable.empty() }
             return tvNerwork.getTopRatedList().map { $0.results }
         }

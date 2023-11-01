@@ -31,6 +31,7 @@ class Network<T: Decodable> {
                     print("statusCode: \(response.response?.statusCode)")
                     switch response.result {
                     case .success(let data):
+                        print(data)
                         observer.onNext(data)
                     case .failure(let error):
                         observer.onError(error)
@@ -41,7 +42,9 @@ class Network<T: Decodable> {
         }
         .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
         .map { data -> T in //map으로 받아온 데이터를 디코딩.
-            return try JSONDecoder().decode(T.self, from: data)
+            let resultData = try JSONDecoder().decode(T.self, from: data)
+            print(resultData)
+            return resultData
         }
     }
 }
