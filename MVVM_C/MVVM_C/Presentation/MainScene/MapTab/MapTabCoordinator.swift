@@ -7,17 +7,17 @@
 
 import UIKit
 
-final class MapTabCoordinator: Coordinator {
-    weak var MainTabBarCoordinator: MainTabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+protocol MaptabCoordinatorDelegate: AnyObject {
+    
+}
+
+final class MapTabCoordinator: BaseCoordinator {
+    
+    weak var delegate: MaptabCoordinatorDelegate?
+    
     var type: CoordinatorType = .app
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    func start() {
+    override func start() {
         //
     }
     

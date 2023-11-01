@@ -7,22 +7,20 @@
 
 import UIKit
 
-final class HomeTabCoordinator: Coordinator {
+protocol HomeTabCoordinatorDelegate: AnyObject {
     
-    weak var mainTabBarCoordinator: MainTabBarCoordinator?
+}
+
+final class HomeTabCoordinator: BaseCoordinator {
     
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    weak var delegate: MainTabBarCoordinator?
+
     var type: CoordinatorType = .Home
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    func start() {
+    override func start() {
         let controller = HomeViewController()
         controller.viewModel = HomeTabViewModel()
-        controller.HomeTabCoordinator = self
+        controller.delegate = self
         navigationController.viewControllers = [controller]
     }
     

@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     let disposeBag = DisposeBag()
     var viewModel: HomeTabViewModel?
     let tvTrigger = PublishSubject<Void>()
-    weak var HomeTabCoordinator: HomeTabCoordinator?
+    weak var delegate: HomeTabCoordinator?
     
     private lazy var tableView = {
         let tableView = UITableView()

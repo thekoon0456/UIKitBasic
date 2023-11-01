@@ -11,7 +11,7 @@ protocol MainTabBarCoordinatorDelegate: AnyObject {
     func pushToLoginViewController()
 }
 
-final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate {
+final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate, HomeTabCoordinatorDelegate, MaptabCoordinatorDelegate, InfoTabCoordinatorDelegate {
     
     weak var delegate: MainTabBarCoordinatorDelegate?
     var type: CoordinatorType = .MainTab
@@ -24,7 +24,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         showMainTabController()
     }
     
-    func showLoginView() {
+    func pushToLoginViewController() {
         delegate?.pushToLoginViewController()
     }
     
@@ -67,17 +67,16 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
 //        delegate?.childCoordinators.append(infoTabCoordinator)
         
         var mainTabBarController = MainTapBarController(
-            viewModel: MainViewModel(),
+            viewModel: MainTabViewModel(),
             pages: [homeNavigationController,
                     mapNavigationController,
                     infoNavigationController]
         )
         mainTabBarController.tapbarDelegate = self
         
-        homeTabCoordinator.mainTabBarCoordinator = self
-        mapTabCoordinator.MainTabBarCoordinator = self
-        infoTabCoordinator.mainTabBarCoordinator = self
-//        infoTabCoordinator.appCoordinator = delegate
+        homeTabCoordinator.delegate = self
+        mapTabCoordinator.delegate = self
+        infoTabCoordinator.delegate = self
         
         homeTabCoordinator.start()
         mapTabCoordinator.start()

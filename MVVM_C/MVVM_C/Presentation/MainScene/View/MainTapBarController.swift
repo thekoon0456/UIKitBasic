@@ -10,17 +10,17 @@ import UIKit
 import SnapKit
 
 protocol MainTapBarControllerDelegate: AnyObject {
-    func showLoginView()
+    func pushToLoginViewController()
 }
 
 final class MainTapBarController: UITabBarController {
     
     weak var tapbarDelegate: MainTapBarControllerDelegate?
     var pages: [UINavigationController]
-    var viewModel: MainViewModel
+    var viewModel: MainTabViewModel
     
 //    // MARK: - Initializers
-    init(viewModel: MainViewModel, pages: [UINavigationController]) {
+    init(viewModel: MainTabViewModel, pages: [UINavigationController]) {
         self.viewModel = viewModel
         self.pages = pages
         super.init(nibName: nil, bundle: nil)
@@ -61,6 +61,6 @@ final class MainTapBarController: UITabBarController {
     func logOutButtonTapped() {
         print("로그아웃 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        tapbarDelegate?.showLoginView()
+        tapbarDelegate?.pushToLoginViewController()
     }
 }
