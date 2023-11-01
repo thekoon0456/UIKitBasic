@@ -20,8 +20,8 @@ final class NetworkProvider {
         return TVNetwork(network: network)
     }
     
-    func makeMovieNetwork() -> MovieNetwork {
-        let network = Network<MovieListModel>(endpoint)
-        return MovieNetwork(network: network)
-    }
+//    func makeMovieNetwork() -> MovieNetwork {
+//        let network = Network<MovieListModel>(endpoint)
+//        return MovieNetwork(network: network)
+//    }
 }
