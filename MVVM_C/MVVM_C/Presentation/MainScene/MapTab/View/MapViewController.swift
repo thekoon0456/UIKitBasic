@@ -7,23 +7,23 @@
 
 import UIKit
 
+protocol MapViewControllerDelegate: AnyObject {
+    
+}
+
 class MapViewController: UIViewController {
+    
+    var viewModel: MapViewModel?
+    weak var delegate: MapViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        print("MapViewController 등장")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    deinit {
+        print("MapViewController 해제")
     }
-    */
 
 }

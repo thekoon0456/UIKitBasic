@@ -7,19 +7,20 @@
 
 import Foundation
 
-protocol DetailInfoCoordinatorDelegate: AnyObject {
+protocol DetailInfoCoordinatorDelegate {
     func dismissViewController()
 }
 
 final class DetailInfoCoordinator: BaseCoordinator, DetailInfoViewControllerDelegate {
 
-    weak var delegate: DetailInfoCoordinatorDelegate?
+    var delegate: DetailInfoCoordinatorDelegate?
     
     override func start() {
         print("DetailInfoCoordinator - start")
-        let detailInfoViewController = DetailInfoViewController()
-        detailInfoViewController.delegate = self
-        navigationController.pushViewController(detailInfoViewController, animated: true)
+        let viewController = DetailInfoViewController()
+        viewController.delegate = self
+        navigationController.viewControllers = [viewController]
+//        navigationController.pushViewController(viewController, animated: true)
     }
     
     func dismissViewController() {

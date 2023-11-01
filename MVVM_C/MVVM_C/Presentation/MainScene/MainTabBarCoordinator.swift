@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MainTabBarCoordinatorDelegate: AnyObject {
+protocol MainTabBarCoordinatorDelegate {
     func pushToLoginViewController()
 }
 
@@ -15,6 +15,25 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
     
     var delegate: MainTabBarCoordinatorDelegate?
     var type: CoordinatorType = .MainTab
+    
+    lazy var homeNavigationController: UINavigationController = makeNavigationController(
+        rootViewController: HomeViewController(),
+        title: "Home",
+        tabbarImage: "house",
+        tag: 0
+    )
+    lazy var mapNavigationController: UINavigationController = makeNavigationController(
+        rootViewController: MapViewController(),
+        title: "Map",
+        tabbarImage: "map",
+        tag: 1
+    )
+    lazy var infoNavigationController: UINavigationController = makeNavigationController(
+        rootViewController: InfoViewController(),
+        title: "Info",
+        tabbarImage: "info.square",
+        tag: 2
+    )
     
     deinit {
         print("MainTabBarCoordinator 해제")
@@ -24,63 +43,9 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         showMainTabController()
     }
     
-    func pushToLoginViewController() {
-        print("MainTabBarCoordinator - pushToLoginViewController")
-        childCoordinators = self.childCoordinators.filter { $0 !== self }
-        delegate?.pushToLoginViewController()
-    }
-    
     //탭바 3개 만들기
     func showMainTabController() {
-        //탭바 안이므로 각각 컨트롤러를 루트로 한 네비 컨트롤러 새로 생성
-        let homeTableViewController = HomeViewController()
-        let mapViewController = MapViewController()
-        let infoViewController = InfoViewController()
-        
-        let homeNavigationController: UINavigationController = makeNavigationController(
-            rootViewController: homeTableViewController,
-            title: "Home",
-            tabbarImage: "house",
-            tag: 0
-        )
-        
-        let mapNavigationController: UINavigationController = makeNavigationController(
-            rootViewController: mapViewController,
-            title: "Map",
-            tabbarImage: "map",
-            tag: 1
-        )
-        
-        
-        let infoNavigationController: UINavigationController = makeNavigationController(
-            rootViewController: infoViewController,
-            title: "Info",
-            tabbarImage: "info.square",
-            tag: 2
-        )
-        
-//        let coordinator = DetailInfoCoordinator(navigationController: navigationController)
-//        coordinator.delegate = self
-//        coordinator.start()
-//        childCoordinators.append(coordinator)
-        
-        let homeTabCoordinator = HomeTabCoordinator(navigationController: homeNavigationController)
-        let mapTabCoordinator = MapTabCoordinator(navigationController: mapNavigationController)
-        let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
-        
-        homeTabCoordinator.delegate = self
-        mapTabCoordinator.delegate = self
-        infoTabCoordinator.delegate = self
-        
-        homeTabCoordinator.start()
-        mapTabCoordinator.start()
-        infoTabCoordinator.start()
-        
-        childCoordinators.append(homeTabCoordinator)
-        childCoordinators.append(mapTabCoordinator)
-        childCoordinators.append(infoTabCoordinator)
-        
-        var mainTabBarController = MainTapBarController(
+        let mainTabBarController = MainTapBarController(
             viewModel: MainTabViewModel(),
             pages: [homeNavigationController,
                     mapNavigationController,
@@ -88,6 +53,47 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         )
         mainTabBarController.tapbarDelegate = self
         navigationController.viewControllers = [mainTabBarController]
+    }
+    
+    func startHomeTabController() {
+        let homeTabCoordinator = HomeTabCoordinator(navigationController: homeNavigationController)
+        homeTabCoordinator.delegate = self
+        homeTabCoordinator.start()
+        childCoordinators.append(homeTabCoordinator)
+    }
+    
+    func startMapTabController() {
+        let mapTabCoordinator = MapTabCoordinator(navigationController: mapNavigationController)
+        mapTabCoordinator.delegate = self
+        mapTabCoordinator.start()
+        childCoordinators.append(mapTabCoordinator)
+    }
+    
+    func startInfoTabController() {
+        let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
+        infoTabCoordinator.delegate = self
+        infoTabCoordinator.start()
+        childCoordinators.append(infoTabCoordinator)
+    }
+    
+    //MainTapBarControllerDelegate
+    func homeTabTapped() {
+        startHomeTabController()
+    }
+    
+    //MainTapBarControllerDelegate
+    func mapTabTapped() {
+        startMapTabController()
+    }
+    
+    //MainTapBarControllerDelegate
+    func infoTabTapped() {
+        startInfoTabController()
+    }
+    
+    func pushToLoginViewController() {
+        print("MainTabBarCoordinator - pushToLoginViewController")
+        delegate?.pushToLoginViewController()
     }
     
     private func makeNavigationController(

@@ -7,19 +7,19 @@
 
 import UIKit
 
-protocol LoginCoordinatorDelegate: AnyObject {
+protocol LoginCoordinatorDelegate {
     func pushToMainTabController()
 }
 
 final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate,  DetailInfoCoordinatorDelegate {
 
-    weak var delegate: LoginCoordinatorDelegate?
+    var delegate: LoginCoordinatorDelegate?
     var type: CoordinatorType = .login
     
     override func start() {
-        let loginViewController = LoginViewController()
-        loginViewController.delegate = self
-        navigationController.viewControllers = [loginViewController]
+        let viewController = LoginViewController()
+        viewController.delegate = self
+        navigationController.viewControllers = [viewController]
     }
     
     //startDetailInfoViewController
@@ -40,13 +40,14 @@ final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate,  Det
     //LoginViewControllerDelegate - start
     func pushToDetailInfoViewController() {
         print("LoginCoordinator - pushToDetailInfoViewController")
+        childCoordinators = self.childCoordinators.filter { $0 !== self }
         startDetailInfoViewController()
     }
     
     func dismissViewController() {
         print("LoginCoordinator - dismissViewController")
-//        navigationController.popViewController(animated: true)
         childCoordinators = self.childCoordinators.filter { $0 !== self }
+//        navigationController.popViewController(animated: true)
         delegate?.pushToMainTabController()
     }
 

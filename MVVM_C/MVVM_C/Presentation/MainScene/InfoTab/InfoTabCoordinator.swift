@@ -7,20 +7,20 @@
 
 import UIKit
 
-protocol InfoTabCoordinatorDelegate: AnyObject {
+protocol InfoTabCoordinatorDelegate {
     
 }
 
 final class InfoTabCoordinator: BaseCoordinator, InfoViewControllerDelegate {
     
-    weak var delegate: InfoTabCoordinatorDelegate?
+    var delegate: InfoTabCoordinatorDelegate?
 
     var type: CoordinatorType = .app
 
     override func start() {
-        let infoViewController = InfoViewController()
-        infoViewController.delegate = self
+        let viewController = InfoViewController()
+        viewController.delegate = self
 //        navigationController.pushViewController(infoViewController, animated: true)
-        navigationController.viewControllers = [infoViewController]
+        navigationController.viewControllers = [viewController]
     }
 }

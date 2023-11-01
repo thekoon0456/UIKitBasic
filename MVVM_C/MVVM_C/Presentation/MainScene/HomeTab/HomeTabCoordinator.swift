@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol HomeTabCoordinatorDelegate: AnyObject {
+protocol HomeTabCoordinatorDelegate {
     
 }
 
 final class HomeTabCoordinator: BaseCoordinator {
     
-    weak var delegate: MainTabBarCoordinator?
+    var delegate: MainTabBarCoordinator?
 
     var type: CoordinatorType = .Home
     
@@ -23,6 +23,4 @@ final class HomeTabCoordinator: BaseCoordinator {
         controller.delegate = self
         navigationController.viewControllers = [controller]
     }
-    
-    
 }

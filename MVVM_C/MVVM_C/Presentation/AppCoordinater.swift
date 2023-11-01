@@ -24,7 +24,6 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBa
         coordinator.delegate = self
         coordinator.start() //뷰컨 생성 후 이동
         childCoordinators.append(coordinator)
-
     }
     
     //ParentCoordinator에서 childCoordinator 생성
