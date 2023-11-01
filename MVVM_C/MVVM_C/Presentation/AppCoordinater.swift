@@ -9,7 +9,8 @@ import UIKit
 
 //isLoggedIn이 false면 login, true면 main뷰로
 //모든 Coordinator는 CoordinatorProtocol 채택 (명세)
-final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, DetailInfoInputCoordinatorDelegate {
+final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, DetailInfoInputCoordinatorDelegate, MainTabBarCoordinatorDelegate {
+
     
     var isLoggedIn = false
     
@@ -36,11 +37,15 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, DetailInf
         childCoordinators.append(coordinator)
     }
     
+    func showLoginView() {
+        showLoginViewController()
+    }
+    
     // MARK: - Pop
     
     func popViewController() {
         navigationController.popViewController(animated: true)
-        childCoordinators.removeLast()
+//        childCoordinators.removeLast()
     }
     
     

@@ -7,9 +7,13 @@
 
 import UIKit
 
-final class MainTabBarCoordinator: BaseCoordinator {
+protocol MainTabBarCoordinatorDelegate: AnyObject {
+    func showLoginView()
+}
+
+final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate {
     
-    weak var delegate: AppCoordinator? //순환참조 방지
+    weak var delegate: MainTabBarCoordinatorDelegate?
     var type: CoordinatorType = .MainTab
     
     deinit {
@@ -18,6 +22,10 @@ final class MainTabBarCoordinator: BaseCoordinator {
     
     override func start() {
         showMainTabController()
+    }
+    
+    func showLoginView() {
+        delegate?.showLoginView()
     }
     
     //탭바 3개 만들기
@@ -64,11 +72,12 @@ final class MainTabBarCoordinator: BaseCoordinator {
                     mapNavigationController,
                     infoNavigationController]
         )
+        mainTabBarController.tapbarDelegate = self
         
         homeTabCoordinator.mainTabBarCoordinator = self
         mapTabCoordinator.MainTabBarCoordinator = self
         infoTabCoordinator.mainTabBarCoordinator = self
-        infoTabCoordinator.appCoordinator = delegate
+//        infoTabCoordinator.appCoordinator = delegate
         
         homeTabCoordinator.start()
         mapTabCoordinator.start()
