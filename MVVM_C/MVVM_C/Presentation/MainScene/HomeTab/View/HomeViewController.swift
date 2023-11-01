@@ -7,23 +7,36 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import SnapKit
+
 class HomeViewController: UIViewController {
+    
+    var viewModel = HomeTabViewModel()
+    
+    private lazy var tableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureUI()
+        bindUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func bindUI() {
+        
     }
-    */
-
+    
+    private func configureUI() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
+        }
+    }
 }
