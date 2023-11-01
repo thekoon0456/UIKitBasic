@@ -14,6 +14,8 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     var viewModel = HomeTabViewModel()
+    let tvTrigger = PublishSubject<Void>()
+    var HomeTabCoordinator: HomeTabCoordinator?
     
     private lazy var tableView = {
         let tableView = UITableView()
@@ -27,11 +29,18 @@ class HomeViewController: UIViewController {
     }
     
     func bindUI() {
+        let input = HomeTabViewModel.Input(tvTrigger: tvTrigger.asObserver())
         
+        let output = viewModel.transform(input: input)
+        
+//        output.tvList.bind { [weak self] tvList in
+//            <#code#>
+//        }
     }
     
     private func configureUI() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .blue
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.leading.equalToSuperview().offset(10)

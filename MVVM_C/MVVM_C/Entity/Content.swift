@@ -22,11 +22,11 @@ struct Content: Hashable {
         releaseDate = tv.firstAirDate
     }
     
-    init(movie: Movie) {
-        title = movie.name
-        overview = movie.overview
-        posterURL = movie.posterURL
-        vote = movie.vote
-        releaseDate = movie.releaseDate
-    }
+//    init(movie: Movie) {
+//        title = movie.name
+//        overview = movie.overview
+//        posterURL = movie.posterURL
+//        vote = movie.vote
+//        releaseDate = movie.releaseDate
+//    }
 }

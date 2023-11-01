@@ -28,6 +28,8 @@
 		7CA754AA2AF20C9E00DEF6A5 /* TvNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA754A92AF20C9E00DEF6A5 /* TvNetwork.swift */; };
 		7CA754AC2AF20EFD00DEF6A5 /* MovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA754AB2AF20EFD00DEF6A5 /* MovieNetwork.swift */; };
 		7CA754AE2AF2116D00DEF6A5 /* HomeTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA754AD2AF2116D00DEF6A5 /* HomeTabTableViewCell.swift */; };
+		7CA754B12AF213FB00DEF6A5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7CA754B02AF213FB00DEF6A5 /* Alamofire */; };
+		7CA754B42AF2143900DEF6A5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7CA754B32AF2143900DEF6A5 /* Kingfisher */; };
 		7CAE57442AE7B5770022546F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57432AE7B5770022546F /* AppDelegate.swift */; };
 		7CAE57462AE7B5770022546F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAE57452AE7B5770022546F /* SceneDelegate.swift */; };
 		7CAE574D2AE7B5790022546F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CAE574C2AE7B5790022546F /* Assets.xcassets */; };
@@ -89,7 +91,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CAE57612AE7B5990022546F /* RxRelay in Frameworks */,
+				7CA754B12AF213FB00DEF6A5 /* Alamofire in Frameworks */,
 				7CAE575F2AE7B5990022546F /* RxCocoa-Dynamic in Frameworks */,
+				7CA754B42AF2143900DEF6A5 /* Kingfisher in Frameworks */,
 				7CAE575D2AE7B5990022546F /* RxCocoa in Frameworks */,
 				7CAE57642AE7B5A40022546F /* SnapKit in Frameworks */,
 				7CAE57592AE7B5990022546F /* RxBlocking in Frameworks */,
@@ -358,6 +362,8 @@
 				7CAE57602AE7B5990022546F /* RxRelay */,
 				7CAE57632AE7B5A40022546F /* SnapKit */,
 				7CAE57652AE7B5A40022546F /* SnapKit-Dynamic */,
+				7CA754B02AF213FB00DEF6A5 /* Alamofire */,
+				7CA754B32AF2143900DEF6A5 /* Kingfisher */,
 			);
 			productName = MVVM_C;
 			productReference = 7CAE57402AE7B5770022546F /* MVVM_C.app */;
@@ -390,6 +396,8 @@
 			packageReferences = (
 				7CAE57572AE7B5990022546F /* XCRemoteSwiftPackageReference "RxSwift" */,
 				7CAE57622AE7B5A40022546F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				7CA754AF2AF213FB00DEF6A5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7CA754B22AF2143900DEF6A5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 7CAE57412AE7B5770022546F /* Products */;
 			projectDirPath = "";
@@ -660,6 +668,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7CA754AF2AF213FB00DEF6A5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		7CA754B22AF2143900DEF6A5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
 		7CAE57572AE7B5990022546F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -679,6 +703,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7CA754B02AF213FB00DEF6A5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CA754AF2AF213FB00DEF6A5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		7CA754B32AF2143900DEF6A5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CA754B22AF2143900DEF6A5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		7CAE57582AE7B5990022546F /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7CAE57572AE7B5990022546F /* XCRemoteSwiftPackageReference "RxSwift" */;
