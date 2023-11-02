@@ -59,6 +59,8 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         let mapViewController = MapViewController()
         let infoViewController = InfoViewController()
         
+        homeTableViewController.viewModel = HomeTabViewModel()
+        
         let homeNavigationController: UINavigationController = makeNavigationController(
             rootViewController: homeTableViewController,
             title: "Home",
@@ -86,9 +88,9 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         let infoTabCoordinator = InfoTabCoordinator(navigationController: infoNavigationController)
         
         //childCoordinators에 추가
-//        delegate?.childCoordinators.append(homeTabCoordinator)
-//        delegate?.childCoordinators.append(mapTabCoordinator)
-//        delegate?.childCoordinators.append(infoTabCoordinator)
+        childCoordinators.append(homeTabCoordinator)
+        childCoordinators.append(mapTabCoordinator)
+        childCoordinators.append(infoTabCoordinator)
         
         let mainTabBarController = MainTapBarController(
             viewModel: MainViewModel(),
@@ -96,12 +98,11 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
                     mapNavigationController,
                     infoNavigationController]
         )
-        mainTabBarController.tapbarDelegate = self
         
+        mainTabBarController.tapbarDelegate = self
         homeTabCoordinator.delegate = self
         mapTabCoordinator.delegate = self
         infoTabCoordinator.delegate = self
-//        infoTabCoordinator.appCoordinator = delegate
         
         homeTabCoordinator.start()
         mapTabCoordinator.start()
