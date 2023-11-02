@@ -8,14 +8,13 @@
 import UIKit
 
 import SnapKit
-
-protocol DetailInfoViewControllerDelegate: AnyObject {
-    func dismissViewController()
+protocol DetailInfoInputViewControllerDelegate: AnyObject {
+    func showMainTabView()
 }
 
 final class DetailInfoViewController: UIViewController {
     
-    weak var delegate: DetailInfoViewControllerDelegate?
+    weak var delegate: DetailInfoInputViewControllerDelegate?
     
     private let exLable: UILabel = {
         let label = UILabel()
@@ -43,8 +42,8 @@ final class DetailInfoViewController: UIViewController {
     @objc
     func dismissViewController() {
         //네비게이션 넣기
-        delegate?.dismissViewController()
-        print("dismissViewController, 메인 뷰로")
+        delegate?.showMainTabView()
+        print("exButtonTapped, 메인 뷰로")
     }
     
     private func configureUI() {

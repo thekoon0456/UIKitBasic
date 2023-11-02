@@ -7,28 +7,27 @@
 
 import UIKit
 
-//뷰컨 만드는건 start
-//pushToAViewController
-//popViewController
-//presentAViewController
-//dismissViewController
+//isLoggedIn이 false면 login, true면 main뷰로
+//모든 Coordinator는 CoordinatorProtocol 채택 (명세)
+final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
 
-final class AppCoordinator: Coordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
+    var isLoggedIn = true
     
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
-    
-    // MARK: - Init
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    override func start() {
+        if isLoggedIn {
+            showMainTabController() //메인 뷰
+            print("AppCoordinator - showMainTabController() - \(childCoordinators)")
+        } else {
+            showLoginViewController() //온보딩 뷰
+            print("AppCoordinator -showLoginViewController() - \(childCoordinators)")
+        }
     }
     
-    func start() {
-        startMainTabController() //메인 뷰로 시작
+    deinit {
+        print("AppCoordinator 해제")
     }
-    
-    func startMainTabController() {
+    //start() 내부 코드, coordinator 생성, start로 viewcontroller와 viewModel 생성, 주입
+    func showMainTabController() {
         let coordinator = MainTabBarCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start() //뷰컨 생성 후 이동
@@ -43,30 +42,25 @@ final class AppCoordinator: Coordinator, LoginCoordinatorDelegate, MainTabBarCoo
         childCoordinators.append(coordinator)
     }
     
-    //MainTabBarCoordinatorDelegate
-    func pushToLoginViewController() {
-        startLoginViewController()
+    func showLoginView() {
+        isLoggedIn = false
+        showLoginViewController()
     }
     
-    //LoginCoordinatorDelegate
-    func pushToMainTabController() {
-        startMainTabController()
+    func showMainTabView() {
+        isLoggedIn = true
+        showMainTabController()
     }
     
 //    // MARK: - Pop
-//
+//    
 //    func popViewController() {
 //        navigationController.popViewController(animated: true)
-////        childCoordinators.removeLast()
 //    }
-    
-//    childCoordinators = self.childCoordinators.filter { $0 !== self }
-//
+//    
 //    
 //    // MARK: - Dismiss
 //    
 //    func dismissViewController() {
 //        navigationController.dismiss(animated: true)
-//        childCoordinators.removeLast()
-//    }
 }

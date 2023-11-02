@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol LoginCoordinatorDelegate {
-    func pushToMainTabController()
+protocol LoginCoordinatorDelegate: AnyObject {
+    func showMainTabView()
 }
 
 final class LoginCoordinator: Coordinator, LoginViewControllerDelegate,  DetailInfoCoordinatorDelegate {
@@ -18,45 +18,29 @@ final class LoginCoordinator: Coordinator, LoginViewControllerDelegate,  DetailI
     var navigationController: UINavigationController
     var type: CoordinatorType = .login
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    //makeLoginViewControllerPage
+    override func start() {
+        let loginviewController = LoginViewController()
+        loginviewController.view.backgroundColor = .cyan
+        loginviewController.delegate = self //loginviewController delegate 채택
+        navigationController?.viewControllers = [loginviewController]
     }
     
-    func start() {
-        let viewController = LoginViewController()
-        viewController.delegate = self
-        navigationController.viewControllers = [viewController]
+    deinit {
+        print("LoginCoordinator 해제")
     }
     
-    //startDetailInfoViewController
-    func startDetailInfoViewController() {
-        let coordinator = DetailInfoCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        childCoordinators.append(coordinator)
+    func showDetailInfoInput() {
+        let detailInfoInputViewController = DetailInfoInputViewController()
+        detailInfoInputViewController.delegate = self
+        navigationController?.pushViewController(detailInfoInputViewController, animated: true)
     }
     
-    //LoginCoordinatorDelegate
-    func pushToMainTabController() {
-        print("LoginCoordinator - pushToMainTabController")
-        childCoordinators = self.childCoordinators.filter { $0 !== self }
-        delegate?.pushToMainTabController()
+    func showMainTabView() {
+        removeFromChildCoordinators(coordinator: self)
+        print("showMainTabView 실행됨, \(childCoordinators)")
+        delegate?.showMainTabView()
     }
-    
-    //LoginViewControllerDelegate - start
-    func pushToDetailInfoViewController() {
-        print("LoginCoordinator - pushToDetailInfoViewController")
-        childCoordinators = self.childCoordinators.filter { $0 !== self }
-        startDetailInfoViewController()
-    }
-    
-    func dismissViewController() {
-        print("LoginCoordinator - dismissViewController")
-        childCoordinators = self.childCoordinators.filter { $0 !== self }
-//        navigationController.popViewController(animated: true)
-        delegate?.pushToMainTabController()
-    }
-
 }
 
 

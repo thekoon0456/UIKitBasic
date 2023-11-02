@@ -30,14 +30,13 @@ final class HomeTabViewModel {
     
     func transform(input: Input) -> Output {
         
-        //tvTrigger -> Observable<Void> -> Observable<[Tv]>
         let tvList = input.tvTrigger.flatMapLatest { [weak self] _ -> Observable<[Tv]> in
-            //Observable<TvListModel> -> Observable<[Tv]>
             print("transform실행")
             guard let self = self else { return Observable.empty() }
             return tvNerwork.getTopRatedList().map { $0.results }
         }
         
+  
         return Output(tvList: tvList)
     }
 }

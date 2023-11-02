@@ -11,12 +11,16 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    
+}
+
 class HomeViewController: UIViewController {
     
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     var viewModel: HomeTabViewModel?
     let tvTrigger = PublishSubject<Void>()
-    weak var delegate: HomeTabCoordinator?
+    weak var delegate: HomeViewControllerDelegate?
     
     private lazy var tableView = {
         let tableView = UITableView()
@@ -40,7 +44,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-//        tvTrigger.onNext(()) //작동안함
         bindUI()
         print("HomeViewController 등장")
     }
@@ -58,19 +61,12 @@ class HomeViewController: UIViewController {
         
         let output = viewModel?.transform(input: input)
         
-        //        output
-        //            .tvList
-        //            .bind(to: tableView.rx.items) { tableView, index, element in
-        //            print("output실행")
-        //            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTabTableViewCell.id) as? HomeTabTableViewCell else { fatalError() }
-        //            cell.config(title: element.name, releaseDate: element.firstAirDate, url: element.posterURL)
-        //            return cell
-        //        }
-        //        .disposed(by: disposeBag)
         output?.tvList.bind(to: tableView.rx.items(cellIdentifier: HomeTabTableViewCell.id,
-                                                  cellType: HomeTabTableViewCell.self)
+                                                                 cellType: HomeTabTableViewCell.self)
         ) { index, item, cell in
-            cell.config(title: item.name, releaseDate: item.firstAirDate, url: item.posterURL)
+            cell.config(title: item.name,
+                        releaseDate: item.firstAirDate,
+                        url: item.posterURL)
         }
         .disposed(by: disposeBag)
     }

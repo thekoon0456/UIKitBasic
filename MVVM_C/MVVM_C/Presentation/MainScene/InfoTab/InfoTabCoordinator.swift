@@ -8,26 +8,24 @@
 import UIKit
 
 protocol InfoTabCoordinatorDelegate {
-    
+    func showMainTabView()
 }
 
-final class InfoTabCoordinator: Coordinator, InfoViewControllerDelegate {
+final class InfoTabCoordinator: BaseCoordinator, InfoViewControllerDelegate {
     
-    var delegate: MaptabCoordinatorDelegate?
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    var delegate: InfoTabCoordinatorDelegate?
+    
     var type: CoordinatorType = .app
     
-    // MARK: - Init
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    override func start() {
     }
     
-    func start() {
-        let viewController = InfoViewController()
-        viewController.delegate = self
-//        navigationController.pushViewController(infoViewController, animated: true)
-        navigationController.viewControllers = [viewController]
+    func showMainTabView() {
+        removeFromChildCoordinators(coordinator: self)
+        delegate?.showMainTabView()
+    }
+    
+    deinit {
+        print("InfoTabCoordinator 해제")
     }
 }

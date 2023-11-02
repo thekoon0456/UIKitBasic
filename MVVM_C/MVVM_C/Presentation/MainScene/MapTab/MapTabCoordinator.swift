@@ -7,27 +7,21 @@
 
 import UIKit
 
-protocol MaptabCoordinatorDelegate {
+protocol MapTabCoordinatorDelegate {
     
 }
 
-final class MapTabCoordinator: Coordinator, MapViewControllerDelegate {
+final class MapTabCoordinator: BaseCoordinator {
     
-    var delegate: MaptabCoordinatorDelegate?
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    weak var delegate: MainTabBarCoordinator?
     var type: CoordinatorType = .app
     
-    // MARK: - Init
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    override func start() {
+        
     }
     
-    func start() {
-        let controller = MapViewController()
-        controller.viewModel = MapViewModel()
-        controller.delegate = self
-        navigationController.viewControllers = [controller]
+    deinit {
+        print("MapTabCoordinator 해제")
     }
+    
 }

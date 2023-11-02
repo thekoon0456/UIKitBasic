@@ -7,21 +7,22 @@
 
 import UIKit
 
-protocol DetailInfoCoordinatorDelegate {
-    func dismissViewController()
+protocol DetailInfoInputCoordinatorDelegate: AnyObject {
+    func showMainTabView()
 }
 
 final class DetailInfoCoordinator: Coordinator, DetailInfoViewControllerDelegate {
-
-    var delegate: DetailInfoCoordinatorDelegate?
     
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    var delegate: DetailInfoInputCoordinatorDelegate?
     
-    // MARK: - Init
+    override func start() {
+        let detailInfoInputViewController = DetailInfoInputViewController()
+        detailInfoInputViewController.delegate = self
+        navigationController?.pushViewController(detailInfoInputViewController, animated: true)
+    }
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    deinit {
+        print("DetailInfoInputCoordinator 해제")
     }
     
     func start() {
@@ -32,8 +33,9 @@ final class DetailInfoCoordinator: Coordinator, DetailInfoViewControllerDelegate
 //        navigationController.pushViewController(viewController, animated: true)
     }
     
-    func dismissViewController() {
-        childCoordinators = self.childCoordinators.filter { $0 !== self }
-        delegate?.dismissViewController()
+    func showMainTabView() {
+        print("DetailInfoInputCoordinator \(childCoordinators)")
+        removeFromChildCoordinators(coordinator: self)
+        delegate?.showMainTabView()
     }
 }

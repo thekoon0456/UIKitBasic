@@ -217,7 +217,6 @@
 			children = (
 				7C54288F2AEE917000BC6886 /* MapTabCoordinator.swift */,
 				7C5428972AEE91AE00BC6886 /* View */,
-				7C5428982AEE91B300BC6886 /* ViewModel */,
 			);
 			path = MapTab;
 			sourceTree = "<group>";
@@ -249,14 +248,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		7C5428982AEE91B300BC6886 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				7C5AA5AA2AF2BEA60060ACFA /* MapViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
+
 		7C54289B2AEE91C900BC6886 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (

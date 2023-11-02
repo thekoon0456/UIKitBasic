@@ -8,7 +8,7 @@
 import UIKit
 
 protocol InfoViewControllerDelegate: AnyObject {
-    
+    func showMainTabView()
 }
 
 final class InfoViewController: UIViewController {
@@ -45,15 +45,19 @@ final class InfoViewController: UIViewController {
         print("InfoViewController 해제")
     }
     
+    deinit {
+        print("InfoViewController 해제")
+    }
+    
     @objc
     func editButtonTapped() {
         print("editButtonTapped")
-//        appCoordinator?.startLoginViewController()
+        delegate?.showMainTabView()
     }
     
     @objc
     func settingButtonTapped() {
-//        mainTabBarCoordinator?.start()
+        delegate?.showMainTabView()
         print("settingButtonTapped")
     }
     

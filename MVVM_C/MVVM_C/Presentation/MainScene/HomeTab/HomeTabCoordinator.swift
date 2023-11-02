@@ -8,27 +8,23 @@
 import UIKit
 
 protocol HomeTabCoordinatorDelegate {
-    
+
 }
 
-final class HomeTabCoordinator: Coordinator {
+final class HomeTabCoordinator: BaseCoordinator {
     
-    var delegate: MainTabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    var delegate: HomeTabCoordinatorDelegate?
     
-    // MARK: - Init
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
     var type: CoordinatorType = .Home
     
-    func start() {
-        let controller = HomeViewController()
-        controller.viewModel = HomeTabViewModel()
-        controller.delegate = self
-        navigationController.viewControllers = [controller]
+    override func start() {
+//        let controller = HomeViewController()
+//        controller.viewModel = HomeTabViewModel()
+//        controller.HomeTabCoordinator = self
+//        navigationController.viewControllers = [controller]
+    }
+    
+    deinit {
+        print("HomeTabCoordinator 해제")
     }
 }

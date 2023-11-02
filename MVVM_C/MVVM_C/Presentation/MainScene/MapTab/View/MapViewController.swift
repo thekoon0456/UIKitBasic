@@ -18,8 +18,7 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("MapViewController 등장")
+        view.backgroundColor = .green
     }
     
     deinit {
