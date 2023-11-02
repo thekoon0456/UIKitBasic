@@ -8,12 +8,11 @@
 import UIKit
 
 import SnapKit
-
 protocol DetailInfoInputViewControllerDelegate: AnyObject {
     func showMainTabView()
 }
 
-final class DetailInfoInputViewController: UIViewController {
+final class DetailInfoViewController: UIViewController {
     
     weak var delegate: DetailInfoInputViewControllerDelegate?
     
@@ -26,7 +25,7 @@ final class DetailInfoInputViewController: UIViewController {
     private lazy var exButton: UIButton = {
         let button = UIButton()
         button.setTitle("메인탭뷰로", for: .normal)
-        button.addTarget(self, action: #selector(exButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
         return button
     }()
 
@@ -41,7 +40,7 @@ final class DetailInfoInputViewController: UIViewController {
     }
     
     @objc
-    func exButtonTapped() {
+    func dismissViewController() {
         //네비게이션 넣기
         delegate?.showMainTabView()
         print("exButtonTapped, 메인 뷰로")

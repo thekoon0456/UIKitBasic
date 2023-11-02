@@ -18,9 +18,6 @@ final class InfoTabCoordinator: BaseCoordinator, InfoViewControllerDelegate {
     var type: CoordinatorType = .app
     
     override func start() {
-//        let infoViewController = InfoViewController()
-//        infoViewController.delegate = self
-//        navigationController.viewControllers = [infoViewController]
     }
     
     func showMainTabView() {

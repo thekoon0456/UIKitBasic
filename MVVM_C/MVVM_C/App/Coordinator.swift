@@ -25,30 +25,3 @@ protocol Coordinator: AnyObject {
     
     func start()
 }
-
-//Coordinator 프로토콜 채택한 공통 BaseCoordinator클래스 만듬. 다른 Coordinator들은 BaseCoordinator상속받음
-class BaseCoordinator: Coordinator {
-
-    // MARK: - Property
-    
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController?
-    
-    // MARK: - Init
-    
-    init(navigationController: UINavigationController?) {
-        self.navigationController = navigationController
-//        print("\(self.childCoordinators)")
-    }
-
-    // MARK: - Start
-
-    func start() {}
-    
-    //사용 안하는 coordinator 삭제
-    func removeFromChildCoordinators(coordinator: Coordinator) {
-        print("DEBUG: \(coordinator) coordinator 해제")
-        let updatedChildCoordinators = childCoordinators.filter { $0 !== coordinator }
-        childCoordinators = updatedChildCoordinators
-    }
-}

@@ -5,13 +5,13 @@
 //  Created by Deokhun KIM on 11/1/23.
 //
 
-import Foundation
+import UIKit
 
 protocol DetailInfoInputCoordinatorDelegate: AnyObject {
     func showMainTabView()
 }
 
-final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewControllerDelegate {
+final class DetailInfoCoordinator: Coordinator, DetailInfoViewControllerDelegate {
     
     var delegate: DetailInfoInputCoordinatorDelegate?
     
@@ -25,7 +25,13 @@ final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewCont
         print("DetailInfoInputCoordinator 해제")
     }
     
-    // MARK: - Pop
+    func start() {
+        print("DetailInfoCoordinator - start")
+        let viewController = DetailInfoViewController()
+        viewController.delegate = self
+        navigationController.viewControllers = [viewController]
+//        navigationController.pushViewController(viewController, animated: true)
+    }
     
     func showMainTabView() {
         print("DetailInfoInputCoordinator \(childCoordinators)")

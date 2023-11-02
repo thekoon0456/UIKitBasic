@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol MapViewControllerDelegate: AnyObject {
+    
+}
+
 class MapViewController: UIViewController {
+    
+    var viewModel: MapViewModel?
+    weak var delegate: MapViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .green
     }
     

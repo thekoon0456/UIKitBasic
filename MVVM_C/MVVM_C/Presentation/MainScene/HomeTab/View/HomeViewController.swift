@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-//        tvTrigger.onNext(())
         bindUI()
         print("HomeViewController 등장")
     }
@@ -54,7 +53,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        tvTrigger.onNext(())
+        tvTrigger.onNext(()) //작동함
     }
     
     func bindUI() {
