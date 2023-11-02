@@ -11,10 +11,11 @@ protocol LoginCoordinatorDelegate: AnyObject {
     func showMainTabView()
 }
 
-final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoInputViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
+final class LoginCoordinator: Coordinator, LoginViewControllerDelegate,  DetailInfoCoordinatorDelegate {
 
     var delegate: LoginCoordinatorDelegate?
-
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
     var type: CoordinatorType = .login
     
     //makeLoginViewControllerPage

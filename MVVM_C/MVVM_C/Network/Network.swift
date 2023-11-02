@@ -46,5 +46,6 @@ class Network<T: Decodable> {
             print(resultData)
             return resultData
         }
+        .take(1)
     }
 }

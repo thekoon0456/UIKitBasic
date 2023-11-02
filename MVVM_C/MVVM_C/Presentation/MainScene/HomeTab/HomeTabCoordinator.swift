@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeTabCoordinatorDelegate {
-    
+
 }
 
 final class HomeTabCoordinator: BaseCoordinator {
@@ -27,6 +27,4 @@ final class HomeTabCoordinator: BaseCoordinator {
     deinit {
         print("HomeTabCoordinator 해제")
     }
-    
-    
 }

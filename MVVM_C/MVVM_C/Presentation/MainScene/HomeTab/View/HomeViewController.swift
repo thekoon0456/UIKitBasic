@@ -45,7 +45,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-//        tvTrigger.onNext(())
         bindUI()
         print("HomeViewController 등장")
     }

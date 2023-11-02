@@ -10,17 +10,21 @@ import UIKit
 import SnapKit
 
 protocol MainTapBarControllerDelegate: AnyObject {
-    func showLoginView()
+    func pushToLoginViewController()
+    func homeTabTapped()
+    func mapTabTapped()
+    func infoTabTapped()
+    
 }
 
 final class MainTapBarController: UITabBarController {
     
     weak var tapbarDelegate: MainTapBarControllerDelegate?
     var pages: [UINavigationController]
-    var viewModel: MainViewModel
+    var viewModel: MainTabViewModel
     
 //    // MARK: - Initializers
-    init(viewModel: MainViewModel, pages: [UINavigationController]) {
+    init(viewModel: MainTabViewModel, pages: [UINavigationController]) {
         self.viewModel = viewModel
         self.pages = pages
         super.init(nibName: nil, bundle: nil)
@@ -35,6 +39,7 @@ final class MainTapBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        print("MainTapBarController 등장")
     }
     
     deinit {
@@ -61,6 +66,23 @@ final class MainTapBarController: UITabBarController {
     func logOutButtonTapped() {
         print("로그아웃 버튼 눌림")
         //LoginCoordinator로 로그인 사실 알려야함
-        tapbarDelegate?.showLoginView()
+        tapbarDelegate?.pushToLoginViewController()
+    }
+}
+
+extension MainTapBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let index = tabBarController.viewControllers?.firstIndex(of: viewController) {
+            switch index {
+            case 0:
+                tapbarDelegate?.homeTabTapped()
+            case 1:
+                tapbarDelegate?.mapTabTapped()
+            case 2:
+                tapbarDelegate?.infoTabTapped()
+            default:
+                break
+            }
+        }
     }
 }

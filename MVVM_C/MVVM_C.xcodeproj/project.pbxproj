@@ -12,10 +12,10 @@
 		7C2ED1012AED2C2C00C2433C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2ED1002AED2C2C00C2433C /* LoginViewController.swift */; };
 		7C2ED1072AED2C7C00C2433C /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2ED1052AED2C7C00C2433C /* MainTabBarCoordinator.swift */; };
 		7C2ED1082AED2C7C00C2433C /* MainTapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2ED1062AED2C7C00C2433C /* MainTapBarController.swift */; };
-		7C2ED10A2AED2C8000C2433C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2ED1092AED2C8000C2433C /* MainViewModel.swift */; };
+		7C2ED10A2AED2C8000C2433C /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2ED1092AED2C8000C2433C /* MainTabViewModel.swift */; };
 		7C2ED10F2AED2CAC00C2433C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2ED10E2AED2CAC00C2433C /* LoginViewModel.swift */; };
 		7C5428842AED392200BC6886 /* DetailInfoInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5428832AED392200BC6886 /* DetailInfoInputViewModel.swift */; };
-		7C5428862AED393400BC6886 /* DetailInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5428852AED393400BC6886 /* DetailInfoInputViewController.swift */; };
+		7C5428862AED393400BC6886 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5428852AED393400BC6886 /* DetailInfoViewController.swift */; };
 		7C54288E2AEE916200BC6886 /* HomeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54288D2AEE916200BC6886 /* HomeTabCoordinator.swift */; };
 		7C5428902AEE917000BC6886 /* MapTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54288F2AEE917000BC6886 /* MapTabCoordinator.swift */; };
 		7C5428922AEE917A00BC6886 /* InfoTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5428912AEE917A00BC6886 /* InfoTabCoordinator.swift */; };
@@ -23,6 +23,7 @@
 		7C54289A2AEE91C100BC6886 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5428992AEE91C100BC6886 /* MapViewController.swift */; };
 		7C54289E2AEE91E400BC6886 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54289D2AEE91E400BC6886 /* InfoViewController.swift */; };
 		7C5AA5A82AF242610060ACFA /* DetailInfoInputCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AA5A72AF242610060ACFA /* DetailInfoInputCoordinator.swift */; };
+		7C5AA5AB2AF2BEA60060ACFA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AA5AA2AF2BEA60060ACFA /* MapViewModel.swift */; };
 		7CA754A32AF20C3400DEF6A5 /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA754A22AF20C3400DEF6A5 /* HomeTabViewModel.swift */; };
 		7CA754A62AF20C7E00DEF6A5 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA754A52AF20C7E00DEF6A5 /* Const.swift */; };
 		7CA754A82AF20C8B00DEF6A5 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA754A72AF20C8B00DEF6A5 /* Network.swift */; };
@@ -56,10 +57,10 @@
 		7C2ED1002AED2C2C00C2433C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7C2ED1052AED2C7C00C2433C /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		7C2ED1062AED2C7C00C2433C /* MainTapBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTapBarController.swift; sourceTree = "<group>"; };
-		7C2ED1092AED2C8000C2433C /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7C2ED1092AED2C8000C2433C /* MainTabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
 		7C2ED10E2AED2CAC00C2433C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7C5428832AED392200BC6886 /* DetailInfoInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoInputViewModel.swift; sourceTree = "<group>"; };
-		7C5428852AED393400BC6886 /* DetailInfoInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoInputViewController.swift; sourceTree = "<group>"; };
+		7C5428852AED393400BC6886 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		7C54288D2AEE916200BC6886 /* HomeTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabCoordinator.swift; sourceTree = "<group>"; };
 		7C54288F2AEE917000BC6886 /* MapTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTabCoordinator.swift; sourceTree = "<group>"; };
 		7C5428912AEE917A00BC6886 /* InfoTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTabCoordinator.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		7C5428992AEE91C100BC6886 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7C54289D2AEE91E400BC6886 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7C5AA5A72AF242610060ACFA /* DetailInfoInputCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoInputCoordinator.swift; sourceTree = "<group>"; };
+		7C5AA5AA2AF2BEA60060ACFA /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		7CA754A22AF20C3400DEF6A5 /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
 		7CA754A52AF20C7E00DEF6A5 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		7CA754A72AF20C8B00DEF6A5 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -161,7 +163,7 @@
 		7C2ED10C2AED2C8C00C2433C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7C2ED1092AED2C8000C2433C /* MainViewModel.swift */,
+				7C2ED1092AED2C8000C2433C /* MainTabViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,7 +189,7 @@
 		7C5428812AED390B00BC6886 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7C5428852AED393400BC6886 /* DetailInfoInputViewController.swift */,
+				7C5428852AED393400BC6886 /* DetailInfoViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -246,6 +248,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+
 		7C54289B2AEE91C900BC6886 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C5AA5AB2AF2BEA60060ACFA /* MapViewModel.swift in Sources */,
 				7CA754A82AF20C8B00DEF6A5 /* Network.swift in Sources */,
 				7C5428842AED392200BC6886 /* DetailInfoInputViewModel.swift in Sources */,
 				7CBC52A92AF0CA6900F0E5F7 /* MovieResult.swift in Sources */,
@@ -433,7 +437,7 @@
 				7CAE57442AE7B5770022546F /* AppDelegate.swift in Sources */,
 				7CAE57462AE7B5770022546F /* SceneDelegate.swift in Sources */,
 				7C5AA5A82AF242610060ACFA /* DetailInfoInputCoordinator.swift in Sources */,
-				7C5428862AED393400BC6886 /* DetailInfoInputViewController.swift in Sources */,
+				7C5428862AED393400BC6886 /* DetailInfoViewController.swift in Sources */,
 				7C5428902AEE917000BC6886 /* MapTabCoordinator.swift in Sources */,
 				7C2ED0FE2AED2C1E00C2433C /* LoginCoordinator.swift in Sources */,
 				7C2ED0FB2AED2BFC00C2433C /* AppCoordinater.swift in Sources */,
@@ -446,7 +450,7 @@
 				7C54288E2AEE916200BC6886 /* HomeTabCoordinator.swift in Sources */,
 				7CA754A62AF20C7E00DEF6A5 /* Const.swift in Sources */,
 				7C2ED10F2AED2CAC00C2433C /* LoginViewModel.swift in Sources */,
-				7C2ED10A2AED2C8000C2433C /* MainViewModel.swift in Sources */,
+				7C2ED10A2AED2C8000C2433C /* MainTabViewModel.swift in Sources */,
 				7CA754A32AF20C3400DEF6A5 /* HomeTabViewModel.swift in Sources */,
 				7CBC52A22AF0C9EA00F0E5F7 /* TV.swift in Sources */,
 				7C54289E2AEE91E400BC6886 /* InfoViewController.swift in Sources */,

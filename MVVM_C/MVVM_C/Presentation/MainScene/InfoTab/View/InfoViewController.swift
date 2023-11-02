@@ -38,6 +38,11 @@ final class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        print("InfoViewController 등장")
+    }
+    
+    deinit {
+        print("InfoViewController 해제")
     }
     
     deinit {

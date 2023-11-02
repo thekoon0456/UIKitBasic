@@ -35,7 +35,7 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBa
     }
     
     //ParentCoordinator에서 childCoordinator 생성
-    func showLoginViewController() {
+    func startLoginViewController() {
         let coordinator = LoginCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
@@ -63,5 +63,4 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBa
 //    
 //    func dismissViewController() {
 //        navigationController.dismiss(animated: true)
-//    }
 }
