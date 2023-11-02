@@ -38,6 +38,7 @@ class HomeViewController: UIViewController {
     }()
     
     @objc func requestButtonTapped() {
+        print("눌림")
         tvTrigger.onNext(())
     }
     
@@ -54,7 +55,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        tvTrigger.onNext(())
+        tvTrigger.onNext(())
     }
     
     func bindUI() {

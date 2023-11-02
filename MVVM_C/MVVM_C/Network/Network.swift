@@ -28,7 +28,7 @@ class Network<T: Decodable> {
         return Observable.create { observer -> Disposable in
             AF.request(fullPath, method: .get, encoding: JSONEncoding.default)
                 .responseData { response in
-                    print("statusCode: \(response.response?.statusCode)")
+                    print("statusCode: \(String(describing: response.response?.statusCode))")
                     switch response.result {
                     case .success(let data):
                         print(data)
