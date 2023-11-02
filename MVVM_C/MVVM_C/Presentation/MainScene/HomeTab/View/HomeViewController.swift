@@ -34,13 +34,13 @@ class HomeViewController: UIViewController {
     }()
     
     @objc func requestButtonTapped() {
-        tvTrigger.onNext(())
+//        tvTrigger.onNext(())
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        tvTrigger.onNext(())
+//        tvTrigger.onNext(())
         bindUI()
         print("HomeViewController 등장")
     }

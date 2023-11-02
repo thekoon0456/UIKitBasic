@@ -9,7 +9,7 @@ import UIKit
 
 protocol LoginCoordinatorDelegate {
     func showMainTabController()
-    func popViewController()
+//    func popViewController()
 }
 
 final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoInputViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
@@ -37,8 +37,10 @@ final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, Deta
         delegate?.showMainTabController()
     }
     
-    func popViewController() {
-        delegate?.popViewController()
+    func moveToMainTab() {
+        childCoordinators = childCoordinators.filter { $0 !== self }
+        print("LoginCoordinator \(childCoordinators)")
+        delegate?.showMainTabController()
     }
     
 }

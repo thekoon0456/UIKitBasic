@@ -66,7 +66,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
 //        delegate?.childCoordinators.append(mapTabCoordinator)
 //        delegate?.childCoordinators.append(infoTabCoordinator)
         
-        var mainTabBarController = MainTapBarController(
+        let mainTabBarController = MainTapBarController(
             viewModel: MainViewModel(),
             pages: [homeNavigationController,
                     mapNavigationController,

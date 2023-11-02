@@ -9,16 +9,21 @@ import UIKit
 
 //isLoggedIn이 false면 login, true면 main뷰로
 //모든 Coordinator는 CoordinatorProtocol 채택 (명세)
-final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, DetailInfoInputCoordinatorDelegate, MainTabBarCoordinatorDelegate {
+final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
 
-    
     var isLoggedIn = false
     
     override func start() {
         if isLoggedIn {
+
             showMainTabController() //메인 뷰
+            childCoordinators = childCoordinators.filter { $0 !== self }
+            print("AppCoordinator - showMainTabController() - \(childCoordinators)")
         } else {
+
             showLoginViewController() //온보딩 뷰
+            childCoordinators = childCoordinators.filter { $0 !== self }
+            print("AppCoordinator -showLoginViewController() - \(childCoordinators)")
         }
     }
     //start() 내부 코드, coordinator 생성, start로 viewcontroller와 viewModel 생성, 주입

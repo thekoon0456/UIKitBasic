@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailInfoInputCoordinatorDelegate: AnyObject {
-    func popViewController()
+    func moveToMainTab()
 }
 
 final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewControllerDelegate {
@@ -21,9 +21,15 @@ final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewCont
         navigationController.pushViewController(detailInfoInputViewController, animated: true)
     }
     
+    deinit {
+        print("DetailInfoInputCoordinator 해제")
+    }
+    
     // MARK: - Pop
     
-    func popViewController() {
-        delegate?.popViewController()
+    func moveToMainTab() {
+        childCoordinators = childCoordinators.filter { $0 !== self }
+        print("DetailInfoInputCoordinator \(childCoordinators)")
+        delegate?.moveToMainTab()
     }
 }

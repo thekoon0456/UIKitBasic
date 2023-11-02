@@ -28,10 +28,11 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        print("LoginViewController 등장")
     }
     
     deinit {
-        print("LoginViewController해제")
+        print("LoginViewController 해제")
     }
     
     // MARK: - Selectors
