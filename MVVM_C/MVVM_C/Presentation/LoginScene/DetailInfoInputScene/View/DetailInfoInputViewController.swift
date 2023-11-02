@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 protocol DetailInfoInputViewControllerDelegate: AnyObject {
-    func moveToMainTab()
+    func showMainTabView()
 }
 
 final class DetailInfoInputViewController: UIViewController {
@@ -43,7 +43,7 @@ final class DetailInfoInputViewController: UIViewController {
     @objc
     func exButtonTapped() {
         //네비게이션 넣기
-        delegate?.moveToMainTab()
+        delegate?.showMainTabView()
         print("exButtonTapped, 메인 뷰로")
     }
     

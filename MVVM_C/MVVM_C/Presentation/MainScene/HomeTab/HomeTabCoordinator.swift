@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol HomeTabCoordinatorDelegate {
+    
+}
+
 final class HomeTabCoordinator: Coordinator {
     
-    weak var mainTabBarCoordinator: MainTabBarCoordinator?
+    var delegate: HomeTabCoordinatorDelegate?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -20,10 +24,14 @@ final class HomeTabCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = HomeViewController()
-        controller.viewModel = HomeTabViewModel()
-        controller.HomeTabCoordinator = self
-        navigationController.viewControllers = [controller]
+//        let controller = HomeViewController()
+//        controller.viewModel = HomeTabViewModel()
+//        controller.HomeTabCoordinator = self
+//        navigationController.viewControllers = [controller]
+    }
+    
+    deinit {
+        print("HomeTabCoordinator 해제")
     }
     
     

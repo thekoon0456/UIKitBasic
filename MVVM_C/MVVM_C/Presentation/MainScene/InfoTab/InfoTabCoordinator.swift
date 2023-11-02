@@ -7,23 +7,28 @@
 
 import UIKit
 
-final class InfoTabCoordinator: Coordinator {
+protocol InfoTabCoordinatorDelegate {
+    func showMainTabView()
+}
+
+final class InfoTabCoordinator: BaseCoordinator, InfoViewControllerDelegate {
     
-    weak var appCoordinator: AppCoordinator?
-    weak var mainTabBarCoordinator: MainTabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    var delegate: InfoTabCoordinatorDelegate?
+    
     var type: CoordinatorType = .app
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    override func start() {
+//        let infoViewController = InfoViewController()
+//        infoViewController.delegate = self
+//        navigationController.viewControllers = [infoViewController]
     }
     
-    func start() {
-        let infoViewController = InfoViewController()
-        infoViewController.infoTapCoordinator = self
-        infoViewController.appCoordinator = appCoordinator
-        infoViewController.mainTabBarCoordinator = mainTabBarCoordinator
-        navigationController.viewControllers = [infoViewController]
+    func showMainTabView() {
+        removeFromChildCoordinators(coordinator: self)
+        delegate?.showMainTabView()
+    }
+    
+    deinit {
+        print("InfoTabCoordinator 해제")
     }
 }

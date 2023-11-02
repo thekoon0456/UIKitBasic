@@ -7,11 +7,13 @@
 
 import UIKit
 
+protocol InfoViewControllerDelegate: AnyObject {
+    func showMainTabView()
+}
+
 final class InfoViewController: UIViewController {
     
-    weak var infoTapCoordinator: InfoTabCoordinator?
-    weak var mainTabBarCoordinator: MainTabBarCoordinator?
-    weak var appCoordinator: AppCoordinator?
+    weak var delegate: InfoViewControllerDelegate?
 
     let exLabel = {
         let label = UILabel()
@@ -38,15 +40,19 @@ final class InfoViewController: UIViewController {
         configureUI()
     }
     
+    deinit {
+        print("InfoViewController 해제")
+    }
+    
     @objc
     func editButtonTapped() {
         print("editButtonTapped")
-        appCoordinator?.showLoginViewController()
+        delegate?.showMainTabView()
     }
     
     @objc
     func settingButtonTapped() {
-        mainTabBarCoordinator?.start()
+        delegate?.showMainTabView()
         print("settingButtonTapped")
     }
     

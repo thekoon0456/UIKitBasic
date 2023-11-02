@@ -11,20 +11,20 @@ import UIKit
 //모든 Coordinator는 CoordinatorProtocol 채택 (명세)
 final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBarCoordinatorDelegate {
 
-    var isLoggedIn = false
+    var isLoggedIn = true
     
     override func start() {
         if isLoggedIn {
-
             showMainTabController() //메인 뷰
-            childCoordinators = childCoordinators.filter { $0 !== self }
             print("AppCoordinator - showMainTabController() - \(childCoordinators)")
         } else {
-
             showLoginViewController() //온보딩 뷰
-            childCoordinators = childCoordinators.filter { $0 !== self }
             print("AppCoordinator -showLoginViewController() - \(childCoordinators)")
         }
+    }
+    
+    deinit {
+        print("AppCoordinator 해제")
     }
     //start() 내부 코드, coordinator 생성, start로 viewcontroller와 viewModel 생성, 주입
     func showMainTabController() {
@@ -43,21 +43,25 @@ final class AppCoordinator: BaseCoordinator, LoginCoordinatorDelegate, MainTabBa
     }
     
     func showLoginView() {
+        isLoggedIn = false
         showLoginViewController()
     }
     
-    // MARK: - Pop
-    
-    func popViewController() {
-        navigationController.popViewController(animated: true)
-//        childCoordinators.removeLast()
+    func showMainTabView() {
+        isLoggedIn = true
+        showMainTabController()
     }
     
-    
-    // MARK: - Dismiss
-    
-    func dismissViewController() {
-        navigationController.dismiss(animated: true)
-        childCoordinators.removeLast()
-    }
+//    // MARK: - Pop
+//    
+//    func popViewController() {
+//        navigationController.popViewController(animated: true)
+//    }
+//    
+//    
+//    // MARK: - Dismiss
+//    
+//    func dismissViewController() {
+//        navigationController.dismiss(animated: true)
+//    }
 }

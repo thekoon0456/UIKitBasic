@@ -11,9 +11,13 @@ protocol MainTabBarCoordinatorDelegate: AnyObject {
     func showLoginView()
 }
 
-final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate {
+final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate, InfoTabCoordinatorDelegate, HomeTabCoordinatorDelegate {
+    //InfoTabCoordinatorDelegate
+    func showMainTabView() {
+        start()
+    }
     
-    weak var delegate: MainTabBarCoordinatorDelegate?
+    var delegate: MainTabBarCoordinatorDelegate?
     var type: CoordinatorType = .MainTab
     
     deinit {
@@ -25,6 +29,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
     }
     
     func showLoginView() {
+        removeFromChildCoordinators(coordinator: self)
         delegate?.showLoginView()
     }
     
@@ -74,9 +79,9 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         )
         mainTabBarController.tapbarDelegate = self
         
-        homeTabCoordinator.mainTabBarCoordinator = self
-        mapTabCoordinator.MainTabBarCoordinator = self
-        infoTabCoordinator.mainTabBarCoordinator = self
+        homeTabCoordinator.delegate = self
+        mapTabCoordinator.delegate = self
+        infoTabCoordinator.delegate = self
 //        infoTabCoordinator.appCoordinator = delegate
         
         homeTabCoordinator.start()

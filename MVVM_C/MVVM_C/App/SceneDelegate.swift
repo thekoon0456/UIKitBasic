@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
+        window?.makeKeyAndVisible()
         
         let navigationController = UINavigationController()
         window?.rootViewController = navigationController
@@ -21,8 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //AppCoordinator 생성, 첫 뷰 그리기
         let coordinator = AppCoordinator(navigationController: navigationController)
         coordinator.start()
-        
-        window?.makeKeyAndVisible()
     }
 }
 

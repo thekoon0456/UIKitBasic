@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol MapTabCoordinatorDelegate {
+    
+}
+
 final class MapTabCoordinator: Coordinator {
-    weak var MainTabBarCoordinator: MainTabBarCoordinator?
+    
+    weak var delegate: MainTabBarCoordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .app
@@ -18,8 +23,11 @@ final class MapTabCoordinator: Coordinator {
     }
     
     func start() {
-        //
+        
     }
     
+    deinit {
+        print("MapTabCoordinator 해제")
+    }
     
 }

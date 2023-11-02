@@ -8,12 +8,12 @@
 import Foundation
 
 protocol DetailInfoInputCoordinatorDelegate: AnyObject {
-    func moveToMainTab()
+    func showMainTabView()
 }
 
 final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewControllerDelegate {
     
-    weak var delegate: DetailInfoInputCoordinatorDelegate?
+    var delegate: DetailInfoInputCoordinatorDelegate?
     
     override func start() {
         let detailInfoInputViewController = DetailInfoInputViewController()
@@ -27,9 +27,9 @@ final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewCont
     
     // MARK: - Pop
     
-    func moveToMainTab() {
-        childCoordinators = childCoordinators.filter { $0 !== self }
+    func showMainTabView() {
         print("DetailInfoInputCoordinator \(childCoordinators)")
-        delegate?.moveToMainTab()
+        removeFromChildCoordinators(coordinator: self)
+        delegate?.showMainTabView()
     }
 }

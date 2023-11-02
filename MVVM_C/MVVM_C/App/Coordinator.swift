@@ -38,9 +38,17 @@ class BaseCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+//        print("\(self.childCoordinators)")
     }
 
     // MARK: - Start
 
     func start() {}
+    
+    //사용 안하는 coordinator 삭제
+    func removeFromChildCoordinators(coordinator: Coordinator) {
+        print("DEBUG: \(coordinator) coordinator 해제")
+        let updatedChildCoordinators = childCoordinators.filter { $0 !== coordinator }
+        childCoordinators = updatedChildCoordinators
+    }
 }

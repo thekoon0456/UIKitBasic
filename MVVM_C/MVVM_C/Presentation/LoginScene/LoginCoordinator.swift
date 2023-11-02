@@ -7,14 +7,13 @@
 
 import UIKit
 
-protocol LoginCoordinatorDelegate {
-    func showMainTabController()
+protocol LoginCoordinatorDelegate: AnyObject {
+    func showMainTabView()
 //    func popViewController()
 }
 
 final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoInputViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
 
-    //제일 처음 AppCoordinator 받는 곳은 weak var X
     var delegate: LoginCoordinatorDelegate?
 
     var type: CoordinatorType = .login
@@ -27,22 +26,21 @@ final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, Deta
         navigationController.viewControllers = [loginviewController]
     }
     
+    deinit {
+        print("LoginCoordinator 해제")
+    }
+    
     func showDetailInfoInput() {
         let detailInfoInputViewController = DetailInfoInputViewController()
         detailInfoInputViewController.delegate = self
         navigationController.pushViewController(detailInfoInputViewController, animated: true)
     }
     
-    func showMainTabController() {
-        delegate?.showMainTabController()
+    func showMainTabView() {
+        removeFromChildCoordinators(coordinator: self)
+        print("showMainTabView 실행됨, \(childCoordinators)")
+        delegate?.showMainTabView()
     }
-    
-    func moveToMainTab() {
-        childCoordinators = childCoordinators.filter { $0 !== self }
-        print("LoginCoordinator \(childCoordinators)")
-        delegate?.showMainTabController()
-    }
-    
 }
 
 
