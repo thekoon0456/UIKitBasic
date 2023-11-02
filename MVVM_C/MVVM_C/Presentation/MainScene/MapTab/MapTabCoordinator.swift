@@ -11,18 +11,12 @@ protocol MapTabCoordinatorDelegate {
     
 }
 
-final class MapTabCoordinator: Coordinator {
+final class MapTabCoordinator: BaseCoordinator {
     
     weak var delegate: MainTabBarCoordinator?
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
     var type: CoordinatorType = .app
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    func start() {
+    override func start() {
         
     }
     

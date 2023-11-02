@@ -11,19 +11,13 @@ protocol HomeTabCoordinatorDelegate {
     
 }
 
-final class HomeTabCoordinator: Coordinator {
+final class HomeTabCoordinator: BaseCoordinator {
     
     var delegate: HomeTabCoordinatorDelegate?
     
-    var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
     var type: CoordinatorType = .Home
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    func start() {
+    override func start() {
 //        let controller = HomeViewController()
 //        controller.viewModel = HomeTabViewModel()
 //        controller.HomeTabCoordinator = self

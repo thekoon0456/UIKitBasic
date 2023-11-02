@@ -21,7 +21,7 @@ enum CoordinatorType {
 protocol Coordinator: AnyObject {
     
     var childCoordinators: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
+    var navigationController: UINavigationController? { get set }
     
     func start()
 }
@@ -32,11 +32,11 @@ class BaseCoordinator: Coordinator {
     // MARK: - Property
     
     var childCoordinators: [Coordinator] = []
-    var navigationController: UINavigationController
+    var navigationController: UINavigationController?
     
     // MARK: - Init
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
 //        print("\(self.childCoordinators)")
     }

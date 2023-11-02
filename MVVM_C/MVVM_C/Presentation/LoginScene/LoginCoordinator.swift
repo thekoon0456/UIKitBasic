@@ -9,7 +9,6 @@ import UIKit
 
 protocol LoginCoordinatorDelegate: AnyObject {
     func showMainTabView()
-//    func popViewController()
 }
 
 final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, DetailInfoInputViewControllerDelegate, DetailInfoInputCoordinatorDelegate {
@@ -23,7 +22,7 @@ final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, Deta
         let loginviewController = LoginViewController()
         loginviewController.view.backgroundColor = .cyan
         loginviewController.delegate = self //loginviewController delegate 채택
-        navigationController.viewControllers = [loginviewController]
+        navigationController?.viewControllers = [loginviewController]
     }
     
     deinit {
@@ -33,7 +32,7 @@ final class LoginCoordinator: BaseCoordinator, LoginViewControllerDelegate, Deta
     func showDetailInfoInput() {
         let detailInfoInputViewController = DetailInfoInputViewController()
         detailInfoInputViewController.delegate = self
-        navigationController.pushViewController(detailInfoInputViewController, animated: true)
+        navigationController?.pushViewController(detailInfoInputViewController, animated: true)
     }
     
     func showMainTabView() {

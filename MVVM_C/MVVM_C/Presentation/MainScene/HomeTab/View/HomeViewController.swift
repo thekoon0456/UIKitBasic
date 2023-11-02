@@ -11,12 +11,16 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    
+}
+
 class HomeViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     var viewModel: HomeTabViewModel?
     let tvTrigger = PublishSubject<Void>()
-    weak var HomeTabCoordinator: HomeTabCoordinator?
+    weak var delegate: HomeViewControllerDelegate?
     
     private lazy var tableView = {
         let tableView = UITableView()

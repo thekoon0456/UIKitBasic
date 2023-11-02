@@ -88,7 +88,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
         mapTabCoordinator.start()
         infoTabCoordinator.start()
         
-        navigationController.viewControllers = [mainTabBarController]
+        navigationController?.viewControllers = [mainTabBarController]
     }
     
 //    func configureViewController() {

@@ -18,7 +18,7 @@ final class DetailInfoInputCoordinator: BaseCoordinator, DetailInfoInputViewCont
     override func start() {
         let detailInfoInputViewController = DetailInfoInputViewController()
         detailInfoInputViewController.delegate = self
-        navigationController.pushViewController(detailInfoInputViewController, animated: true)
+        navigationController?.pushViewController(detailInfoInputViewController, animated: true)
     }
     
     deinit {
