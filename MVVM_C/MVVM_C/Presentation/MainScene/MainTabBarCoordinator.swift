@@ -56,7 +56,6 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTapBarControllerDelegate
             tag: 1
         )
         
-        
         let infoNavigationController: UINavigationController = makeNavigationController(
             rootViewController: infoViewController,
             title: "Info",
